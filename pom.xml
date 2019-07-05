@@ -89,6 +89,8 @@
     <maven-plugin-version>1.0.0</maven-plugin-version>
     <junit-version>4.12</junit-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <gpg.executable>/usr/bin/gpg</gpg.executable>
+    <gpg.passphrase>${env.PGP_PASSPHRASE}</gpg.passphrase>
   </properties>
 
   <build>
