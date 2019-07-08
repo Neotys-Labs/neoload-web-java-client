@@ -1,3 +1,3 @@
 @Library('jenkins-groovy-lib')
 import startNlWebIndus
-startNlWebIndus(startMongo: false, disableSonar: true, sonarCloud: false, sign: true, sonarCloudTargetBranch: "master")
+startNlWebIndus(startMongo: false, disableSonar: true, sonarCloud: false, sign: true)
