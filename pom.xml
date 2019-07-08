@@ -4,7 +4,10 @@
   <groupId>com.neotys</groupId>
   <artifactId>neoload-web-java-client</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
+
+  <name>neoload-web-java-client</name>
+
   <url>https://github.com/Neotys-Labs/neoload-web-java-client</url>
   <description>Java client for NeoLoad Web Rest API</description>
   <scm>
