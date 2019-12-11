@@ -70,12 +70,14 @@ public class RuntimeApi {
      * @param reservationSAPVUs The number of SAP Virtual Users to be reserved for the test. The value is optional when the reservation mode is enabled and ignored when \&quot;reservationId\&quot; value is defined or if the reservation mode is disabled. (optional)
      * @param controllerZoneId The controller zone Id. If empty, the default zone will be used. (optional)
      * @param lgZones The LG zones with the number of the LGs. Example: \&quot;ZoneId1:10,ZoneId2:5\&quot;. If empty, the default zone will be used with one LG. (optional)
+     * @param publishTestResult When \&quot;true\&quot; and the project is an collaborative project (other than git) then the test result is published onto the server. If empty, the default value is \&quot;false\&quot;. (optional)
+     * @param deleteProjectAfterTest When \&quot;true\&quot; deletes associated test as soon as test result is created. If empty, the default value is \&quot;false\&quot;. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getTestsRunCall(String name, String projectId, String scenarioName, String description, String asCode, String reservationId, Long reservationDuration, Integer reservationWebVUs, Integer reservationSAPVUs, String controllerZoneId, String lgZones, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getTestsRunCall(String name, String projectId, String scenarioName, String description, String asCode, String reservationId, Long reservationDuration, Integer reservationWebVUs, Integer reservationSAPVUs, String controllerZoneId, String lgZones, Boolean publishTestResult, Boolean deleteProjectAfterTest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -104,6 +106,10 @@ public class RuntimeApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("controllerZoneId", controllerZoneId));
         if (lgZones != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("lgZones", lgZones));
+        if (publishTestResult != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("publishTestResult", publishTestResult));
+        if (deleteProjectAfterTest != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("deleteProjectAfterTest", deleteProjectAfterTest));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -138,7 +144,7 @@ public class RuntimeApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getTestsRunValidateBeforeCall(String name, String projectId, String scenarioName, String description, String asCode, String reservationId, Long reservationDuration, Integer reservationWebVUs, Integer reservationSAPVUs, String controllerZoneId, String lgZones, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getTestsRunValidateBeforeCall(String name, String projectId, String scenarioName, String description, String asCode, String reservationId, Long reservationDuration, Integer reservationWebVUs, Integer reservationSAPVUs, String controllerZoneId, String lgZones, Boolean publishTestResult, Boolean deleteProjectAfterTest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling getTestsRun(Async)");
@@ -152,7 +158,7 @@ public class RuntimeApi {
             throw new ApiException("Missing the required parameter 'scenarioName' when calling getTestsRun(Async)");
         }
         
-        com.squareup.okhttp.Call call = getTestsRunCall(name, projectId, scenarioName, description, asCode, reservationId, reservationDuration, reservationWebVUs, reservationSAPVUs, controllerZoneId, lgZones, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getTestsRunCall(name, projectId, scenarioName, description, asCode, reservationId, reservationDuration, reservationWebVUs, reservationSAPVUs, controllerZoneId, lgZones, publishTestResult, deleteProjectAfterTest, progressListener, progressRequestListener);
         return call;
 
         
@@ -175,11 +181,13 @@ public class RuntimeApi {
      * @param reservationSAPVUs The number of SAP Virtual Users to be reserved for the test. The value is optional when the reservation mode is enabled and ignored when \&quot;reservationId\&quot; value is defined or if the reservation mode is disabled. (optional)
      * @param controllerZoneId The controller zone Id. If empty, the default zone will be used. (optional)
      * @param lgZones The LG zones with the number of the LGs. Example: \&quot;ZoneId1:10,ZoneId2:5\&quot;. If empty, the default zone will be used with one LG. (optional)
+     * @param publishTestResult When \&quot;true\&quot; and the project is an collaborative project (other than git) then the test result is published onto the server. If empty, the default value is \&quot;false\&quot;. (optional)
+     * @param deleteProjectAfterTest When \&quot;true\&quot; deletes associated test as soon as test result is created. If empty, the default value is \&quot;false\&quot;. (optional)
      * @return RunTestDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public RunTestDefinition getTestsRun(String name, String projectId, String scenarioName, String description, String asCode, String reservationId, Long reservationDuration, Integer reservationWebVUs, Integer reservationSAPVUs, String controllerZoneId, String lgZones) throws ApiException {
-        ApiResponse<RunTestDefinition> resp = getTestsRunWithHttpInfo(name, projectId, scenarioName, description, asCode, reservationId, reservationDuration, reservationWebVUs, reservationSAPVUs, controllerZoneId, lgZones);
+    public RunTestDefinition getTestsRun(String name, String projectId, String scenarioName, String description, String asCode, String reservationId, Long reservationDuration, Integer reservationWebVUs, Integer reservationSAPVUs, String controllerZoneId, String lgZones, Boolean publishTestResult, Boolean deleteProjectAfterTest) throws ApiException {
+        ApiResponse<RunTestDefinition> resp = getTestsRunWithHttpInfo(name, projectId, scenarioName, description, asCode, reservationId, reservationDuration, reservationWebVUs, reservationSAPVUs, controllerZoneId, lgZones, publishTestResult, deleteProjectAfterTest);
         return resp.getData();
     }
 
@@ -197,11 +205,13 @@ public class RuntimeApi {
      * @param reservationSAPVUs The number of SAP Virtual Users to be reserved for the test. The value is optional when the reservation mode is enabled and ignored when \&quot;reservationId\&quot; value is defined or if the reservation mode is disabled. (optional)
      * @param controllerZoneId The controller zone Id. If empty, the default zone will be used. (optional)
      * @param lgZones The LG zones with the number of the LGs. Example: \&quot;ZoneId1:10,ZoneId2:5\&quot;. If empty, the default zone will be used with one LG. (optional)
+     * @param publishTestResult When \&quot;true\&quot; and the project is an collaborative project (other than git) then the test result is published onto the server. If empty, the default value is \&quot;false\&quot;. (optional)
+     * @param deleteProjectAfterTest When \&quot;true\&quot; deletes associated test as soon as test result is created. If empty, the default value is \&quot;false\&quot;. (optional)
      * @return ApiResponse&lt;RunTestDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<RunTestDefinition> getTestsRunWithHttpInfo(String name, String projectId, String scenarioName, String description, String asCode, String reservationId, Long reservationDuration, Integer reservationWebVUs, Integer reservationSAPVUs, String controllerZoneId, String lgZones) throws ApiException {
-        com.squareup.okhttp.Call call = getTestsRunValidateBeforeCall(name, projectId, scenarioName, description, asCode, reservationId, reservationDuration, reservationWebVUs, reservationSAPVUs, controllerZoneId, lgZones, null, null);
+    public ApiResponse<RunTestDefinition> getTestsRunWithHttpInfo(String name, String projectId, String scenarioName, String description, String asCode, String reservationId, Long reservationDuration, Integer reservationWebVUs, Integer reservationSAPVUs, String controllerZoneId, String lgZones, Boolean publishTestResult, Boolean deleteProjectAfterTest) throws ApiException {
+        com.squareup.okhttp.Call call = getTestsRunValidateBeforeCall(name, projectId, scenarioName, description, asCode, reservationId, reservationDuration, reservationWebVUs, reservationSAPVUs, controllerZoneId, lgZones, publishTestResult, deleteProjectAfterTest, null, null);
         Type localVarReturnType = new TypeToken<RunTestDefinition>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -220,11 +230,13 @@ public class RuntimeApi {
      * @param reservationSAPVUs The number of SAP Virtual Users to be reserved for the test. The value is optional when the reservation mode is enabled and ignored when \&quot;reservationId\&quot; value is defined or if the reservation mode is disabled. (optional)
      * @param controllerZoneId The controller zone Id. If empty, the default zone will be used. (optional)
      * @param lgZones The LG zones with the number of the LGs. Example: \&quot;ZoneId1:10,ZoneId2:5\&quot;. If empty, the default zone will be used with one LG. (optional)
+     * @param publishTestResult When \&quot;true\&quot; and the project is an collaborative project (other than git) then the test result is published onto the server. If empty, the default value is \&quot;false\&quot;. (optional)
+     * @param deleteProjectAfterTest When \&quot;true\&quot; deletes associated test as soon as test result is created. If empty, the default value is \&quot;false\&quot;. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getTestsRunAsync(String name, String projectId, String scenarioName, String description, String asCode, String reservationId, Long reservationDuration, Integer reservationWebVUs, Integer reservationSAPVUs, String controllerZoneId, String lgZones, final ApiCallback<RunTestDefinition> callback) throws ApiException {
+    public com.squareup.okhttp.Call getTestsRunAsync(String name, String projectId, String scenarioName, String description, String asCode, String reservationId, Long reservationDuration, Integer reservationWebVUs, Integer reservationSAPVUs, String controllerZoneId, String lgZones, Boolean publishTestResult, Boolean deleteProjectAfterTest, final ApiCallback<RunTestDefinition> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -245,7 +257,7 @@ public class RuntimeApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getTestsRunValidateBeforeCall(name, projectId, scenarioName, description, asCode, reservationId, reservationDuration, reservationWebVUs, reservationSAPVUs, controllerZoneId, lgZones, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getTestsRunValidateBeforeCall(name, projectId, scenarioName, description, asCode, reservationId, reservationDuration, reservationWebVUs, reservationSAPVUs, controllerZoneId, lgZones, publishTestResult, deleteProjectAfterTest, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<RunTestDefinition>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -319,7 +331,7 @@ public class RuntimeApi {
 
     /**
      * Uploads a NeoLoad project zip file or a standalone as code file
-     * Uploads a NeoLoad project of the account corresponding to the parameters. The maximum size file is 100 MB
+     * Uploads a NeoLoad project of the account corresponding to the parameters. The maximum size file is 250 MB
      * @param file  (required)
      * @return ProjectDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -331,7 +343,7 @@ public class RuntimeApi {
 
     /**
      * Uploads a NeoLoad project zip file or a standalone as code file
-     * Uploads a NeoLoad project of the account corresponding to the parameters. The maximum size file is 100 MB
+     * Uploads a NeoLoad project of the account corresponding to the parameters. The maximum size file is 250 MB
      * @param file  (required)
      * @return ApiResponse&lt;ProjectDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -344,7 +356,7 @@ public class RuntimeApi {
 
     /**
      * Uploads a NeoLoad project zip file or a standalone as code file (asynchronously)
-     * Uploads a NeoLoad project of the account corresponding to the parameters. The maximum size file is 100 MB
+     * Uploads a NeoLoad project of the account corresponding to the parameters. The maximum size file is 250 MB
      * @param file  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call

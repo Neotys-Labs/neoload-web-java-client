@@ -25,7 +25,7 @@ import java.io.IOException;
  * Point
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-07-05T12:29:31.743Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-12-11T07:59:32.751Z[GMT]")
 public class Point {
   @SerializedName("from")
   private Long from = null;
@@ -68,6 +68,9 @@ public class Point {
 
   @SerializedName("MAX_TTFB")
   private Float MAX_TTFB = null;
+
+  @SerializedName("AVG")
+  private Float AVG = null;
 
   public Point from(Long from) {
     this.from = from;
@@ -321,6 +324,24 @@ public class Point {
     this.MAX_TTFB = MAX_TTFB;
   }
 
+  public Point AVG(Float AVG) {
+    this.AVG = AVG;
+    return this;
+  }
+
+   /**
+   * Get AVG
+   * @return AVG
+  **/
+  @Schema(description = "")
+  public Float getAVG() {
+    return AVG;
+  }
+
+  public void setAVG(Float AVG) {
+    this.AVG = AVG;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -344,12 +365,13 @@ public class Point {
         Objects.equals(this.ERROR_RATE, point.ERROR_RATE) &&
         Objects.equals(this.AVG_TTFB, point.AVG_TTFB) &&
         Objects.equals(this.MIN_TTFB, point.MIN_TTFB) &&
-        Objects.equals(this.MAX_TTFB, point.MAX_TTFB);
+        Objects.equals(this.MAX_TTFB, point.MAX_TTFB) &&
+        Objects.equals(this.AVG, point.AVG);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(from, to, AVG_DURATION, MIN_DURATION, MAX_DURATION, COUNT, THROUGHPUT, ELEMENTS_PER_SECOND, ERRORS, ERRORS_PER_SECOND, ERROR_RATE, AVG_TTFB, MIN_TTFB, MAX_TTFB);
+    return Objects.hash(from, to, AVG_DURATION, MIN_DURATION, MAX_DURATION, COUNT, THROUGHPUT, ELEMENTS_PER_SECOND, ERRORS, ERRORS_PER_SECOND, ERROR_RATE, AVG_TTFB, MIN_TTFB, MAX_TTFB, AVG);
   }
 
 
@@ -372,6 +394,7 @@ public class Point {
     sb.append("    AVG_TTFB: ").append(toIndentedString(AVG_TTFB)).append("\n");
     sb.append("    MIN_TTFB: ").append(toIndentedString(MIN_TTFB)).append("\n");
     sb.append("    MAX_TTFB: ").append(toIndentedString(MAX_TTFB)).append("\n");
+    sb.append("    AVG: ").append(toIndentedString(AVG)).append("\n");
     sb.append("}");
     return sb.toString();
   }

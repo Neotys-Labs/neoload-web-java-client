@@ -25,7 +25,7 @@ import java.io.IOException;
  * TestDefinition
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-07-05T12:29:31.743Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-12-11T07:59:32.751Z[GMT]")
 public class TestDefinition {
   @SerializedName("id")
   private String id = null;
@@ -97,7 +97,7 @@ public class TestDefinition {
   private String scenario = null;
 
   /**
-   * Status of the test.
+   * Status of the test result.
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
@@ -144,7 +144,7 @@ public class TestDefinition {
   private StatusEnum status = null;
 
   /**
-   * Quality status of the test.
+   * Quality status of the test result.
    */
   @JsonAdapter(QualityStatusEnum.Adapter.class)
   public enum QualityStatusEnum {
@@ -204,10 +204,10 @@ public class TestDefinition {
   }
 
    /**
-   * Unique identifier of the test.
+   * Unique identifier of the test result.
    * @return id
   **/
-  @Schema(description = "Unique identifier of the test.")
+  @Schema(description = "Unique identifier of the test result.")
   public String getId() {
     return id;
   }
@@ -222,10 +222,10 @@ public class TestDefinition {
   }
 
    /**
-   * Name of the test.
+   * Name of the test result.
    * @return name
   **/
-  @Schema(description = "Name of the test.")
+  @Schema(description = "Name of the test result.")
   public String getName() {
     return name;
   }
@@ -240,10 +240,10 @@ public class TestDefinition {
   }
 
    /**
-   * Description of the test.
+   * Description of the test result.
    * @return description
   **/
-  @Schema(description = "Description of the test.")
+  @Schema(description = "Description of the test result.")
   public String getDescription() {
     return description;
   }
@@ -294,10 +294,10 @@ public class TestDefinition {
   }
 
    /**
-   * Total number of Load Generators used in the test.
+   * Total number of Load Generators used in the test result.
    * @return lgCount
   **/
-  @Schema(description = "Total number of Load Generators used in the test.")
+  @Schema(description = "Total number of Load Generators used in the test result.")
   public Integer getLgCount() {
     return lgCount;
   }
@@ -348,10 +348,10 @@ public class TestDefinition {
   }
 
    /**
-   * Status of the test.
+   * Status of the test result.
    * @return status
   **/
-  @Schema(description = "Status of the test.")
+  @Schema(description = "Status of the test result.")
   public StatusEnum getStatus() {
     return status;
   }
@@ -366,10 +366,10 @@ public class TestDefinition {
   }
 
    /**
-   * Quality status of the test.
+   * Quality status of the test result.
    * @return qualityStatus
   **/
-  @Schema(description = "Quality status of the test.")
+  @Schema(description = "Quality status of the test result.")
   public QualityStatusEnum getQualityStatus() {
     return qualityStatus;
   }

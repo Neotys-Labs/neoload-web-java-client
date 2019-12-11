@@ -25,7 +25,7 @@ import java.io.IOException;
  * TestUpdateRequest
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-07-05T12:29:31.743Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-12-11T07:59:32.751Z[GMT]")
 public class TestUpdateRequest {
   @SerializedName("name")
   private String name = null;
@@ -34,7 +34,7 @@ public class TestUpdateRequest {
   private String description = null;
 
   /**
-   * Quality status of the test.
+   * Quality status of the test result.
    */
   @JsonAdapter(QualityStatusEnum.Adapter.class)
   public enum QualityStatusEnum {
@@ -83,10 +83,10 @@ public class TestUpdateRequest {
   }
 
    /**
-   * Name of the test.
+   * Name of the test result.
    * @return name
   **/
-  @Schema(description = "Name of the test.")
+  @Schema(description = "Name of the test result.")
   public String getName() {
     return name;
   }
@@ -101,10 +101,10 @@ public class TestUpdateRequest {
   }
 
    /**
-   * Description of the test.
+   * Description of the test result.
    * @return description
   **/
-  @Schema(description = "Description of the test.")
+  @Schema(description = "Description of the test result.")
   public String getDescription() {
     return description;
   }
@@ -119,10 +119,10 @@ public class TestUpdateRequest {
   }
 
    /**
-   * Quality status of the test.
+   * Quality status of the test result.
    * @return qualityStatus
   **/
-  @Schema(description = "Quality status of the test.")
+  @Schema(description = "Quality status of the test result.")
   public QualityStatusEnum getQualityStatus() {
     return qualityStatus;
   }

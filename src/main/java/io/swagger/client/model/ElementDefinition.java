@@ -27,7 +27,7 @@ import java.util.List;
  * ElementDefinition
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-07-05T12:29:31.743Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-12-11T07:59:32.751Z[GMT]")
 public class ElementDefinition {
   @SerializedName("id")
   private String id = null;
@@ -50,7 +50,7 @@ public class ElementDefinition {
    * Unique identifier of the element.
    * @return id
   **/
-  @Schema(description = "Unique identifier of the element.")
+  @Schema(example = "a6f2f595-7b62-4dc4-9368-a1cf670cd924", description = "Unique identifier of the element.")
   public String getId() {
     return id;
   }
@@ -68,7 +68,7 @@ public class ElementDefinition {
    * Name of the element.
    * @return name
   **/
-  @Schema(description = "Name of the element.")
+  @Schema(example = "/home/login", description = "Name of the element.")
   public String getName() {
     return name;
   }
@@ -94,7 +94,7 @@ public class ElementDefinition {
    * Full path of the element including the element itself.
    * @return path
   **/
-  @Schema(description = "Full path of the element including the element itself.")
+  @Schema(example = "[\"UserPath\",\"Actions\",\"Transaction login\",\"Login page\",\"/home/login\"]", description = "Full path of the element including the element itself.")
   public List<String> getPath() {
     return path;
   }

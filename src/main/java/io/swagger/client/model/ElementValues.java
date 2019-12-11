@@ -25,7 +25,7 @@ import java.io.IOException;
  * ElementValues
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-07-05T12:29:31.743Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-12-11T07:59:32.751Z[GMT]")
 public class ElementValues {
   @SerializedName("count")
   private Long count = null;
@@ -81,16 +81,28 @@ public class ElementValues {
   @SerializedName("failureRate")
   private Float failureRate = null;
 
+  @SerializedName("percentile50")
+  private Float percentile50 = null;
+
+  @SerializedName("percentile90")
+  private Float percentile90 = null;
+
+  @SerializedName("percentile95")
+  private Float percentile95 = null;
+
+  @SerializedName("percentile99")
+  private Float percentile99 = null;
+
   public ElementValues count(Long count) {
     this.count = count;
     return this;
   }
 
    /**
-   * Get count
+   * Count statistics are the number of full executions of an element of a User Path. If the element is interrupted (because of error or end of test), then the count number is not incremented.
    * @return count
   **/
-  @Schema(description = "")
+  @Schema(description = "Count statistics are the number of full executions of an element of a User Path. If the element is interrupted (because of error or end of test), then the count number is not incremented.")
   public Long getCount() {
     return count;
   }
@@ -105,10 +117,10 @@ public class ElementValues {
   }
 
    /**
-   * Get elementPerSecond
+   * Number of iterations of the element per second.
    * @return elementPerSecond
   **/
-  @Schema(description = "")
+  @Schema(description = "Number of iterations of the element per second.")
   public Float getElementPerSecond() {
     return elementPerSecond;
   }
@@ -123,10 +135,10 @@ public class ElementValues {
   }
 
    /**
-   * Get minDuration
+   * Shortest response time, in milliseconds.
    * @return minDuration
   **/
-  @Schema(description = "")
+  @Schema(description = "Shortest response time, in milliseconds.")
   public Long getMinDuration() {
     return minDuration;
   }
@@ -141,10 +153,10 @@ public class ElementValues {
   }
 
    /**
-   * Get maxDuration
+   * Longest response time, in milliseconds.
    * @return maxDuration
   **/
-  @Schema(description = "")
+  @Schema(description = "Longest response time, in milliseconds.")
   public Long getMaxDuration() {
     return maxDuration;
   }
@@ -159,10 +171,10 @@ public class ElementValues {
   }
 
    /**
-   * Get sumDuration
+   * Sum of response time of all iterations, in milliseconds.
    * @return sumDuration
   **/
-  @Schema(description = "")
+  @Schema(description = "Sum of response time of all iterations, in milliseconds.")
   public Long getSumDuration() {
     return sumDuration;
   }
@@ -177,10 +189,10 @@ public class ElementValues {
   }
 
    /**
-   * Get avgDuration
+   * Average response time, in milliseconds.
    * @return avgDuration
   **/
-  @Schema(description = "")
+  @Schema(description = "Average response time, in milliseconds.")
   public Float getAvgDuration() {
     return avgDuration;
   }
@@ -195,10 +207,10 @@ public class ElementValues {
   }
 
    /**
-   * Get minTTFB
+   * Shortest time to first byte, in milliseconds.
    * @return minTTFB
   **/
-  @Schema(description = "")
+  @Schema(description = "Shortest time to first byte, in milliseconds.")
   public Long getMinTTFB() {
     return minTTFB;
   }
@@ -213,10 +225,10 @@ public class ElementValues {
   }
 
    /**
-   * Get maxTTFB
+   * Longest time to first byte, in milliseconds.
    * @return maxTTFB
   **/
-  @Schema(description = "")
+  @Schema(description = "Longest time to first byte, in milliseconds.")
   public Long getMaxTTFB() {
     return maxTTFB;
   }
@@ -231,10 +243,10 @@ public class ElementValues {
   }
 
    /**
-   * Get sumTTFB
+   * Sum of time to first byte of all iterations, in milliseconds.
    * @return sumTTFB
   **/
-  @Schema(description = "")
+  @Schema(description = "Sum of time to first byte of all iterations, in milliseconds.")
   public Long getSumTTFB() {
     return sumTTFB;
   }
@@ -249,10 +261,10 @@ public class ElementValues {
   }
 
    /**
-   * Get avgTTFB
+   * Average time to first byte, in milliseconds.
    * @return avgTTFB
   **/
-  @Schema(description = "")
+  @Schema(description = "Average time to first byte, in milliseconds.")
   public Float getAvgTTFB() {
     return avgTTFB;
   }
@@ -267,10 +279,10 @@ public class ElementValues {
   }
 
    /**
-   * Get sumDownloadedBytes
+   * Total size of network traffic for the element, in bytes.
    * @return sumDownloadedBytes
   **/
-  @Schema(description = "")
+  @Schema(description = "Total size of network traffic for the element, in bytes.")
   public Long getSumDownloadedBytes() {
     return sumDownloadedBytes;
   }
@@ -285,10 +297,10 @@ public class ElementValues {
   }
 
    /**
-   * Get downloadedBytesPerSecond
+   * Average size of network traffic for the element, in bytes per seconds.
    * @return downloadedBytesPerSecond
   **/
-  @Schema(description = "")
+  @Schema(description = "Average size of network traffic for the element, in bytes per seconds.")
   public Float getDownloadedBytesPerSecond() {
     return downloadedBytesPerSecond;
   }
@@ -303,10 +315,10 @@ public class ElementValues {
   }
 
    /**
-   * Get successCount
+   * Count of succeeded iterations.
    * @return successCount
   **/
-  @Schema(description = "")
+  @Schema(description = "Count of succeeded iterations.")
   public Long getSuccessCount() {
     return successCount;
   }
@@ -321,10 +333,10 @@ public class ElementValues {
   }
 
    /**
-   * Get successPerSecond
+   * Count of succeeded iterations per second.
    * @return successPerSecond
   **/
-  @Schema(description = "")
+  @Schema(description = "Count of succeeded iterations per second.")
   public Float getSuccessPerSecond() {
     return successPerSecond;
   }
@@ -339,10 +351,10 @@ public class ElementValues {
   }
 
    /**
-   * Get successRate
+   * Percentage of succeeded iterations out of count.
    * @return successRate
   **/
-  @Schema(description = "")
+  @Schema(description = "Percentage of succeeded iterations out of count.")
   public Float getSuccessRate() {
     return successRate;
   }
@@ -357,10 +369,10 @@ public class ElementValues {
   }
 
    /**
-   * Get failureCount
+   * Count of failed iterations.
    * @return failureCount
   **/
-  @Schema(description = "")
+  @Schema(description = "Count of failed iterations.")
   public Long getFailureCount() {
     return failureCount;
   }
@@ -375,10 +387,10 @@ public class ElementValues {
   }
 
    /**
-   * Get failurePerSecond
+   * Count of failed iterations per second.
    * @return failurePerSecond
   **/
-  @Schema(description = "")
+  @Schema(description = "Count of failed iterations per second.")
   public Float getFailurePerSecond() {
     return failurePerSecond;
   }
@@ -393,16 +405,88 @@ public class ElementValues {
   }
 
    /**
-   * Get failureRate
+   * Percentage of failed iterations out of count.
    * @return failureRate
   **/
-  @Schema(description = "")
+  @Schema(description = "Percentage of failed iterations out of count.")
   public Float getFailureRate() {
     return failureRate;
   }
 
   public void setFailureRate(Float failureRate) {
     this.failureRate = failureRate;
+  }
+
+  public ElementValues percentile50(Float percentile50) {
+    this.percentile50 = percentile50;
+    return this;
+  }
+
+   /**
+   * 50th percentile of the element duration, in milliseconds. Requires at least NeoLoad 7.1. Only available when test is terminated.
+   * @return percentile50
+  **/
+  @Schema(description = "50th percentile of the element duration, in milliseconds. Requires at least NeoLoad 7.1. Only available when test is terminated.")
+  public Float getPercentile50() {
+    return percentile50;
+  }
+
+  public void setPercentile50(Float percentile50) {
+    this.percentile50 = percentile50;
+  }
+
+  public ElementValues percentile90(Float percentile90) {
+    this.percentile90 = percentile90;
+    return this;
+  }
+
+   /**
+   * 90th percentile of the element duration, in milliseconds. Requires at least NeoLoad 7.1. Only available when test is terminated.
+   * @return percentile90
+  **/
+  @Schema(description = "90th percentile of the element duration, in milliseconds. Requires at least NeoLoad 7.1. Only available when test is terminated.")
+  public Float getPercentile90() {
+    return percentile90;
+  }
+
+  public void setPercentile90(Float percentile90) {
+    this.percentile90 = percentile90;
+  }
+
+  public ElementValues percentile95(Float percentile95) {
+    this.percentile95 = percentile95;
+    return this;
+  }
+
+   /**
+   * 95th percentile of the element duration, in milliseconds. Requires at least NeoLoad 7.1. Only available when test is terminated.
+   * @return percentile95
+  **/
+  @Schema(description = "95th percentile of the element duration, in milliseconds. Requires at least NeoLoad 7.1. Only available when test is terminated.")
+  public Float getPercentile95() {
+    return percentile95;
+  }
+
+  public void setPercentile95(Float percentile95) {
+    this.percentile95 = percentile95;
+  }
+
+  public ElementValues percentile99(Float percentile99) {
+    this.percentile99 = percentile99;
+    return this;
+  }
+
+   /**
+   * 99th percentile of the element duration, in milliseconds. Requires at least NeoLoad 7.1. Only available when test is terminated.
+   * @return percentile99
+  **/
+  @Schema(description = "99th percentile of the element duration, in milliseconds. Requires at least NeoLoad 7.1. Only available when test is terminated.")
+  public Float getPercentile99() {
+    return percentile99;
+  }
+
+  public void setPercentile99(Float percentile99) {
+    this.percentile99 = percentile99;
   }
 
 
@@ -432,12 +516,16 @@ public class ElementValues {
         Objects.equals(this.successRate, elementValues.successRate) &&
         Objects.equals(this.failureCount, elementValues.failureCount) &&
         Objects.equals(this.failurePerSecond, elementValues.failurePerSecond) &&
-        Objects.equals(this.failureRate, elementValues.failureRate);
+        Objects.equals(this.failureRate, elementValues.failureRate) &&
+        Objects.equals(this.percentile50, elementValues.percentile50) &&
+        Objects.equals(this.percentile90, elementValues.percentile90) &&
+        Objects.equals(this.percentile95, elementValues.percentile95) &&
+        Objects.equals(this.percentile99, elementValues.percentile99);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(count, elementPerSecond, minDuration, maxDuration, sumDuration, avgDuration, minTTFB, maxTTFB, sumTTFB, avgTTFB, sumDownloadedBytes, downloadedBytesPerSecond, successCount, successPerSecond, successRate, failureCount, failurePerSecond, failureRate);
+    return Objects.hash(count, elementPerSecond, minDuration, maxDuration, sumDuration, avgDuration, minTTFB, maxTTFB, sumTTFB, avgTTFB, sumDownloadedBytes, downloadedBytesPerSecond, successCount, successPerSecond, successRate, failureCount, failurePerSecond, failureRate, percentile50, percentile90, percentile95, percentile99);
   }
 
 
@@ -464,6 +552,10 @@ public class ElementValues {
     sb.append("    failureCount: ").append(toIndentedString(failureCount)).append("\n");
     sb.append("    failurePerSecond: ").append(toIndentedString(failurePerSecond)).append("\n");
     sb.append("    failureRate: ").append(toIndentedString(failureRate)).append("\n");
+    sb.append("    percentile50: ").append(toIndentedString(percentile50)).append("\n");
+    sb.append("    percentile90: ").append(toIndentedString(percentile90)).append("\n");
+    sb.append("    percentile95: ").append(toIndentedString(percentile95)).append("\n");
+    sb.append("    percentile99: ").append(toIndentedString(percentile99)).append("\n");
     sb.append("}");
     return sb.toString();
   }

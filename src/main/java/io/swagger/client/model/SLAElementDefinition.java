@@ -25,7 +25,7 @@ import java.io.IOException;
  * SLAElementDefinition
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-07-05T12:29:31.743Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-12-11T07:59:32.751Z[GMT]")
 public class SLAElementDefinition {
   @SerializedName("elementID")
   private String elementID = null;
@@ -78,8 +78,8 @@ public class SLAElementDefinition {
   }  @SerializedName("category")
   private CategoryEnum category = null;
 
-  @SerializedName("userPath")
-  private String userPath = null;
+  @SerializedName("userpath")
+  private String userpath = null;
 
   @SerializedName("parent")
   private String parent = null;
@@ -138,22 +138,22 @@ public class SLAElementDefinition {
     this.category = category;
   }
 
-  public SLAElementDefinition userPath(String userPath) {
-    this.userPath = userPath;
+  public SLAElementDefinition userpath(String userpath) {
+    this.userpath = userpath;
     return this;
   }
 
    /**
    * The name of the user path in which the element is.
-   * @return userPath
+   * @return userpath
   **/
   @Schema(description = "The name of the user path in which the element is.")
-  public String getUserPath() {
-    return userPath;
+  public String getUserpath() {
+    return userpath;
   }
 
-  public void setUserPath(String userPath) {
-    this.userPath = userPath;
+  public void setUserpath(String userpath) {
+    this.userpath = userpath;
   }
 
   public SLAElementDefinition parent(String parent) {
@@ -187,13 +187,13 @@ public class SLAElementDefinition {
     return Objects.equals(this.elementID, slAElementDefinition.elementID) &&
         Objects.equals(this.name, slAElementDefinition.name) &&
         Objects.equals(this.category, slAElementDefinition.category) &&
-        Objects.equals(this.userPath, slAElementDefinition.userPath) &&
+        Objects.equals(this.userpath, slAElementDefinition.userpath) &&
         Objects.equals(this.parent, slAElementDefinition.parent);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(elementID, name, category, userPath, parent);
+    return Objects.hash(elementID, name, category, userpath, parent);
   }
 
 
@@ -205,7 +205,7 @@ public class SLAElementDefinition {
     sb.append("    elementID: ").append(toIndentedString(elementID)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
-    sb.append("    userPath: ").append(toIndentedString(userPath)).append("\n");
+    sb.append("    userpath: ").append(toIndentedString(userpath)).append("\n");
     sb.append("    parent: ").append(toIndentedString(parent)).append("\n");
     sb.append("}");
     return sb.toString();

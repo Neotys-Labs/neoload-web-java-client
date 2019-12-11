@@ -26,7 +26,7 @@ import java.io.IOException;
  * Body
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-07-05T12:29:31.743Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-12-11T07:59:32.751Z[GMT]")
 public class Body {
   @SerializedName("file")
   private File file = null;
@@ -64,7 +64,7 @@ public class Body {
 
   @Override
   public int hashCode() {
-    return Objects.hash(file);
+    return Objects.hash(Objects.hashCode(file));
   }
 
 

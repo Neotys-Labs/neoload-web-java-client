@@ -29,7 +29,7 @@ import java.util.Map;
  * TestRasterMultiConfiguration
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-07-05T12:29:31.743Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-12-11T07:59:32.751Z[GMT]")
 public class TestRasterMultiConfiguration {
   @SerializedName("width")
   private Integer width = null;
@@ -262,7 +262,7 @@ public class TestRasterMultiConfiguration {
    * If true the legend is displayed. Default is true.
    * @return legend
   **/
-  @Schema(example = "false", description = "If true the legend is displayed. Default is true.")
+  @Schema(example = "true", description = "If true the legend is displayed. Default is true.")
   public Boolean isLegend() {
     return legend;
   }

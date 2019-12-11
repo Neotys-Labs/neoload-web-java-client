@@ -20,6 +20,7 @@ import io.swagger.client.model.ArrayOfSLAPerIntervalDefinition;
 import io.swagger.client.model.ArrayOfSLAPerTestDefinition;
 import io.swagger.client.model.ArrayOfTestDefinition;
 import io.swagger.client.model.CounterDefinition;
+import io.swagger.client.model.CounterDefinitionArray;
 import io.swagger.client.model.CounterValues;
 import io.swagger.client.model.ElementDefinition;
 import io.swagger.client.model.ElementValues;
@@ -27,6 +28,7 @@ import io.swagger.client.model.Error;
 import io.swagger.client.model.EventType;
 import java.io.File;
 import io.swagger.client.model.MonitorPostRequest;
+import io.swagger.client.model.Percentiles;
 import io.swagger.client.model.Points;
 import io.swagger.client.model.RateLimitError;
 import io.swagger.client.model.Sla;
@@ -69,7 +71,7 @@ public class ResultsApiTest {
     /**
      * Test result description
      *
-     * Provides a test result description using a unique test identifier. Provides name, dates, owner ...
+     * Provides a test result description using a unique test result identifier. Provides name, dates, owner ...
      *
      * @throws ApiException
      *          if the Api call fails
@@ -82,9 +84,9 @@ public class ResultsApiTest {
         // TODO: test validations
     }
     /**
-     * Test element definition
+     * Test result element definition
      *
-     * Provides a test element definition.
+     * Provides a test result element definition.
      *
      * @throws ApiException
      *          if the Api call fails
@@ -114,9 +116,25 @@ public class ResultsApiTest {
         // TODO: test validations
     }
     /**
-     * Tests elements points since the beginning of the test
+     * Test result percentiles transaction since the beginning of the test result
      *
-     * Provides all the ponits of a test element for the selected statistics.
+     * Provides the percentiles of a test result transaction.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getTestElementsPercentilesTest() throws ApiException {
+        String testId = null;
+        String elementId = null;
+        Percentiles response = api.getTestElementsPercentiles(testId, elementId);
+
+        // TODO: test validations
+    }
+    /**
+     * Test results elements points since the beginning of the test result
+     *
+     * Provides all the points of a test result element for the selected statistics.
      *
      * @throws ApiException
      *          if the Api call fails
@@ -131,9 +149,9 @@ public class ResultsApiTest {
         // TODO: test validations
     }
     /**
-     * Test elements SLA status since the beginning of the test
+     * Test result elements SLA status since the beginning of the test result
      *
-     * Provides the SLA status of a test element.
+     * Provides the SLA status of a test result element.
      *
      * @throws ApiException
      *          if the Api call fails
@@ -147,9 +165,9 @@ public class ResultsApiTest {
         // TODO: test validations
     }
     /**
-     * Test elements values
+     * Test result elements values
      *
-     * Provides the values of a test element.
+     * Provides the values of a test result element.
      *
      * @throws ApiException
      *          if the Api call fails
@@ -163,9 +181,9 @@ public class ResultsApiTest {
         // TODO: test validations
     }
     /**
-     * Tests events
+     * Test result events
      *
-     * List the events of the specified test according to the method parameters.
+     * List the events of the specified test result according to the method parameters.
      *
      * @throws ApiException
      *          if the Api call fails
@@ -181,9 +199,9 @@ public class ResultsApiTest {
         // TODO: test validations
     }
     /**
-     * Test Graph
+     * Test result Graph
      *
-     * Provides a graph from some stats of a test result.
+     * Provides a graph from some stats of a test result.  Element statistics can be mixed with monitor statistics. Only limitation is around PERCENTILES_DURATION element statistic that cannot be mixed with other element statistics neither with monitor statistics. 
      *
      * @throws ApiException
      *          if the Api call fails
@@ -197,9 +215,9 @@ public class ResultsApiTest {
         // TODO: test validations
     }
     /**
-     * Tests counter definition
+     * Test result counter definition
      *
-     * Provides the definition of a test counter.
+     * Provides the definition of a test result counter.
      *
      * @throws ApiException
      *          if the Api call fails
@@ -213,9 +231,9 @@ public class ResultsApiTest {
         // TODO: test validations
     }
     /**
-     * Test monitors
+     * Test result monitors
      *
-     * Provides all the tests counters of all monitors for a test result.
+     * Provides all the test result counters of all monitors for a test result.
      *
      * @throws ApiException
      *          if the Api call fails
@@ -223,14 +241,14 @@ public class ResultsApiTest {
     @Test
     public void getTestMonitorsTest() throws ApiException {
         String testId = null;
-        CounterDefinition response = api.getTestMonitors(testId);
+        CounterDefinitionArray response = api.getTestMonitors(testId);
 
         // TODO: test validations
     }
     /**
-     * Tests monitors points
+     * Test result monitors points
      *
-     * Provides all the points of a test counter. The values are the average on the specified interval.
+     * Provides all the points of a test result counter. The values are the average on the specified interval.
      *
      * @throws ApiException
      *          if the Api call fails
@@ -244,9 +262,9 @@ public class ResultsApiTest {
         // TODO: test validations
     }
     /**
-     * Tests monitors values
+     * Test result monitors values
      *
-     * Provides the values of a test counter.
+     * Provides the values of a test result counter.
      *
      * @throws ApiException
      *          if the Api call fails
@@ -260,7 +278,7 @@ public class ResultsApiTest {
         // TODO: test validations
     }
     /**
-     * Test MultiGraph
+     * Test results MultiGraph
      *
      * Provides a graph from some stats of some tests result.
      *
@@ -327,7 +345,7 @@ public class ResultsApiTest {
     /**
      * Test result main statistics
      *
-     * Provides the main statistics of a test result. For a runnning test, these statistics are live, for a finished test, those are average for the all test.
+     * Provides the main statistics of a test result. For a runnning test, these statistics are live, for a test result, those are average for the all test result.
      *
      * @throws ApiException
      *          if the Api call fails

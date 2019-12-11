@@ -55,14 +55,16 @@ public class RuntimeApiTest {
         Integer reservationSAPVUs = null;
         String controllerZoneId = null;
         String lgZones = null;
-        RunTestDefinition response = api.getTestsRun(name, projectId, scenarioName, description, asCode, reservationId, reservationDuration, reservationWebVUs, reservationSAPVUs, controllerZoneId, lgZones);
+        Boolean publishTestResult = null;
+        Boolean deleteProjectAfterTest = null;
+        RunTestDefinition response = api.getTestsRun(name, projectId, scenarioName, description, asCode, reservationId, reservationDuration, reservationWebVUs, reservationSAPVUs, controllerZoneId, lgZones, publishTestResult, deleteProjectAfterTest);
 
         // TODO: test validations
     }
     /**
      * Uploads a NeoLoad project zip file or a standalone as code file
      *
-     * Uploads a NeoLoad project of the account corresponding to the parameters. The maximum size file is 100 MB
+     * Uploads a NeoLoad project of the account corresponding to the parameters. The maximum size file is 250 MB
      *
      * @throws ApiException
      *          if the Api call fails

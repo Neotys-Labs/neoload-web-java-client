@@ -33,6 +33,7 @@ import io.swagger.client.model.ArrayOfSLAPerIntervalDefinition;
 import io.swagger.client.model.ArrayOfSLAPerTestDefinition;
 import io.swagger.client.model.ArrayOfTestDefinition;
 import io.swagger.client.model.CounterDefinition;
+import io.swagger.client.model.CounterDefinitionArray;
 import io.swagger.client.model.CounterValues;
 import io.swagger.client.model.ElementDefinition;
 import io.swagger.client.model.ElementValues;
@@ -40,6 +41,7 @@ import io.swagger.client.model.Error;
 import io.swagger.client.model.EventType;
 import java.io.File;
 import io.swagger.client.model.MonitorPostRequest;
+import io.swagger.client.model.Percentiles;
 import io.swagger.client.model.Points;
 import io.swagger.client.model.RateLimitError;
 import io.swagger.client.model.Sla;
@@ -76,7 +78,7 @@ public class ResultsApi {
 
     /**
      * Build call for deleteTest
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -143,7 +145,7 @@ public class ResultsApi {
     /**
      * Deletes a test result
      * Deletes a test result and all the associated statistics. This action cannot be undone.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public void deleteTest(String testId) throws ApiException {
@@ -153,7 +155,7 @@ public class ResultsApi {
     /**
      * Deletes a test result
      * Deletes a test result and all the associated statistics. This action cannot be undone.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -165,7 +167,7 @@ public class ResultsApi {
     /**
      * Deletes a test result (asynchronously)
      * Deletes a test result and all the associated statistics. This action cannot be undone.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -197,7 +199,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTest
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -263,8 +265,8 @@ public class ResultsApi {
 
     /**
      * Test result description
-     * Provides a test result description using a unique test identifier. Provides name, dates, owner ...
-     * @param testId Unique identifier representing a specific test. (required)
+     * Provides a test result description using a unique test result identifier. Provides name, dates, owner ...
+     * @param testId Unique identifier representing a specific test result. (required)
      * @return TestDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -275,8 +277,8 @@ public class ResultsApi {
 
     /**
      * Test result description
-     * Provides a test result description using a unique test identifier. Provides name, dates, owner ...
-     * @param testId Unique identifier representing a specific test. (required)
+     * Provides a test result description using a unique test result identifier. Provides name, dates, owner ...
+     * @param testId Unique identifier representing a specific test result. (required)
      * @return ApiResponse&lt;TestDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -288,8 +290,8 @@ public class ResultsApi {
 
     /**
      * Test result description (asynchronously)
-     * Provides a test result description using a unique test identifier. Provides name, dates, owner ...
-     * @param testId Unique identifier representing a specific test. (required)
+     * Provides a test result description using a unique test result identifier. Provides name, dates, owner ...
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -322,7 +324,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestElementDefinition
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -393,9 +395,9 @@ public class ResultsApi {
     }
 
     /**
-     * Test element definition
-     * Provides a test element definition.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result element definition
+     * Provides a test result element definition.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return ElementDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -406,9 +408,9 @@ public class ResultsApi {
     }
 
     /**
-     * Test element definition
-     * Provides a test element definition.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result element definition
+     * Provides a test result element definition.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return ApiResponse&lt;ElementDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -420,9 +422,9 @@ public class ResultsApi {
     }
 
     /**
-     * Test element definition (asynchronously)
-     * Provides a test element definition.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result element definition (asynchronously)
+     * Provides a test result element definition.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -456,7 +458,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestElements
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param category Category of the elements to return. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -530,7 +532,7 @@ public class ResultsApi {
     /**
      * Test elements
      * Provides the tests elements of a test result. The elements type must be provided.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param category Category of the elements to return. (required)
      * @return ArrayOfElementDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -543,7 +545,7 @@ public class ResultsApi {
     /**
      * Test elements
      * Provides the tests elements of a test result. The elements type must be provided.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param category Category of the elements to return. (required)
      * @return ApiResponse&lt;ArrayOfElementDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -557,7 +559,7 @@ public class ResultsApi {
     /**
      * Test elements (asynchronously)
      * Provides the tests elements of a test result. The elements type must be provided.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param category Category of the elements to return. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -590,8 +592,142 @@ public class ResultsApi {
         return call;
     }
     /**
+     * Build call for getTestElementsPercentiles
+     * @param testId Unique identifier representing a specific test result. (required)
+     * @param elementId Unique identifier representing a specific element. (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getTestElementsPercentilesCall(String testId, String elementId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/tests/{testId}/elements/{elementId}/percentiles"
+            .replaceAll("\\{" + "testId" + "\\}", apiClient.escapeString(testId.toString()))
+            .replaceAll("\\{" + "elementId" + "\\}", apiClient.escapeString(elementId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "NeoloadAuthorizer" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getTestElementsPercentilesValidateBeforeCall(String testId, String elementId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'testId' is set
+        if (testId == null) {
+            throw new ApiException("Missing the required parameter 'testId' when calling getTestElementsPercentiles(Async)");
+        }
+        // verify the required parameter 'elementId' is set
+        if (elementId == null) {
+            throw new ApiException("Missing the required parameter 'elementId' when calling getTestElementsPercentiles(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = getTestElementsPercentilesCall(testId, elementId, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Test result percentiles transaction since the beginning of the test result
+     * Provides the percentiles of a test result transaction.
+     * @param testId Unique identifier representing a specific test result. (required)
+     * @param elementId Unique identifier representing a specific element. (required)
+     * @return Percentiles
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Percentiles getTestElementsPercentiles(String testId, String elementId) throws ApiException {
+        ApiResponse<Percentiles> resp = getTestElementsPercentilesWithHttpInfo(testId, elementId);
+        return resp.getData();
+    }
+
+    /**
+     * Test result percentiles transaction since the beginning of the test result
+     * Provides the percentiles of a test result transaction.
+     * @param testId Unique identifier representing a specific test result. (required)
+     * @param elementId Unique identifier representing a specific element. (required)
+     * @return ApiResponse&lt;Percentiles&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Percentiles> getTestElementsPercentilesWithHttpInfo(String testId, String elementId) throws ApiException {
+        com.squareup.okhttp.Call call = getTestElementsPercentilesValidateBeforeCall(testId, elementId, null, null);
+        Type localVarReturnType = new TypeToken<Percentiles>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Test result percentiles transaction since the beginning of the test result (asynchronously)
+     * Provides the percentiles of a test result transaction.
+     * @param testId Unique identifier representing a specific test result. (required)
+     * @param elementId Unique identifier representing a specific element. (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getTestElementsPercentilesAsync(String testId, String elementId, final ApiCallback<Percentiles> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getTestElementsPercentilesValidateBeforeCall(testId, elementId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Percentiles>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for getTestElementsPoints
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param statistics Comma-separated list of statistics to get. Available statistics are: AVG_DURATION (ms), MIN_DURATION (ms), MAX_DURATION (ms), COUNT, THROUGHPUT (Byte/s), ELEMENTS_PER_SECOND, ERRORS, ERRORS_PER_SECOND, ERROR_RATE (%), AVG_TTFB (ms), MIN_TTFB (ms), MAX_TTFB (ms).&lt;br/&gt; Example: AVG_DURATION,ELEMENTS_PER_SECOND (required)
      * @param progressListener Progress listener
@@ -669,9 +805,9 @@ public class ResultsApi {
     }
 
     /**
-     * Tests elements points since the beginning of the test
-     * Provides all the ponits of a test element for the selected statistics.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test results elements points since the beginning of the test result
+     * Provides all the points of a test result element for the selected statistics.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param statistics Comma-separated list of statistics to get. Available statistics are: AVG_DURATION (ms), MIN_DURATION (ms), MAX_DURATION (ms), COUNT, THROUGHPUT (Byte/s), ELEMENTS_PER_SECOND, ERRORS, ERRORS_PER_SECOND, ERROR_RATE (%), AVG_TTFB (ms), MIN_TTFB (ms), MAX_TTFB (ms).&lt;br/&gt; Example: AVG_DURATION,ELEMENTS_PER_SECOND (required)
      * @return Points
@@ -683,9 +819,9 @@ public class ResultsApi {
     }
 
     /**
-     * Tests elements points since the beginning of the test
-     * Provides all the ponits of a test element for the selected statistics.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test results elements points since the beginning of the test result
+     * Provides all the points of a test result element for the selected statistics.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param statistics Comma-separated list of statistics to get. Available statistics are: AVG_DURATION (ms), MIN_DURATION (ms), MAX_DURATION (ms), COUNT, THROUGHPUT (Byte/s), ELEMENTS_PER_SECOND, ERRORS, ERRORS_PER_SECOND, ERROR_RATE (%), AVG_TTFB (ms), MIN_TTFB (ms), MAX_TTFB (ms).&lt;br/&gt; Example: AVG_DURATION,ELEMENTS_PER_SECOND (required)
      * @return ApiResponse&lt;Points&gt;
@@ -698,9 +834,9 @@ public class ResultsApi {
     }
 
     /**
-     * Tests elements points since the beginning of the test (asynchronously)
-     * Provides all the ponits of a test element for the selected statistics.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test results elements points since the beginning of the test result (asynchronously)
+     * Provides all the points of a test result element for the selected statistics.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param statistics Comma-separated list of statistics to get. Available statistics are: AVG_DURATION (ms), MIN_DURATION (ms), MAX_DURATION (ms), COUNT, THROUGHPUT (Byte/s), ELEMENTS_PER_SECOND, ERRORS, ERRORS_PER_SECOND, ERROR_RATE (%), AVG_TTFB (ms), MIN_TTFB (ms), MAX_TTFB (ms).&lt;br/&gt; Example: AVG_DURATION,ELEMENTS_PER_SECOND (required)
      * @param callback The callback to be executed when the API call finishes
@@ -735,7 +871,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestElementsSla
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -806,9 +942,9 @@ public class ResultsApi {
     }
 
     /**
-     * Test elements SLA status since the beginning of the test
-     * Provides the SLA status of a test element.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result elements SLA status since the beginning of the test result
+     * Provides the SLA status of a test result element.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return Sla
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -819,9 +955,9 @@ public class ResultsApi {
     }
 
     /**
-     * Test elements SLA status since the beginning of the test
-     * Provides the SLA status of a test element.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result elements SLA status since the beginning of the test result
+     * Provides the SLA status of a test result element.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return ApiResponse&lt;Sla&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -833,9 +969,9 @@ public class ResultsApi {
     }
 
     /**
-     * Test elements SLA status since the beginning of the test (asynchronously)
-     * Provides the SLA status of a test element.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result elements SLA status since the beginning of the test result (asynchronously)
+     * Provides the SLA status of a test result element.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -869,7 +1005,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestElementsValues
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -940,9 +1076,9 @@ public class ResultsApi {
     }
 
     /**
-     * Test elements values
-     * Provides the values of a test element.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result elements values
+     * Provides the values of a test result element.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return ElementValues
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -953,9 +1089,9 @@ public class ResultsApi {
     }
 
     /**
-     * Test elements values
-     * Provides the values of a test element.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result elements values
+     * Provides the values of a test result element.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return ApiResponse&lt;ElementValues&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -967,9 +1103,9 @@ public class ResultsApi {
     }
 
     /**
-     * Test elements values (asynchronously)
-     * Provides the values of a test element.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result elements values (asynchronously)
+     * Provides the values of a test result element.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1003,9 +1139,9 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestEvents
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param types The types of the events you expect to get. It will return all the types if the field is left empty. (Ctrl+click to select multiple values)  (optional)
-     * @param limit The maximum number of elements returned by this call. (optional)
+     * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional)
      * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -1077,11 +1213,11 @@ public class ResultsApi {
     }
 
     /**
-     * Tests events
-     * List the events of the specified test according to the method parameters.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result events
+     * List the events of the specified test result according to the method parameters.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param types The types of the events you expect to get. It will return all the types if the field is left empty. (Ctrl+click to select multiple values)  (optional)
-     * @param limit The maximum number of elements returned by this call. (optional)
+     * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional)
      * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional)
      * @return ArrayOfEventDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1092,11 +1228,11 @@ public class ResultsApi {
     }
 
     /**
-     * Tests events
-     * List the events of the specified test according to the method parameters.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result events
+     * List the events of the specified test result according to the method parameters.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param types The types of the events you expect to get. It will return all the types if the field is left empty. (Ctrl+click to select multiple values)  (optional)
-     * @param limit The maximum number of elements returned by this call. (optional)
+     * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional)
      * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional)
      * @return ApiResponse&lt;ArrayOfEventDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1108,11 +1244,11 @@ public class ResultsApi {
     }
 
     /**
-     * Tests events (asynchronously)
-     * List the events of the specified test according to the method parameters.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result events (asynchronously)
+     * List the events of the specified test result according to the method parameters.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param types The types of the events you expect to get. It will return all the types if the field is left empty. (Ctrl+click to select multiple values)  (optional)
-     * @param limit The maximum number of elements returned by this call. (optional)
+     * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional)
      * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1146,7 +1282,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestGraph
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param body  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -1212,9 +1348,9 @@ public class ResultsApi {
     }
 
     /**
-     * Test Graph
-     * Provides a graph from some stats of a test result.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result Graph
+     * Provides a graph from some stats of a test result.  Element statistics can be mixed with monitor statistics. Only limitation is around PERCENTILES_DURATION element statistic that cannot be mixed with other element statistics neither with monitor statistics. 
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param body  (optional)
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1225,9 +1361,9 @@ public class ResultsApi {
     }
 
     /**
-     * Test Graph
-     * Provides a graph from some stats of a test result.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result Graph
+     * Provides a graph from some stats of a test result.  Element statistics can be mixed with monitor statistics. Only limitation is around PERCENTILES_DURATION element statistic that cannot be mixed with other element statistics neither with monitor statistics. 
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param body  (optional)
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1239,9 +1375,9 @@ public class ResultsApi {
     }
 
     /**
-     * Test Graph (asynchronously)
-     * Provides a graph from some stats of a test result.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result Graph (asynchronously)
+     * Provides a graph from some stats of a test result.  Element statistics can be mixed with monitor statistics. Only limitation is around PERCENTILES_DURATION element statistic that cannot be mixed with other element statistics neither with monitor statistics. 
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param body  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1275,7 +1411,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestMonitorDefinition
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -1346,9 +1482,9 @@ public class ResultsApi {
     }
 
     /**
-     * Tests counter definition
-     * Provides the definition of a test counter.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result counter definition
+     * Provides the definition of a test result counter.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @return CounterDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1359,9 +1495,9 @@ public class ResultsApi {
     }
 
     /**
-     * Tests counter definition
-     * Provides the definition of a test counter.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result counter definition
+     * Provides the definition of a test result counter.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @return ApiResponse&lt;CounterDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1373,9 +1509,9 @@ public class ResultsApi {
     }
 
     /**
-     * Tests counter definition (asynchronously)
-     * Provides the definition of a test counter.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result counter definition (asynchronously)
+     * Provides the definition of a test result counter.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1409,7 +1545,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestMonitors
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -1474,39 +1610,39 @@ public class ResultsApi {
     }
 
     /**
-     * Test monitors
-     * Provides all the tests counters of all monitors for a test result.
-     * @param testId Unique identifier representing a specific test. (required)
-     * @return CounterDefinition
+     * Test result monitors
+     * Provides all the test result counters of all monitors for a test result.
+     * @param testId Unique identifier representing a specific test result. (required)
+     * @return CounterDefinitionArray
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public CounterDefinition getTestMonitors(String testId) throws ApiException {
-        ApiResponse<CounterDefinition> resp = getTestMonitorsWithHttpInfo(testId);
+    public CounterDefinitionArray getTestMonitors(String testId) throws ApiException {
+        ApiResponse<CounterDefinitionArray> resp = getTestMonitorsWithHttpInfo(testId);
         return resp.getData();
     }
 
     /**
-     * Test monitors
-     * Provides all the tests counters of all monitors for a test result.
-     * @param testId Unique identifier representing a specific test. (required)
-     * @return ApiResponse&lt;CounterDefinition&gt;
+     * Test result monitors
+     * Provides all the test result counters of all monitors for a test result.
+     * @param testId Unique identifier representing a specific test result. (required)
+     * @return ApiResponse&lt;CounterDefinitionArray&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CounterDefinition> getTestMonitorsWithHttpInfo(String testId) throws ApiException {
+    public ApiResponse<CounterDefinitionArray> getTestMonitorsWithHttpInfo(String testId) throws ApiException {
         com.squareup.okhttp.Call call = getTestMonitorsValidateBeforeCall(testId, null, null);
-        Type localVarReturnType = new TypeToken<CounterDefinition>(){}.getType();
+        Type localVarReturnType = new TypeToken<CounterDefinitionArray>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Test monitors (asynchronously)
-     * Provides all the tests counters of all monitors for a test result.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result monitors (asynchronously)
+     * Provides all the test result counters of all monitors for a test result.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getTestMonitorsAsync(String testId, final ApiCallback<CounterDefinition> callback) throws ApiException {
+    public com.squareup.okhttp.Call getTestMonitorsAsync(String testId, final ApiCallback<CounterDefinitionArray> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1528,13 +1664,13 @@ public class ResultsApi {
         }
 
         com.squareup.okhttp.Call call = getTestMonitorsValidateBeforeCall(testId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<CounterDefinition>(){}.getType();
+        Type localVarReturnType = new TypeToken<CounterDefinitionArray>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for getTestMonitorsPoints
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -1605,9 +1741,9 @@ public class ResultsApi {
     }
 
     /**
-     * Tests monitors points
-     * Provides all the points of a test counter. The values are the average on the specified interval.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result monitors points
+     * Provides all the points of a test result counter. The values are the average on the specified interval.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @return Points
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1618,9 +1754,9 @@ public class ResultsApi {
     }
 
     /**
-     * Tests monitors points
-     * Provides all the points of a test counter. The values are the average on the specified interval.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result monitors points
+     * Provides all the points of a test result counter. The values are the average on the specified interval.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @return ApiResponse&lt;Points&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1632,9 +1768,9 @@ public class ResultsApi {
     }
 
     /**
-     * Tests monitors points (asynchronously)
-     * Provides all the points of a test counter. The values are the average on the specified interval.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result monitors points (asynchronously)
+     * Provides all the points of a test result counter. The values are the average on the specified interval.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1668,7 +1804,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestMonitorsValues
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -1739,9 +1875,9 @@ public class ResultsApi {
     }
 
     /**
-     * Tests monitors values
-     * Provides the values of a test counter.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result monitors values
+     * Provides the values of a test result counter.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @return CounterValues
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1752,9 +1888,9 @@ public class ResultsApi {
     }
 
     /**
-     * Tests monitors values
-     * Provides the values of a test counter.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result monitors values
+     * Provides the values of a test result counter.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @return ApiResponse&lt;CounterValues&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1766,9 +1902,9 @@ public class ResultsApi {
     }
 
     /**
-     * Tests monitors values (asynchronously)
-     * Provides the values of a test counter.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Test result monitors values (asynchronously)
+     * Provides the values of a test result counter.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1862,7 +1998,7 @@ public class ResultsApi {
     }
 
     /**
-     * Test MultiGraph
+     * Test results MultiGraph
      * Provides a graph from some stats of some tests result.
      * @param body  (optional)
      * @return File
@@ -1874,7 +2010,7 @@ public class ResultsApi {
     }
 
     /**
-     * Test MultiGraph
+     * Test results MultiGraph
      * Provides a graph from some stats of some tests result.
      * @param body  (optional)
      * @return ApiResponse&lt;File&gt;
@@ -1887,7 +2023,7 @@ public class ResultsApi {
     }
 
     /**
-     * Test MultiGraph (asynchronously)
+     * Test results MultiGraph (asynchronously)
      * Provides a graph from some stats of some tests result.
      * @param body  (optional)
      * @param callback The callback to be executed when the API call finishes
@@ -1922,7 +2058,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestSLAGlobalIndicators
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -1992,7 +2128,7 @@ public class ResultsApi {
     /**
      * SLAs global indicators
      * Provides the SLAs global indicators of the test result.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @return ArrayOfSLAGlobalIndicatorDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2005,7 +2141,7 @@ public class ResultsApi {
     /**
      * SLAs global indicators
      * Provides the SLAs global indicators of the test result.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @return ApiResponse&lt;ArrayOfSLAGlobalIndicatorDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2019,7 +2155,7 @@ public class ResultsApi {
     /**
      * SLAs global indicators (asynchronously)
      * Provides the SLAs global indicators of the test result.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -2053,7 +2189,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestSLAPerInterval
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
      * @param progressListener Progress listener
@@ -2126,7 +2262,7 @@ public class ResultsApi {
     /**
      * SLAs per time interval
      * Provides the SLAs per time interval of a specific test result.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
      * @return ArrayOfSLAPerIntervalDefinition
@@ -2140,7 +2276,7 @@ public class ResultsApi {
     /**
      * SLAs per time interval
      * Provides the SLAs per time interval of a specific test result.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
      * @return ApiResponse&lt;ArrayOfSLAPerIntervalDefinition&gt;
@@ -2155,7 +2291,7 @@ public class ResultsApi {
     /**
      * SLAs per time interval (asynchronously)
      * Provides the SLAs per time interval of a specific test result.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
      * @param callback The callback to be executed when the API call finishes
@@ -2190,7 +2326,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestSLAPerTest
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
      * @param progressListener Progress listener
@@ -2263,7 +2399,7 @@ public class ResultsApi {
     /**
      * SLAs per test
      * Provides the SLAs per test of a specific test result.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
      * @return ArrayOfSLAPerTestDefinition
@@ -2277,7 +2413,7 @@ public class ResultsApi {
     /**
      * SLAs per test
      * Provides the SLAs per test of a specific test result.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
      * @return ApiResponse&lt;ArrayOfSLAPerTestDefinition&gt;
@@ -2292,7 +2428,7 @@ public class ResultsApi {
     /**
      * SLAs per test (asynchronously)
      * Provides the SLAs per test of a specific test result.
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
      * @param callback The callback to be executed when the API call finishes
@@ -2327,7 +2463,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestStatistics
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -2393,8 +2529,8 @@ public class ResultsApi {
 
     /**
      * Test result main statistics
-     * Provides the main statistics of a test result. For a runnning test, these statistics are live, for a finished test, those are average for the all test.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Provides the main statistics of a test result. For a runnning test, these statistics are live, for a test result, those are average for the all test result.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @return TestStatistics
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -2405,8 +2541,8 @@ public class ResultsApi {
 
     /**
      * Test result main statistics
-     * Provides the main statistics of a test result. For a runnning test, these statistics are live, for a finished test, those are average for the all test.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Provides the main statistics of a test result. For a runnning test, these statistics are live, for a test result, those are average for the all test result.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @return ApiResponse&lt;TestStatistics&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -2418,8 +2554,8 @@ public class ResultsApi {
 
     /**
      * Test result main statistics (asynchronously)
-     * Provides the main statistics of a test result. For a runnning test, these statistics are live, for a finished test, those are average for the all test.
-     * @param testId Unique identifier representing a specific test. (required)
+     * Provides the main statistics of a test result. For a runnning test, these statistics are live, for a test result, those are average for the all test result.
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -2452,12 +2588,12 @@ public class ResultsApi {
     }
     /**
      * Build call for getTests
-     * @param status Returns only the test with the specified status. (optional)
-     * @param project Project name. Returns only the tests of the specified project. (optional)
-     * @param author The author of the test. Returns only the tests launched by the specified author. (optional)
-     * @param limit The maximum number of elements returned by this call. (optional)
+     * @param status Returns only the test results with the specified status. (optional)
+     * @param project Project name. Returns only the test results of the specified project. (optional)
+     * @param author The author of the test result. Returns only the test results launched by the specified author. (optional)
+     * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional)
      * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional)
-     * @param fields Comma-separated list of fields to include in the json test definition. (optional)
+     * @param fields Comma-separated list of fields to include in the json test result definition. (optional)
      * @param pretty If true the Json returned is human readable. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -2534,12 +2670,12 @@ public class ResultsApi {
     /**
      * Lists test results
      * Lists the test results of the Account according to the method parameters.
-     * @param status Returns only the test with the specified status. (optional)
-     * @param project Project name. Returns only the tests of the specified project. (optional)
-     * @param author The author of the test. Returns only the tests launched by the specified author. (optional)
-     * @param limit The maximum number of elements returned by this call. (optional)
+     * @param status Returns only the test results with the specified status. (optional)
+     * @param project Project name. Returns only the test results of the specified project. (optional)
+     * @param author The author of the test result. Returns only the test results launched by the specified author. (optional)
+     * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional)
      * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional)
-     * @param fields Comma-separated list of fields to include in the json test definition. (optional)
+     * @param fields Comma-separated list of fields to include in the json test result definition. (optional)
      * @param pretty If true the Json returned is human readable. (optional)
      * @return ArrayOfTestDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2552,12 +2688,12 @@ public class ResultsApi {
     /**
      * Lists test results
      * Lists the test results of the Account according to the method parameters.
-     * @param status Returns only the test with the specified status. (optional)
-     * @param project Project name. Returns only the tests of the specified project. (optional)
-     * @param author The author of the test. Returns only the tests launched by the specified author. (optional)
-     * @param limit The maximum number of elements returned by this call. (optional)
+     * @param status Returns only the test results with the specified status. (optional)
+     * @param project Project name. Returns only the test results of the specified project. (optional)
+     * @param author The author of the test result. Returns only the test results launched by the specified author. (optional)
+     * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional)
      * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional)
-     * @param fields Comma-separated list of fields to include in the json test definition. (optional)
+     * @param fields Comma-separated list of fields to include in the json test result definition. (optional)
      * @param pretty If true the Json returned is human readable. (optional)
      * @return ApiResponse&lt;ArrayOfTestDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2571,12 +2707,12 @@ public class ResultsApi {
     /**
      * Lists test results (asynchronously)
      * Lists the test results of the Account according to the method parameters.
-     * @param status Returns only the test with the specified status. (optional)
-     * @param project Project name. Returns only the tests of the specified project. (optional)
-     * @param author The author of the test. Returns only the tests launched by the specified author. (optional)
-     * @param limit The maximum number of elements returned by this call. (optional)
+     * @param status Returns only the test results with the specified status. (optional)
+     * @param project Project name. Returns only the test results of the specified project. (optional)
+     * @param author The author of the test result. Returns only the test results launched by the specified author. (optional)
+     * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional)
      * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional)
-     * @param fields Comma-separated list of fields to include in the json test definition. (optional)
+     * @param fields Comma-separated list of fields to include in the json test result definition. (optional)
      * @param pretty If true the Json returned is human readable. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -2611,7 +2747,7 @@ public class ResultsApi {
     /**
      * Build call for postTestMonitors
      * @param body List of custom monitors (required)
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -2683,7 +2819,7 @@ public class ResultsApi {
      * Create custom monitors
      * Pushes monitoring data (external data) for a given running test. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Resolution limitation&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;Maximum resolution for a monitor value is &lt;b&gt;1 per second&lt;/b&gt;, otherwise &lt;b&gt;the first value is kept&lt;/b&gt;.&lt;/li&gt; &lt;/ul&gt; &lt;b&gt;Maximum paths and monitors&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;Maximum 100 different &lt;b&gt;unique&lt;/b&gt; paths.&lt;/li&gt;   &lt;li&gt;Maximum 50 different monitors for a given path.&lt;/li&gt;   &lt;li&gt;Maximum length is 10 for a path.&lt;/li&gt; &lt;/ul&gt; &lt;b&gt;Other requirements&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;&#x27;/&#x27; character is not allowed in path element.&lt;/li&gt;   &lt;li&gt;The test must be &lt;b&gt;running&lt;/b&gt; while pushing the data.&lt;/li&gt;   &lt;li&gt;For a given timestamp, all monitors relative to a path must be sent in the same request.&lt;/li&gt;   &lt;li&gt;These elements must not be empty: &lt;b&gt;monitor name&lt;/b&gt;, &lt;b&gt;a path element&lt;/b&gt; and &lt;b&gt;values&lt;/b&gt;.&lt;/li&gt; &lt;/ul&gt; 
      * @param body List of custom monitors (required)
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public void postTestMonitors(MonitorPostRequest body, String testId) throws ApiException {
@@ -2694,7 +2830,7 @@ public class ResultsApi {
      * Create custom monitors
      * Pushes monitoring data (external data) for a given running test. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Resolution limitation&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;Maximum resolution for a monitor value is &lt;b&gt;1 per second&lt;/b&gt;, otherwise &lt;b&gt;the first value is kept&lt;/b&gt;.&lt;/li&gt; &lt;/ul&gt; &lt;b&gt;Maximum paths and monitors&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;Maximum 100 different &lt;b&gt;unique&lt;/b&gt; paths.&lt;/li&gt;   &lt;li&gt;Maximum 50 different monitors for a given path.&lt;/li&gt;   &lt;li&gt;Maximum length is 10 for a path.&lt;/li&gt; &lt;/ul&gt; &lt;b&gt;Other requirements&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;&#x27;/&#x27; character is not allowed in path element.&lt;/li&gt;   &lt;li&gt;The test must be &lt;b&gt;running&lt;/b&gt; while pushing the data.&lt;/li&gt;   &lt;li&gt;For a given timestamp, all monitors relative to a path must be sent in the same request.&lt;/li&gt;   &lt;li&gt;These elements must not be empty: &lt;b&gt;monitor name&lt;/b&gt;, &lt;b&gt;a path element&lt;/b&gt; and &lt;b&gt;values&lt;/b&gt;.&lt;/li&gt; &lt;/ul&gt; 
      * @param body List of custom monitors (required)
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -2707,7 +2843,7 @@ public class ResultsApi {
      * Create custom monitors (asynchronously)
      * Pushes monitoring data (external data) for a given running test. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Resolution limitation&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;Maximum resolution for a monitor value is &lt;b&gt;1 per second&lt;/b&gt;, otherwise &lt;b&gt;the first value is kept&lt;/b&gt;.&lt;/li&gt; &lt;/ul&gt; &lt;b&gt;Maximum paths and monitors&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;Maximum 100 different &lt;b&gt;unique&lt;/b&gt; paths.&lt;/li&gt;   &lt;li&gt;Maximum 50 different monitors for a given path.&lt;/li&gt;   &lt;li&gt;Maximum length is 10 for a path.&lt;/li&gt; &lt;/ul&gt; &lt;b&gt;Other requirements&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;&#x27;/&#x27; character is not allowed in path element.&lt;/li&gt;   &lt;li&gt;The test must be &lt;b&gt;running&lt;/b&gt; while pushing the data.&lt;/li&gt;   &lt;li&gt;For a given timestamp, all monitors relative to a path must be sent in the same request.&lt;/li&gt;   &lt;li&gt;These elements must not be empty: &lt;b&gt;monitor name&lt;/b&gt;, &lt;b&gt;a path element&lt;/b&gt; and &lt;b&gt;values&lt;/b&gt;.&lt;/li&gt; &lt;/ul&gt; 
      * @param body List of custom monitors (required)
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -2740,7 +2876,7 @@ public class ResultsApi {
     /**
      * Build call for updateTest
      * @param body  (required)
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -2812,7 +2948,7 @@ public class ResultsApi {
      * Update a test result
      * Updates a test result with new name, description or quality status.
      * @param body  (required)
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @return TestDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -2825,7 +2961,7 @@ public class ResultsApi {
      * Update a test result
      * Updates a test result with new name, description or quality status.
      * @param body  (required)
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @return ApiResponse&lt;TestDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -2839,7 +2975,7 @@ public class ResultsApi {
      * Update a test result (asynchronously)
      * Updates a test result with new name, description or quality status.
      * @param body  (required)
-     * @param testId Unique identifier representing a specific test. (required)
+     * @param testId Unique identifier representing a specific test result. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
