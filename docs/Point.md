@@ -17,3 +17,4 @@ Name | Type | Description | Notes
 **AVG_TTFB** | **Float** |  |  [optional]
 **MIN_TTFB** | **Float** |  |  [optional]
 **MAX_TTFB** | **Float** |  |  [optional]
+**AVG** | **Float** |  |  [optional]

@@ -3,4 +3,4 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**testId** | **String** | Unique identifier of the test. |  [optional]
+**resultId** | **String** | Unique identifier of the test result. |  [optional]

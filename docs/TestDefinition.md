@@ -6,43 +6,14 @@ Name | Type | Description | Notes
 **id** | **String** | Unique identifier of the test. |  [optional]
 **name** | **String** | Name of the test. |  [optional]
 **description** | **String** | Description of the test. |  [optional]
-**author** | **String** | First and Last name of the person who launched the test. |  [optional]
-**terminationReason** | [**TerminationReasonEnum**](#TerminationReasonEnum) | Reason that caused the test to end. |  [optional]
-**lgCount** | **Integer** | Total number of Load Generators used in the test. |  [optional]
-**project** | **String** | Name of the project. |  [optional]
-**scenario** | **String** | Name of the scenario. |  [optional]
-**status** | [**StatusEnum**](#StatusEnum) | Status of the test. |  [optional]
-**qualityStatus** | [**QualityStatusEnum**](#QualityStatusEnum) | Quality status of the test. |  [optional]
-**startDate** | **Long** | Timestamp when the test started. |  [optional]
-**endDate** | **Long** | Timestamp when the test ended. |  [optional]
-**duration** | **Long** | Test duration in seconds. |  [optional]
-
-<a name="TerminationReasonEnum"></a>
-## Enum: TerminationReasonEnum
-Name | Value
----- | -----
-POLICY | &quot;POLICY&quot;
-VARIABLE | &quot;VARIABLE&quot;
-MANUAL | &quot;MANUAL&quot;
-LG_AVAILABILITY | &quot;LG_AVAILABILITY&quot;
-LICENSE | &quot;LICENSE&quot;
-UNKNOWN | &quot;UNKNOWN&quot;
-
-<a name="StatusEnum"></a>
-## Enum: StatusEnum
-Name | Value
----- | -----
-INIT | &quot;INIT&quot;
-STARTING | &quot;STARTING&quot;
-RUNNING | &quot;RUNNING&quot;
-TERMINATED | &quot;TERMINATED&quot;
-UNKNOWN | &quot;UNKNOWN&quot;
-
-<a name="QualityStatusEnum"></a>
-## Enum: QualityStatusEnum
-Name | Value
----- | -----
-PASSED | &quot;PASSED&quot;
-FAILED | &quot;FAILED&quot;
-COMPUTING | &quot;COMPUTING&quot;
-UNKNOWN | &quot;UNKNOWN&quot;
+**userModifierName** | **String** | Identifier of the user who modified the test. |  [optional]
+**creationDate** | **Long** | Timestamp when the test was created. Number of seconds since January 1, 1970. |  [optional]
+**lastUpdateDate** | **Long** | Timestamp when the test was updated for the last time. Number of seconds since January 1, 1970. |  [optional]
+**scenarioName** | **String** | The name of the selected scenario. |  [optional]
+**controllerZoneId** | **String** | The identifier of the controller. |  [optional]
+**projectId** | **String** | Id of project file. |  [optional]
+**projectName** | **String** | Name of the project. |  [optional]
+**lgZoneIds** | **Map&lt;String, Integer&gt;** | The LG zones with the number of the LGs. |  [optional]
+**lastRunDate** | **Long** | Timestamp when the test was ran for the last time. Number of seconds since January 1, 1970. |  [optional]
+**nextRunId** | [**BigDecimal**](BigDecimal.md) | The next run number. The value is incremented at each execution of the test. |  [optional]
+**testResultNamingPattern** | **String** | Pattern of the test results name. |  [optional]
