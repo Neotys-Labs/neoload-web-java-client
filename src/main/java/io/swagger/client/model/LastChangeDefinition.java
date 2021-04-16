@@ -22,18 +22,78 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 /**
- * LastChangeDefinition
+ * Workspace last change
  */
-
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2020-06-12T09:30:22.329+02:00[Europe/Paris]")
+@Schema(description = "Workspace last change")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-16T09:41:51.665+02:00[Europe/Paris]")
 
 
 public class LastChangeDefinition {
+  /**
+   * Last action performed on the Workspace.
+   */
+  @JsonAdapter(LastActionEnum.Adapter.class)
+  public enum LastActionEnum {
+    CREATE("CREATE"),
+    UPDATE("UPDATE"),
+    DELETE("DELETE");
+
+    private String value;
+
+    LastActionEnum(String value) {
+      this.value = value;
+    }
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    public static LastActionEnum fromValue(String text) {
+      for (LastActionEnum b : LastActionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+    public static class Adapter extends TypeAdapter<LastActionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final LastActionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public LastActionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return LastActionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }  @SerializedName("lastAction")
+  private LastActionEnum lastAction = null;
+
   @SerializedName("lastUpdateDate")
   private Long lastUpdateDate = null;
 
-  @SerializedName("lastAction")
-  private String lastAction = null;
+  public LastChangeDefinition lastAction(LastActionEnum lastAction) {
+    this.lastAction = lastAction;
+    return this;
+  }
+
+   /**
+   * Last action performed on the Workspace.
+   * @return lastAction
+  **/
+  @Schema(example = "CREATE", description = "Last action performed on the Workspace.")
+  public LastActionEnum getLastAction() {
+    return lastAction;
+  }
+
+  public void setLastAction(LastActionEnum lastAction) {
+    this.lastAction = lastAction;
+  }
 
   public LastChangeDefinition lastUpdateDate(Long lastUpdateDate) {
     this.lastUpdateDate = lastUpdateDate;
@@ -41,34 +101,16 @@ public class LastChangeDefinition {
   }
 
    /**
-   * Timestamp when the workspace was updated for the last time. Number of seconds since January 1, 1970.
+   * Timestamp when the Workspace was updated for the last time. Number of seconds since January 1, 1970.
    * @return lastUpdateDate
   **/
-  @Schema(example = "1582550442", description = "Timestamp when the workspace was updated for the last time. Number of seconds since January 1, 1970.")
+  @Schema(example = "1582550442", description = "Timestamp when the Workspace was updated for the last time. Number of seconds since January 1, 1970.")
   public Long getLastUpdateDate() {
     return lastUpdateDate;
   }
 
   public void setLastUpdateDate(Long lastUpdateDate) {
     this.lastUpdateDate = lastUpdateDate;
-  }
-
-  public LastChangeDefinition lastAction(String lastAction) {
-    this.lastAction = lastAction;
-    return this;
-  }
-
-   /**
-   * Last action performed on the workspace.
-   * @return lastAction
-  **/
-  @Schema(example = "CREATE", description = "Last action performed on the workspace.")
-  public String getLastAction() {
-    return lastAction;
-  }
-
-  public void setLastAction(String lastAction) {
-    this.lastAction = lastAction;
   }
 
 
@@ -81,13 +123,13 @@ public class LastChangeDefinition {
       return false;
     }
     LastChangeDefinition lastChangeDefinition = (LastChangeDefinition) o;
-    return Objects.equals(this.lastUpdateDate, lastChangeDefinition.lastUpdateDate) &&
-        Objects.equals(this.lastAction, lastChangeDefinition.lastAction);
+    return Objects.equals(this.lastAction, lastChangeDefinition.lastAction) &&
+        Objects.equals(this.lastUpdateDate, lastChangeDefinition.lastUpdateDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lastUpdateDate, lastAction);
+    return Objects.hash(lastAction, lastUpdateDate);
   }
 
 
@@ -96,8 +138,8 @@ public class LastChangeDefinition {
     StringBuilder sb = new StringBuilder();
     sb.append("class LastChangeDefinition {\n");
     
-    sb.append("    lastUpdateDate: ").append(toIndentedString(lastUpdateDate)).append("\n");
     sb.append("    lastAction: ").append(toIndentedString(lastAction)).append("\n");
+    sb.append("    lastUpdateDate: ").append(toIndentedString(lastUpdateDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,11 +1,11 @@
 # ResourcesApi
 
-All URIs are relative to *https://your-hostname.com/v3*
+All URIs are relative to */*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getReservations**](ResourcesApi.md#getReservations) | **GET** /resources/reservations | Lists reservations
-[**getZones**](ResourcesApi.md#getZones) | **GET** /resources/zones | List all zones
+[**getReservations**](ResourcesApi.md#getReservations) | **GET** /v3/resources/reservations | Lists reservations
+[**getZones**](ResourcesApi.md#getZones) | **GET** /v3/resources/zones | List all zones
 
 <a name="getReservations"></a>
 # **getReservations**

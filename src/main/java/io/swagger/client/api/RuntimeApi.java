@@ -28,6 +28,7 @@ import java.io.IOException;
 
 import io.swagger.client.model.Error;
 import java.io.File;
+import io.swagger.client.model.GetTestDefinition;
 import io.swagger.client.model.ProjectDefinition;
 import io.swagger.client.model.RateLimitError;
 import io.swagger.client.model.RunTestDefinition;
@@ -64,7 +65,7 @@ public class RuntimeApi {
 
     /**
      * Build call for deleteTest
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param deleteResults Delete also test results linked to the test. Default is true. (optional)
      * @param progressListener Progress listener
@@ -76,7 +77,7 @@ public class RuntimeApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/tests/{testId}"
+        String localVarPath = "/v3/workspaces/{workspaceId}/tests/{testId}"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "testId" + "\\}", apiClient.escapeString(testId.toString()));
 
@@ -140,7 +141,7 @@ public class RuntimeApi {
     /**
      * Delete a test
      * Delete the test with the specified id
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param deleteResults Delete also test results linked to the test. Default is true. (optional)
      * @return TestDefinition
@@ -154,7 +155,7 @@ public class RuntimeApi {
     /**
      * Delete a test
      * Delete the test with the specified id
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param deleteResults Delete also test results linked to the test. Default is true. (optional)
      * @return ApiResponse&lt;TestDefinition&gt;
@@ -169,7 +170,7 @@ public class RuntimeApi {
     /**
      * Delete a test (asynchronously)
      * Delete the test with the specified id
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param deleteResults Delete also test results linked to the test. Default is true. (optional)
      * @param callback The callback to be executed when the API call finishes
@@ -204,7 +205,7 @@ public class RuntimeApi {
     }
     /**
      * Build call for getTest
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -215,7 +216,7 @@ public class RuntimeApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/tests/{testId}"
+        String localVarPath = "/v3/workspaces/{workspaceId}/tests/{testId}"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "testId" + "\\}", apiClient.escapeString(testId.toString()));
 
@@ -277,40 +278,40 @@ public class RuntimeApi {
     /**
      * Get a test
      * Get the test
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
-     * @return TestDefinition
+     * @return GetTestDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public TestDefinition getTest(String workspaceId, String testId) throws ApiException {
-        ApiResponse<TestDefinition> resp = getTestWithHttpInfo(workspaceId, testId);
+    public GetTestDefinition getTest(String workspaceId, String testId) throws ApiException {
+        ApiResponse<GetTestDefinition> resp = getTestWithHttpInfo(workspaceId, testId);
         return resp.getData();
     }
 
     /**
      * Get a test
      * Get the test
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
-     * @return ApiResponse&lt;TestDefinition&gt;
+     * @return ApiResponse&lt;GetTestDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TestDefinition> getTestWithHttpInfo(String workspaceId, String testId) throws ApiException {
+    public ApiResponse<GetTestDefinition> getTestWithHttpInfo(String workspaceId, String testId) throws ApiException {
         com.squareup.okhttp.Call call = getTestValidateBeforeCall(workspaceId, testId, null, null);
-        Type localVarReturnType = new TypeToken<TestDefinition>(){}.getType();
+        Type localVarReturnType = new TypeToken<GetTestDefinition>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Get a test (asynchronously)
      * Get the test
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getTestAsync(String workspaceId, String testId, final ApiCallback<TestDefinition> callback) throws ApiException {
+    public com.squareup.okhttp.Call getTestAsync(String workspaceId, String testId, final ApiCallback<GetTestDefinition> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -332,13 +333,13 @@ public class RuntimeApi {
         }
 
         com.squareup.okhttp.Call call = getTestValidateBeforeCall(workspaceId, testId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<TestDefinition>(){}.getType();
+        Type localVarReturnType = new TypeToken<GetTestDefinition>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for getTestList
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional, default to 50)
      * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional, default to 0)
      * @param sort The key to sort the elements on. It may begin with a &#x27;+&#x27; or a &#x27;-&#x27; to specify an ascending or descending sort order. The list of available keys can be found in the endpoint description. (optional)
@@ -351,7 +352,7 @@ public class RuntimeApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/tests"
+        String localVarPath = "/v3/workspaces/{workspaceId}/tests"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -413,8 +414,8 @@ public class RuntimeApi {
 
     /**
      * Get a test list
-     * Lists the tests of the Account. ___ *Sortable fields :*   - name   - projectName   - lastUpdateDate (descending sort by default : the most recent first)   - lastRunDate   - userModifierName 
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * Lists the tests of the Workspace. ___ *Sortable fields :*   - name   - projectName   - lastUpdateDate (descending sort by default : the most recent first)   - lastRunDate   - userModifierName 
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional, default to 50)
      * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional, default to 0)
      * @param sort The key to sort the elements on. It may begin with a &#x27;+&#x27; or a &#x27;-&#x27; to specify an ascending or descending sort order. The list of available keys can be found in the endpoint description. (optional)
@@ -428,8 +429,8 @@ public class RuntimeApi {
 
     /**
      * Get a test list
-     * Lists the tests of the Account. ___ *Sortable fields :*   - name   - projectName   - lastUpdateDate (descending sort by default : the most recent first)   - lastRunDate   - userModifierName 
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * Lists the tests of the Workspace. ___ *Sortable fields :*   - name   - projectName   - lastUpdateDate (descending sort by default : the most recent first)   - lastRunDate   - userModifierName 
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional, default to 50)
      * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional, default to 0)
      * @param sort The key to sort the elements on. It may begin with a &#x27;+&#x27; or a &#x27;-&#x27; to specify an ascending or descending sort order. The list of available keys can be found in the endpoint description. (optional)
@@ -444,8 +445,8 @@ public class RuntimeApi {
 
     /**
      * Get a test list (asynchronously)
-     * Lists the tests of the Account. ___ *Sortable fields :*   - name   - projectName   - lastUpdateDate (descending sort by default : the most recent first)   - lastRunDate   - userModifierName 
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * Lists the tests of the Workspace. ___ *Sortable fields :*   - name   - projectName   - lastUpdateDate (descending sort by default : the most recent first)   - lastRunDate   - userModifierName 
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional, default to 50)
      * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional, default to 0)
      * @param sort The key to sort the elements on. It may begin with a &#x27;+&#x27; or a &#x27;-&#x27; to specify an ascending or descending sort order. The list of available keys can be found in the endpoint description. (optional)
@@ -481,7 +482,7 @@ public class RuntimeApi {
     }
     /**
      * Build call for getTestsRun
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param testResultName The name of the test result (required)
      * @param testResultDescription The description of the test result (optional)
@@ -501,7 +502,7 @@ public class RuntimeApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/tests/{testId}/start"
+        String localVarPath = "/v3/workspaces/{workspaceId}/tests/{testId}/start"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "testId" + "\\}", apiClient.escapeString(testId.toString()));
 
@@ -584,8 +585,8 @@ public class RuntimeApi {
 
     /**
      * Starts a test
-     * Starts a test of the Account according to the method parameters.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * Starts a test of the Workspace according to the method parameters.
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param testResultName The name of the test result (required)
      * @param testResultDescription The description of the test result (optional)
@@ -606,8 +607,8 @@ public class RuntimeApi {
 
     /**
      * Starts a test
-     * Starts a test of the Account according to the method parameters.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * Starts a test of the Workspace according to the method parameters.
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param testResultName The name of the test result (required)
      * @param testResultDescription The description of the test result (optional)
@@ -629,8 +630,8 @@ public class RuntimeApi {
 
     /**
      * Starts a test (asynchronously)
-     * Starts a test of the Account according to the method parameters.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * Starts a test of the Workspace according to the method parameters.
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param testResultName The name of the test result (required)
      * @param testResultDescription The description of the test result (optional)
@@ -673,7 +674,7 @@ public class RuntimeApi {
     }
     /**
      * Build call for patchTest
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param body The fields to update. No field is required, only those supplied will be updated. (optional)
      * @param progressListener Progress listener
@@ -685,7 +686,7 @@ public class RuntimeApi {
         Object localVarPostBody = body;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/tests/{testId}"
+        String localVarPath = "/v3/workspaces/{workspaceId}/tests/{testId}"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "testId" + "\\}", apiClient.escapeString(testId.toString()));
 
@@ -747,7 +748,7 @@ public class RuntimeApi {
     /**
      * Partially update a test
      * Update only the specified fields of the test
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param body The fields to update. No field is required, only those supplied will be updated. (optional)
      * @return TestDefinition
@@ -761,7 +762,7 @@ public class RuntimeApi {
     /**
      * Partially update a test
      * Update only the specified fields of the test
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param body The fields to update. No field is required, only those supplied will be updated. (optional)
      * @return ApiResponse&lt;TestDefinition&gt;
@@ -776,7 +777,7 @@ public class RuntimeApi {
     /**
      * Partially update a test (asynchronously)
      * Update only the specified fields of the test
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param body The fields to update. No field is required, only those supplied will be updated. (optional)
      * @param callback The callback to be executed when the API call finishes
@@ -812,7 +813,7 @@ public class RuntimeApi {
     /**
      * Build call for postCreateTest
      * @param body  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -822,7 +823,7 @@ public class RuntimeApi {
         Object localVarPostBody = body;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/tests"
+        String localVarPath = "/v3/workspaces/{workspaceId}/tests"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -884,7 +885,7 @@ public class RuntimeApi {
      * Create a new test
      * Create a new test with the specified name
      * @param body  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @return TestCreated
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -897,7 +898,7 @@ public class RuntimeApi {
      * Create a new test
      * Create a new test with the specified name
      * @param body  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @return ApiResponse&lt;TestCreated&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -911,7 +912,7 @@ public class RuntimeApi {
      * Create a new test (asynchronously)
      * Create a new test with the specified name
      * @param body  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -945,7 +946,7 @@ public class RuntimeApi {
     /**
      * Build call for postUploadProject
      * @param file  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -956,7 +957,7 @@ public class RuntimeApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/tests/{testId}/project"
+        String localVarPath = "/v3/workspaces/{workspaceId}/tests/{testId}/project"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "testId" + "\\}", apiClient.escapeString(testId.toString()));
 
@@ -1022,10 +1023,10 @@ public class RuntimeApi {
     }
 
     /**
-     * Uploads a NeoLoad project zip file or a standalone as code file
-     * Uploads a NeoLoad project of the account corresponding to the parameters. The maximum size file is 100 MB
+     * Uploads a NeoLoad project zip file or a standalone as-code file
+     * Uploads a NeoLoad project of the Workspace corresponding to the parameters. The maximum size file is 250 MB
      * @param file  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @return ProjectDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1036,10 +1037,10 @@ public class RuntimeApi {
     }
 
     /**
-     * Uploads a NeoLoad project zip file or a standalone as code file
-     * Uploads a NeoLoad project of the account corresponding to the parameters. The maximum size file is 100 MB
+     * Uploads a NeoLoad project zip file or a standalone as-code file
+     * Uploads a NeoLoad project of the Workspace corresponding to the parameters. The maximum size file is 250 MB
      * @param file  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @return ApiResponse&lt;ProjectDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1051,10 +1052,10 @@ public class RuntimeApi {
     }
 
     /**
-     * Uploads a NeoLoad project zip file or a standalone as code file (asynchronously)
-     * Uploads a NeoLoad project of the account corresponding to the parameters. The maximum size file is 100 MB
+     * Uploads a NeoLoad project zip file or a standalone as-code file (asynchronously)
+     * Uploads a NeoLoad project of the Workspace corresponding to the parameters. The maximum size file is 250 MB
      * @param file  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1089,7 +1090,7 @@ public class RuntimeApi {
     /**
      * Build call for putTest
      * @param body The fields to update. All fields are required and will be updated. (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -1100,7 +1101,7 @@ public class RuntimeApi {
         Object localVarPostBody = body;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/tests/{testId}"
+        String localVarPath = "/v3/workspaces/{workspaceId}/tests/{testId}"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "testId" + "\\}", apiClient.escapeString(testId.toString()));
 
@@ -1167,7 +1168,7 @@ public class RuntimeApi {
      * Fully update a test
      * Update all fields of the test
      * @param body The fields to update. All fields are required and will be updated. (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @return TestDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1181,7 +1182,7 @@ public class RuntimeApi {
      * Fully update a test
      * Update all fields of the test
      * @param body The fields to update. All fields are required and will be updated. (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @return ApiResponse&lt;TestDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1196,7 +1197,7 @@ public class RuntimeApi {
      * Fully update a test (asynchronously)
      * Update all fields of the test
      * @param body The fields to update. All fields are required and will be updated. (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1230,7 +1231,7 @@ public class RuntimeApi {
     }
     /**
      * Build call for readProjectMetadata
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -1241,7 +1242,7 @@ public class RuntimeApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/tests/{testId}/project"
+        String localVarPath = "/v3/workspaces/{workspaceId}/tests/{testId}/project"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "testId" + "\\}", apiClient.escapeString(testId.toString()));
 
@@ -1303,7 +1304,7 @@ public class RuntimeApi {
     /**
      * Get project&#x27;s metadata
      * Get project&#x27;s metadata
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @return ProjectDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1316,7 +1317,7 @@ public class RuntimeApi {
     /**
      * Get project&#x27;s metadata
      * Get project&#x27;s metadata
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @return ApiResponse&lt;ProjectDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1330,7 +1331,7 @@ public class RuntimeApi {
     /**
      * Get project&#x27;s metadata (asynchronously)
      * Get project&#x27;s metadata
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param testId Unique identifier representing a specific test. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call

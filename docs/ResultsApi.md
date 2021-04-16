@@ -1,32 +1,36 @@
 # ResultsApi
 
-All URIs are relative to *https://your-hostname.com/v3*
+All URIs are relative to */*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteTestResult**](ResultsApi.md#deleteTestResult) | **DELETE** /workspaces/{workspaceId}/test-results/{resultId} | Deletes a test result
-[**getTestResult**](ResultsApi.md#getTestResult) | **GET** /workspaces/{workspaceId}/test-results/{resultId} | Test result description
-[**getTestResultElementDefinition**](ResultsApi.md#getTestResultElementDefinition) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId} | Test result element definition
-[**getTestResultElements**](ResultsApi.md#getTestResultElements) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/elements | Test result elements
-[**getTestResultElementsPercentiles**](ResultsApi.md#getTestResultElementsPercentiles) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/percentiles | Test result percentiles transaction since the beginning of the test result
-[**getTestResultElementsPoints**](ResultsApi.md#getTestResultElementsPoints) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/points | Test results elements points since the beginning of the test result
-[**getTestResultElementsSla**](ResultsApi.md#getTestResultElementsSla) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/sla | Test result elements SLA status since the beginning of the test result
-[**getTestResultElementsValues**](ResultsApi.md#getTestResultElementsValues) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/values | Test result elements values
-[**getTestResultEvents**](ResultsApi.md#getTestResultEvents) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/events | Test result events
-[**getTestResultGraph**](ResultsApi.md#getTestResultGraph) | **POST** /workspaces/{workspaceId}/test-results/{resultId}/graph | Test result Graph
-[**getTestResultList**](ResultsApi.md#getTestResultList) | **GET** /workspaces/{workspaceId}/test-results | Lists test results
-[**getTestResultMonitorDefinition**](ResultsApi.md#getTestResultMonitorDefinition) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/monitors/{counterId} | Test result counter definition
-[**getTestResultMonitors**](ResultsApi.md#getTestResultMonitors) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/monitors | Test result monitors
-[**getTestResultMonitorsPoints**](ResultsApi.md#getTestResultMonitorsPoints) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/monitors/{counterId}/points | Test result monitors points
-[**getTestResultMonitorsValues**](ResultsApi.md#getTestResultMonitorsValues) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/monitors/{counterId}/values | Test result monitors values
-[**getTestResultMultiGraph**](ResultsApi.md#getTestResultMultiGraph) | **POST** /workspaces/{workspaceId}/test-results/graph | Test results MultiGraph
-[**getTestResultSLAGlobalIndicators**](ResultsApi.md#getTestResultSLAGlobalIndicators) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/slas/statistics | SLAs global indicators
-[**getTestResultSLAPerInterval**](ResultsApi.md#getTestResultSLAPerInterval) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/slas/per-interval | SLAs per time interval
-[**getTestResultSLAPerTest**](ResultsApi.md#getTestResultSLAPerTest) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/slas/per-test | SLAs per test
-[**getTestResultStatistics**](ResultsApi.md#getTestResultStatistics) | **GET** /workspaces/{workspaceId}/test-results/{resultId}/statistics | Test result main statistics
-[**postTestResultMonitors**](ResultsApi.md#postTestResultMonitors) | **POST** /workspaces/{workspaceId}/test-results/{resultId}/monitors | Create custom monitors
-[**stopTestResult**](ResultsApi.md#stopTestResult) | **POST** /workspaces/{workspaceId}/test-results/{resultId}/stop | Stop a running test result
-[**updateTestResult**](ResultsApi.md#updateTestResult) | **PUT** /workspaces/{workspaceId}/test-results/{resultId} | Update a test result
+[**deleteTestResult**](ResultsApi.md#deleteTestResult) | **DELETE** /v3/workspaces/{workspaceId}/test-results/{resultId} | Deletes a test result
+[**getTestRawResult**](ResultsApi.md#getTestRawResult) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/raw | Test result raw data
+[**getTestRawResultElement**](ResultsApi.md#getTestRawResultElement) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/raw | Test result raw data of a TRANSACTION element
+[**getTestResult**](ResultsApi.md#getTestResult) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId} | Test result description
+[**getTestResultElementDefinition**](ResultsApi.md#getTestResultElementDefinition) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId} | Test result element definition
+[**getTestResultElements**](ResultsApi.md#getTestResultElements) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/elements | Test result elements
+[**getTestResultElementsPercentiles**](ResultsApi.md#getTestResultElementsPercentiles) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/percentiles | Test result percentiles transaction since the beginning of the test result
+[**getTestResultElementsPoints**](ResultsApi.md#getTestResultElementsPoints) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/points | Test results elements points since the beginning of the test result
+[**getTestResultElementsSla**](ResultsApi.md#getTestResultElementsSla) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/sla | Test result elements SLA status since the beginning of the test result
+[**getTestResultElementsValues**](ResultsApi.md#getTestResultElementsValues) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/values | Test result elements values
+[**getTestResultEvents**](ResultsApi.md#getTestResultEvents) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/events | Test result events
+[**getTestResultGraph**](ResultsApi.md#getTestResultGraph) | **POST** /v3/workspaces/{workspaceId}/test-results/{resultId}/graph | Test result Graph
+[**getTestResultList**](ResultsApi.md#getTestResultList) | **GET** /v3/workspaces/{workspaceId}/test-results | Lists test results
+[**getTestResultMonitorDefinition**](ResultsApi.md#getTestResultMonitorDefinition) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/monitors/{counterId} | Test result counter definition
+[**getTestResultMonitors**](ResultsApi.md#getTestResultMonitors) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/monitors | Test result monitors
+[**getTestResultMonitorsPoints**](ResultsApi.md#getTestResultMonitorsPoints) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/monitors/{counterId}/points | Test result monitors points
+[**getTestResultMonitorsValues**](ResultsApi.md#getTestResultMonitorsValues) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/monitors/{counterId}/values | Test result monitors values
+[**getTestResultMultiGraph**](ResultsApi.md#getTestResultMultiGraph) | **POST** /v3/workspaces/{workspaceId}/test-results/graph | Test results MultiGraph
+[**getTestResultSLAGlobalIndicators**](ResultsApi.md#getTestResultSLAGlobalIndicators) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/slas/statistics | SLAs global indicators
+[**getTestResultSLAPerInterval**](ResultsApi.md#getTestResultSLAPerInterval) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/slas/per-interval | SLAs per time interval
+[**getTestResultSLAPerTest**](ResultsApi.md#getTestResultSLAPerTest) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/slas/per-test | SLAs per test
+[**getTestResultStatistics**](ResultsApi.md#getTestResultStatistics) | **GET** /v3/workspaces/{workspaceId}/test-results/{resultId}/statistics | Test result main statistics
+[**patchTestResultCustomEvent**](ResultsApi.md#patchTestResultCustomEvent) | **PATCH** /v3/workspaces/{workspaceId}/test-results/{resultId}/events/{eventId} | Partially update a Test Result custom event
+[**postTestResultCustomEvent**](ResultsApi.md#postTestResultCustomEvent) | **POST** /v3/workspaces/{workspaceId}/test-results/{resultId}/events | Create a Test Result custom event
+[**postTestResultMonitors**](ResultsApi.md#postTestResultMonitors) | **POST** /v3/workspaces/{workspaceId}/test-results/{resultId}/monitors | Create custom monitors
+[**stopTestResult**](ResultsApi.md#stopTestResult) | **POST** /v3/workspaces/{workspaceId}/test-results/{resultId}/stop | Stop a running test result
+[**updateTestResult**](ResultsApi.md#updateTestResult) | **PUT** /v3/workspaces/{workspaceId}/test-results/{resultId} | Update a test result
 
 <a name="deleteTestResult"></a>
 # **deleteTestResult**
@@ -54,7 +58,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 try {
     apiInstance.deleteTestResult(workspaceId, resultId);
@@ -68,7 +72,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
 
 ### Return type
@@ -83,6 +87,126 @@ null (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+<a name="getTestRawResult"></a>
+# **getTestRawResult**
+> String getTestRawResult(workspaceId, resultId, format)
+
+Test result raw data
+
+Provides all the test result raw data, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;This endpoint may produce large files depending on Test Results. For production purposes please prefer using an API client rather than the browser.&lt;/i&gt;&lt;/b&gt; Provides the test result raw data for an element of category TRANSACTION, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;Retention period for raw data is 7 days after which this will be permanently deleted.&lt;/i&gt;&lt;/b&gt; 
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiClient;
+//import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
+//import io.swagger.client.api.ResultsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: NeoloadAuthorizer
+ApiKeyAuth NeoloadAuthorizer = (ApiKeyAuth) defaultClient.getAuthentication("NeoloadAuthorizer");
+NeoloadAuthorizer.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//NeoloadAuthorizer.setApiKeyPrefix("Token");
+
+ResultsApi apiInstance = new ResultsApi();
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
+String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
+String format = "CSV"; // String | The format of the test result data.
+try {
+    String result = apiInstance.getTestRawResult(workspaceId, resultId, format);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ResultsApi#getTestRawResult");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
+ **resultId** | **String**| Unique identifier representing a specific test result. |
+ **format** | **String**| The format of the test result data. | [default to CSV] [enum: CSV, JSON]
+
+### Return type
+
+**String**
+
+### Authorization
+
+[NeoloadAuthorizer](../README.md#NeoloadAuthorizer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/csv, application/json
+
+<a name="getTestRawResultElement"></a>
+# **getTestRawResultElement**
+> String getTestRawResultElement(workspaceId, resultId, elementId, format)
+
+Test result raw data of a TRANSACTION element
+
+Provides the test result raw data for an element of category TRANSACTION, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;Retention period for raw data is 7 days after which this will be permanently deleted.&lt;/i&gt;&lt;/b&gt; 
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiClient;
+//import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
+//import io.swagger.client.api.ResultsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: NeoloadAuthorizer
+ApiKeyAuth NeoloadAuthorizer = (ApiKeyAuth) defaultClient.getAuthentication("NeoloadAuthorizer");
+NeoloadAuthorizer.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//NeoloadAuthorizer.setApiKeyPrefix("Token");
+
+ResultsApi apiInstance = new ResultsApi();
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
+String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
+String elementId = "elementId_example"; // String | Unique identifier representing a specific element.
+String format = "CSV"; // String | The format of the test result data.
+try {
+    String result = apiInstance.getTestRawResultElement(workspaceId, resultId, elementId, format);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ResultsApi#getTestRawResultElement");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
+ **resultId** | **String**| Unique identifier representing a specific test result. |
+ **elementId** | **String**| Unique identifier representing a specific element. |
+ **format** | **String**| The format of the test result data. | [default to CSV] [enum: CSV, JSON]
+
+### Return type
+
+**String**
+
+### Authorization
+
+[NeoloadAuthorizer](../README.md#NeoloadAuthorizer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/csv, application/json
 
 <a name="getTestResult"></a>
 # **getTestResult**
@@ -110,7 +234,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 try {
     TestResultDefinition result = apiInstance.getTestResult(workspaceId, resultId);
@@ -125,7 +249,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
 
 ### Return type
@@ -167,7 +291,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 String elementId = "elementId_example"; // String | Unique identifier representing a specific element.
 try {
@@ -183,7 +307,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **elementId** | **String**| Unique identifier representing a specific element. |
 
@@ -226,7 +350,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 String category = "TRANSACTION"; // String | Category of the elements to return.
 try {
@@ -242,7 +366,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **category** | **String**| Category of the elements to return. | [default to TRANSACTION] [enum: TRANSACTION, PAGE, REQUEST]
 
@@ -285,7 +409,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 String elementId = "elementId_example"; // String | Unique identifier representing a specific element.
 try {
@@ -301,7 +425,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **elementId** | **String**| Unique identifier representing a specific element. |
 
@@ -344,7 +468,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 String elementId = "elementId_example"; // String | Unique identifier representing a specific element.
 String statistics = "statistics_example"; // String | Comma-separated list of statistics to get. Available statistics are: AVG_DURATION (ms), MIN_DURATION (ms), MAX_DURATION (ms), COUNT, THROUGHPUT (Byte/s), ELEMENTS_PER_SECOND, ERRORS, ERRORS_PER_SECOND, ERROR_RATE (%), AVG_TTFB (ms), MIN_TTFB (ms), MAX_TTFB (ms).<br/> Example: AVG_DURATION,ELEMENTS_PER_SECOND
@@ -361,7 +485,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **elementId** | **String**| Unique identifier representing a specific element. |
  **statistics** | **String**| Comma-separated list of statistics to get. Available statistics are: AVG_DURATION (ms), MIN_DURATION (ms), MAX_DURATION (ms), COUNT, THROUGHPUT (Byte/s), ELEMENTS_PER_SECOND, ERRORS, ERRORS_PER_SECOND, ERROR_RATE (%), AVG_TTFB (ms), MIN_TTFB (ms), MAX_TTFB (ms).&lt;br/&gt; Example: AVG_DURATION,ELEMENTS_PER_SECOND |
@@ -405,7 +529,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 String elementId = "elementId_example"; // String | Unique identifier representing a specific element.
 try {
@@ -421,7 +545,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **elementId** | **String**| Unique identifier representing a specific element. |
 
@@ -464,7 +588,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 String elementId = "elementId_example"; // String | Unique identifier representing a specific element.
 try {
@@ -480,7 +604,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **elementId** | **String**| Unique identifier representing a specific element. |
 
@@ -523,7 +647,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 List<EventType> types = Arrays.asList(new EventType()); // List<EventType> | The types of the events you expect to get. It will return all the types if the field is left empty. (Ctrl+click to select multiple values) 
 Integer limit = 50; // Integer | The maximum number of elements returned by this call. The maximum must be less than or equal to 200.
@@ -542,7 +666,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **types** | [**List&lt;EventType&gt;**](EventType.md)| The types of the events you expect to get. It will return all the types if the field is left empty. (Ctrl+click to select multiple values)  | [optional]
  **limit** | **Integer**| The maximum number of elements returned by this call. The maximum must be less than or equal to 200. | [optional] [default to 50] [enum: ]
@@ -588,7 +712,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 TestResultRasterConfiguration body = new TestResultRasterConfiguration(); // TestResultRasterConfiguration | 
 try {
@@ -604,7 +728,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **body** | [**TestResultRasterConfiguration**](TestResultRasterConfiguration.md)|  | [optional]
 
@@ -627,7 +751,7 @@ Name | Type | Description  | Notes
 
 Lists test results
 
-Lists the test results of the Account according to the method parameters. ___ *Sortable fields :*   - name   - project   - startDate (descending sort by default : the most recent first)   - qualityStatus 
+Lists the test results of the Workspace according to the method parameters. ___ *Sortable fields :*   - name   - project   - startDate (descending sort by default : the most recent first)   - qualityStatus 
 
 ### Example
 ```java
@@ -647,7 +771,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String status = "status_example"; // String | Returns only the test results with the specified status.
 String project = "project_example"; // String | Project name. Returns only the test results of the specified project.
 String author = "author_example"; // String | The author of the test result. Returns only the test results launched by the specified author.
@@ -669,7 +793,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **status** | **String**| Returns only the test results with the specified status. | [optional] [enum: STARTING, RUNNING, TERMINATED]
  **project** | **String**| Project name. Returns only the test results of the specified project. | [optional]
  **author** | **String**| The author of the test result. Returns only the test results launched by the specified author. | [optional]
@@ -718,7 +842,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 String counterId = "counterId_example"; // String | Unique identifier representing a specific counter.
 try {
@@ -734,7 +858,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **counterId** | **String**| Unique identifier representing a specific counter. |
 
@@ -777,7 +901,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 try {
     CounterDefinitionArray result = apiInstance.getTestResultMonitors(workspaceId, resultId);
@@ -792,7 +916,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
 
 ### Return type
@@ -834,7 +958,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 String counterId = "counterId_example"; // String | Unique identifier representing a specific counter.
 try {
@@ -850,7 +974,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **counterId** | **String**| Unique identifier representing a specific counter. |
 
@@ -893,7 +1017,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 String counterId = "counterId_example"; // String | Unique identifier representing a specific counter.
 try {
@@ -909,7 +1033,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **counterId** | **String**| Unique identifier representing a specific counter. |
 
@@ -952,7 +1076,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 TestResultRasterMultiConfiguration body = new TestResultRasterMultiConfiguration(); // TestResultRasterMultiConfiguration | 
 try {
     File result = apiInstance.getTestResultMultiGraph(workspaceId, body);
@@ -967,7 +1091,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **body** | [**TestResultRasterMultiConfiguration**](TestResultRasterMultiConfiguration.md)|  | [optional]
 
 ### Return type
@@ -1009,7 +1133,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 String status = "status_example"; // String | The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty.
 try {
@@ -1025,7 +1149,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **status** | **String**| The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. | [optional] [enum: PASSED, WARNING, FAILED]
 
@@ -1068,7 +1192,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 String status = "status_example"; // String | The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty.
 String category = "category_example"; // String | The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty.
@@ -1085,7 +1209,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **status** | **String**| The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. | [optional] [enum: PASSED, WARNING, FAILED]
  **category** | **String**| The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. | [optional] [enum: TRANSACTION, PAGE, REQUEST]
@@ -1129,7 +1253,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 String status = "status_example"; // String | The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty.
 String category = "category_example"; // String | The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty.
@@ -1146,7 +1270,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
  **status** | **String**| The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. | [optional] [enum: PASSED, WARNING, FAILED]
  **category** | **String**| The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. | [optional] [enum: TRANSACTION, PAGE, REQUEST]
@@ -1190,7 +1314,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 ResultsApi apiInstance = new ResultsApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 try {
     TestResultStatistics result = apiInstance.getTestResultStatistics(workspaceId, resultId);
@@ -1205,7 +1329,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
 
 ### Return type
@@ -1219,6 +1343,126 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="patchTestResultCustomEvent"></a>
+# **patchTestResultCustomEvent**
+> PatchCustomEventResponse patchTestResultCustomEvent(body, workspaceId, resultId, eventId)
+
+Partially update a Test Result custom event
+
+Update a field of an existing custom event:   - endTimestamp   - description   - url  Custom events with INSTANT timeframe can be patched to TIME_RANGE timeframe by setting an endTimestamp different than the startTimestamp.  Custom events with TIME_RANGE timeframe can be patched to INSTANT timeframe by setting an endTimestamp equals to the startTimestamp.  Custom events timestamps are in seconds.  Request to patch a custom event has some constraints, see &lt;a href&#x3D;\&quot;#model-PatchCustomEventRequest\&quot;&gt;PatchCustomEventRequest model&lt;/a&gt; to get more details. ____ 
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiClient;
+//import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
+//import io.swagger.client.api.ResultsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: NeoloadAuthorizer
+ApiKeyAuth NeoloadAuthorizer = (ApiKeyAuth) defaultClient.getAuthentication("NeoloadAuthorizer");
+NeoloadAuthorizer.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//NeoloadAuthorizer.setApiKeyPrefix("Token");
+
+ResultsApi apiInstance = new ResultsApi();
+PatchCustomEventRequest body = new PatchCustomEventRequest(); // PatchCustomEventRequest | The patch of an existing custom event.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
+String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
+String eventId = "eventId_example"; // String | Unique identifier representing a specific test result event.
+try {
+    PatchCustomEventResponse result = apiInstance.patchTestResultCustomEvent(body, workspaceId, resultId, eventId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ResultsApi#patchTestResultCustomEvent");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**PatchCustomEventRequest**](PatchCustomEventRequest.md)| The patch of an existing custom event. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
+ **resultId** | **String**| Unique identifier representing a specific test result. |
+ **eventId** | **String**| Unique identifier representing a specific test result event. |
+
+### Return type
+
+[**PatchCustomEventResponse**](PatchCustomEventResponse.md)
+
+### Authorization
+
+[NeoloadAuthorizer](../README.md#NeoloadAuthorizer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postTestResultCustomEvent"></a>
+# **postTestResultCustomEvent**
+> PostCustomEventResponse postTestResultCustomEvent(body, workspaceId, resultId)
+
+Create a Test Result custom event
+
+Creates a Test Result custom event.  Custom events stored by this endpoint can be retrieved using the [GetTestResultEvents](#/Results/GetTestResultEvents) endpoint.  Custom events allow you to associate to a Test Result events that occurred outside of NeoLoad.  Custom events can have two different kinds of timeframe:   - INSTANT: an event having a timestamp and a duration of 0 seconds.   - TIME_RANGE: an event having a start timestamp and an end timestamp.  Custom events timestamps are in seconds.  The maximum of custom events per Test Result is 1000.  Custom events must match some constraints, see &lt;a href&#x3D;\&quot;#model-PostCustomEventRequest\&quot;&gt;PostCustomEventRequest model&lt;/a&gt; to get more details. ____ 
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiClient;
+//import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
+//import io.swagger.client.api.ResultsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: NeoloadAuthorizer
+ApiKeyAuth NeoloadAuthorizer = (ApiKeyAuth) defaultClient.getAuthentication("NeoloadAuthorizer");
+NeoloadAuthorizer.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//NeoloadAuthorizer.setApiKeyPrefix("Token");
+
+ResultsApi apiInstance = new ResultsApi();
+PostCustomEventRequest body = new PostCustomEventRequest(); // PostCustomEventRequest | The custom event
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
+String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
+try {
+    PostCustomEventResponse result = apiInstance.postTestResultCustomEvent(body, workspaceId, resultId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ResultsApi#postTestResultCustomEvent");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**PostCustomEventRequest**](PostCustomEventRequest.md)| The custom event |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
+ **resultId** | **String**| Unique identifier representing a specific test result. |
+
+### Return type
+
+[**PostCustomEventResponse**](PostCustomEventResponse.md)
+
+### Authorization
+
+[NeoloadAuthorizer](../README.md#NeoloadAuthorizer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 <a name="postTestResultMonitors"></a>
@@ -1248,7 +1492,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 
 ResultsApi apiInstance = new ResultsApi();
 MonitorPostRequest body = new MonitorPostRequest(); // MonitorPostRequest | List of custom monitors
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 try {
     apiInstance.postTestResultMonitors(body, workspaceId, resultId);
@@ -1263,7 +1507,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**MonitorPostRequest**](MonitorPostRequest.md)| List of custom monitors |
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
 
 ### Return type
@@ -1306,7 +1550,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 
 ResultsApi apiInstance = new ResultsApi();
 TestResultStopRequest body = new TestResultStopRequest(); // TestResultStopRequest | 
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 try {
     InlineResponse200 result = apiInstance.stopTestResult(body, workspaceId, resultId);
@@ -1322,7 +1566,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**TestResultStopRequest**](TestResultStopRequest.md)|  |
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
 
 ### Return type
@@ -1365,7 +1609,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 
 ResultsApi apiInstance = new ResultsApi();
 TestResultUpdateRequest body = new TestResultUpdateRequest(); // TestResultUpdateRequest | 
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String resultId = "resultId_example"; // String | Unique identifier representing a specific test result.
 try {
     TestResultDefinition result = apiInstance.updateTestResult(body, workspaceId, resultId);
@@ -1381,7 +1625,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**TestResultUpdateRequest**](TestResultUpdateRequest.md)|  |
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **resultId** | **String**| Unique identifier representing a specific test result. |
 
 ### Return type

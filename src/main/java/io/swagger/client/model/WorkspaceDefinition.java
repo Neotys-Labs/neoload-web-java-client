@@ -26,7 +26,7 @@ import java.io.IOException;
  * WorkspaceDefinition
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2020-06-12T09:30:22.329+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-16T09:41:51.665+02:00[Europe/Paris]")
 
 
 public class WorkspaceDefinition {
@@ -48,10 +48,10 @@ public class WorkspaceDefinition {
   }
 
    /**
-   * Unique identifier of the workspace.
+   * Unique identifier of the Workspace.
    * @return id
   **/
-  @Schema(example = "5e3acde2e860a132744ca916", description = "Unique identifier of the workspace.")
+  @Schema(example = "5e3acde2e860a132744ca916", description = "Unique identifier of the Workspace.")
   public String getId() {
     return id;
   }
@@ -66,10 +66,10 @@ public class WorkspaceDefinition {
   }
 
    /**
-   * Name of the workspace.
+   * Name of the Workspace.
    * @return name
   **/
-  @Schema(example = "Default Workspace", description = "Name of the workspace.")
+  @Schema(example = "Default Workspace", description = "Name of the Workspace.")
   public String getName() {
     return name;
   }
@@ -84,10 +84,10 @@ public class WorkspaceDefinition {
   }
 
    /**
-   * Description of the workspace.
+   * Description of the Workspace.
    * @return description
   **/
-  @Schema(example = "Workspace description", description = "Description of the workspace.")
+  @Schema(example = "Workspace description", description = "Description of the Workspace.")
   public String getDescription() {
     return description;
   }

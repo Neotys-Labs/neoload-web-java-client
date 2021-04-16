@@ -13,13 +13,20 @@
 package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.ConfigurationTest;
+import io.swagger.client.model.Error;
+import io.swagger.client.model.FullWorkspaceDefinition;
+import io.swagger.client.model.MemberListDefinition;
+import io.swagger.client.model.RateLimitError;
+import io.swagger.client.model.WorkspaceCreateRequest;
 import io.swagger.client.model.WorkspaceDefinitionList;
+import io.swagger.client.model.WorkspaceUpdateRequest;
 import org.junit.Test;
-
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.Ignore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * API tests for WorkspacesApi
@@ -29,23 +36,115 @@ public class WorkspacesApiTest {
 
     private final WorkspacesApi api = new WorkspacesApi();
 
-    static {
-    	ConfigurationTest.initTestApiClient();
-    }
-    
     /**
-     * Get the list workspaces that can be accessed
+     * Add member(s) to a Workspace
      *
-     * The list of all workspaces that can be accessed
+     * Add member(s) to a Workspace
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void addMembersToWorkspaceTest() throws ApiException {
+        String workspaceId = null;
+        MemberListDefinition body = null;
+        FullWorkspaceDefinition response = api.addMembersToWorkspace(workspaceId, body);
+
+        // TODO: test validations
+    }
+    /**
+     * Create a new Workspace
+     *
+     * Create a new Workspace
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createTest() throws ApiException {
+        WorkspaceCreateRequest body = null;
+        FullWorkspaceDefinition response = api.create(body);
+
+        // TODO: test validations
+    }
+    /**
+     * Delete a Workspace
+     *
+     * WARNING: All related resources will be deleted and definitively lost. Delete the Workspace with the specified id. The Workspace name is also required to make sure you actually delete the good Workspace.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteTest() throws ApiException {
+        String workspaceId = null;
+        String workspaceName = null;
+        FullWorkspaceDefinition response = api.delete(workspaceId, workspaceName);
+
+        // TODO: test validations
+    }
+    /**
+     * Get a Workspace
+     *
+     * Get a Workspace
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void findTest() throws ApiException {
+        String workspaceId = null;
+        FullWorkspaceDefinition response = api.find(workspaceId);
+
+        // TODO: test validations
+    }
+    /**
+     * Get the list of all accessible Workspaces
+     *
+     * Lists all accessible Workspaces.
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
     public void getWorkspaceListTest() throws ApiException {
-        WorkspaceDefinitionList response = api.getWorkspaceList();
+        Boolean allWorkspaces = null;
+        Integer limit = null;
+        Integer offset = null;
+        WorkspaceDefinitionList response = api.getWorkspaceList(allWorkspaces, limit, offset);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
+    }
+    /**
+     * Remove member(s) from a Workspace
+     *
+     * Remove member(s) from a Workspace
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void removeMembersFromWorkspaceTest() throws ApiException {
+        String workspaceId = null;
+        MemberListDefinition body = null;
+        FullWorkspaceDefinition response = api.removeMembersFromWorkspace(workspaceId, body);
+
+        // TODO: test validations
+    }
+    /**
+     * Update a Workspace
+     *
+     * Update only the specified fields of the Workspace
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateTest() throws ApiException {
+        String workspaceId = null;
+        WorkspaceUpdateRequest body = null;
+        FullWorkspaceDefinition response = api.update(workspaceId, body);
+
+        // TODO: test validations
     }
 }

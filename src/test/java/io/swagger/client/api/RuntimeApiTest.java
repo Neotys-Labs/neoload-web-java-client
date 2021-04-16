@@ -13,12 +13,11 @@
 package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.ConfigurationTest;
-
-import static org.junit.Assert.assertNotNull;
-
+import io.swagger.client.model.Error;
 import java.io.File;
+import io.swagger.client.model.GetTestDefinition;
 import io.swagger.client.model.ProjectDefinition;
+import io.swagger.client.model.RateLimitError;
 import io.swagger.client.model.RunTestDefinition;
 import io.swagger.client.model.TestCreate;
 import io.swagger.client.model.TestCreated;
@@ -28,6 +27,11 @@ import io.swagger.client.model.TestUpdate;
 import org.junit.Test;
 import org.junit.Ignore;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * API tests for RuntimeApi
  */
@@ -35,10 +39,6 @@ import org.junit.Ignore;
 public class RuntimeApiTest {
 
     private final RuntimeApi api = new RuntimeApi();
-    
-    static {
-    	ConfigurationTest.initTestApiClient();
-    }
 
     /**
      * Delete a test
@@ -55,8 +55,7 @@ public class RuntimeApiTest {
         String deleteResults = null;
         TestDefinition response = api.deleteTest(workspaceId, testId, deleteResults);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Get a test
@@ -70,15 +69,14 @@ public class RuntimeApiTest {
     public void getTestTest() throws ApiException {
         String workspaceId = null;
         String testId = null;
-        TestDefinition response = api.getTest(workspaceId, testId);
+        GetTestDefinition response = api.getTest(workspaceId, testId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Get a test list
      *
-     * Lists the tests of the Account. ___ *Sortable fields :*   - name   - projectName   - lastUpdateDate (descending sort by default : the most recent first)   - lastRunDate   - userModifierName 
+     * Lists the tests of the Workspace. ___ *Sortable fields :*   - name   - projectName   - lastUpdateDate (descending sort by default : the most recent first)   - lastRunDate   - userModifierName 
      *
      * @throws ApiException
      *          if the Api call fails
@@ -91,13 +89,12 @@ public class RuntimeApiTest {
         String sort = null;
         TestDefinitionList response = api.getTestList(workspaceId, limit, offset, sort);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Starts a test
      *
-     * Starts a test of the Account according to the method parameters.
+     * Starts a test of the Workspace according to the method parameters.
      *
      * @throws ApiException
      *          if the Api call fails
@@ -117,8 +114,7 @@ public class RuntimeApiTest {
         Boolean publishTestResult = null;
         RunTestDefinition response = api.getTestsRun(workspaceId, testId, testResultName, testResultDescription, asCode, reservationId, reservationDuration, reservationWebVUs, reservationSAPVUs, reservationCitrixVUs, publishTestResult);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Partially update a test
@@ -135,8 +131,7 @@ public class RuntimeApiTest {
         TestUpdate body = null;
         TestDefinition response = api.patchTest(workspaceId, testId, body);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Create a new test
@@ -152,13 +147,12 @@ public class RuntimeApiTest {
         String workspaceId = null;
         TestCreated response = api.postCreateTest(body, workspaceId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
-     * Uploads a NeoLoad project zip file or a standalone as code file
+     * Uploads a NeoLoad project zip file or a standalone as-code file
      *
-     * Uploads a NeoLoad project of the account corresponding to the parameters. The maximum size file is 100 MB
+     * Uploads a NeoLoad project of the Workspace corresponding to the parameters. The maximum size file is 250 MB
      *
      * @throws ApiException
      *          if the Api call fails
@@ -170,8 +164,7 @@ public class RuntimeApiTest {
         String testId = null;
         ProjectDefinition response = api.postUploadProject(file, workspaceId, testId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Fully update a test
@@ -188,8 +181,7 @@ public class RuntimeApiTest {
         String testId = null;
         TestDefinition response = api.putTest(body, workspaceId, testId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Get project&#x27;s metadata
@@ -205,7 +197,6 @@ public class RuntimeApiTest {
         String testId = null;
         ProjectDefinition response = api.readProjectMetadata(workspaceId, testId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
 }

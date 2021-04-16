@@ -42,8 +42,15 @@ import io.swagger.client.model.EventType;
 import java.io.File;
 import io.swagger.client.model.InlineResponse200;
 import io.swagger.client.model.MonitorPostRequest;
+import io.swagger.client.model.PatchCustomEventError400;
+import io.swagger.client.model.PatchCustomEventError404;
+import io.swagger.client.model.PatchCustomEventRequest;
+import io.swagger.client.model.PatchCustomEventResponse;
 import io.swagger.client.model.Percentiles;
 import io.swagger.client.model.Points;
+import io.swagger.client.model.PostCustomEventError;
+import io.swagger.client.model.PostCustomEventRequest;
+import io.swagger.client.model.PostCustomEventResponse;
 import io.swagger.client.model.RateLimitError;
 import io.swagger.client.model.Sla;
 import io.swagger.client.model.TestResultDefinition;
@@ -80,7 +87,7 @@ public class ResultsApi {
 
     /**
      * Build call for deleteTestResult
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -91,7 +98,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
 
@@ -153,7 +160,7 @@ public class ResultsApi {
     /**
      * Deletes a test result
      * Deletes a test result and all the associated statistics. This action cannot be undone.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -164,7 +171,7 @@ public class ResultsApi {
     /**
      * Deletes a test result
      * Deletes a test result and all the associated statistics. This action cannot be undone.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -177,7 +184,7 @@ public class ResultsApi {
     /**
      * Deletes a test result (asynchronously)
      * Deletes a test result and all the associated statistics. This action cannot be undone.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -209,8 +216,305 @@ public class ResultsApi {
         return call;
     }
     /**
+     * Build call for getTestRawResult
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param format The format of the test result data. (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getTestRawResultCall(String workspaceId, String resultId, String format, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/raw"
+            .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
+            .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (format != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("format", format));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/csv", "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "NeoloadAuthorizer" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getTestRawResultValidateBeforeCall(String workspaceId, String resultId, String format, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling getTestRawResult(Async)");
+        }
+        // verify the required parameter 'resultId' is set
+        if (resultId == null) {
+            throw new ApiException("Missing the required parameter 'resultId' when calling getTestRawResult(Async)");
+        }
+        // verify the required parameter 'format' is set
+        if (format == null) {
+            throw new ApiException("Missing the required parameter 'format' when calling getTestRawResult(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = getTestRawResultCall(workspaceId, resultId, format, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Test result raw data
+     * Provides all the test result raw data, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;This endpoint may produce large files depending on Test Results. For production purposes please prefer using an API client rather than the browser.&lt;/i&gt;&lt;/b&gt; Provides the test result raw data for an element of category TRANSACTION, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;Retention period for raw data is 7 days after which this will be permanently deleted.&lt;/i&gt;&lt;/b&gt; 
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param format The format of the test result data. (required)
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String getTestRawResult(String workspaceId, String resultId, String format) throws ApiException {
+        ApiResponse<String> resp = getTestRawResultWithHttpInfo(workspaceId, resultId, format);
+        return resp.getData();
+    }
+
+    /**
+     * Test result raw data
+     * Provides all the test result raw data, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;This endpoint may produce large files depending on Test Results. For production purposes please prefer using an API client rather than the browser.&lt;/i&gt;&lt;/b&gt; Provides the test result raw data for an element of category TRANSACTION, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;Retention period for raw data is 7 days after which this will be permanently deleted.&lt;/i&gt;&lt;/b&gt; 
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param format The format of the test result data. (required)
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> getTestRawResultWithHttpInfo(String workspaceId, String resultId, String format) throws ApiException {
+        com.squareup.okhttp.Call call = getTestRawResultValidateBeforeCall(workspaceId, resultId, format, null, null);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Test result raw data (asynchronously)
+     * Provides all the test result raw data, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;This endpoint may produce large files depending on Test Results. For production purposes please prefer using an API client rather than the browser.&lt;/i&gt;&lt;/b&gt; Provides the test result raw data for an element of category TRANSACTION, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;Retention period for raw data is 7 days after which this will be permanently deleted.&lt;/i&gt;&lt;/b&gt; 
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param format The format of the test result data. (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getTestRawResultAsync(String workspaceId, String resultId, String format, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getTestRawResultValidateBeforeCall(workspaceId, resultId, format, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getTestRawResultElement
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param elementId Unique identifier representing a specific element. (required)
+     * @param format The format of the test result data. (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getTestRawResultElementCall(String workspaceId, String resultId, String elementId, String format, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/raw"
+            .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
+            .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()))
+            .replaceAll("\\{" + "elementId" + "\\}", apiClient.escapeString(elementId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (format != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("format", format));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/csv", "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "NeoloadAuthorizer" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getTestRawResultElementValidateBeforeCall(String workspaceId, String resultId, String elementId, String format, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling getTestRawResultElement(Async)");
+        }
+        // verify the required parameter 'resultId' is set
+        if (resultId == null) {
+            throw new ApiException("Missing the required parameter 'resultId' when calling getTestRawResultElement(Async)");
+        }
+        // verify the required parameter 'elementId' is set
+        if (elementId == null) {
+            throw new ApiException("Missing the required parameter 'elementId' when calling getTestRawResultElement(Async)");
+        }
+        // verify the required parameter 'format' is set
+        if (format == null) {
+            throw new ApiException("Missing the required parameter 'format' when calling getTestRawResultElement(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = getTestRawResultElementCall(workspaceId, resultId, elementId, format, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Test result raw data of a TRANSACTION element
+     * Provides the test result raw data for an element of category TRANSACTION, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;Retention period for raw data is 7 days after which this will be permanently deleted.&lt;/i&gt;&lt;/b&gt; 
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param elementId Unique identifier representing a specific element. (required)
+     * @param format The format of the test result data. (required)
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String getTestRawResultElement(String workspaceId, String resultId, String elementId, String format) throws ApiException {
+        ApiResponse<String> resp = getTestRawResultElementWithHttpInfo(workspaceId, resultId, elementId, format);
+        return resp.getData();
+    }
+
+    /**
+     * Test result raw data of a TRANSACTION element
+     * Provides the test result raw data for an element of category TRANSACTION, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;Retention period for raw data is 7 days after which this will be permanently deleted.&lt;/i&gt;&lt;/b&gt; 
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param elementId Unique identifier representing a specific element. (required)
+     * @param format The format of the test result data. (required)
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> getTestRawResultElementWithHttpInfo(String workspaceId, String resultId, String elementId, String format) throws ApiException {
+        com.squareup.okhttp.Call call = getTestRawResultElementValidateBeforeCall(workspaceId, resultId, elementId, format, null, null);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Test result raw data of a TRANSACTION element (asynchronously)
+     * Provides the test result raw data for an element of category TRANSACTION, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;Retention period for raw data is 7 days after which this will be permanently deleted.&lt;/i&gt;&lt;/b&gt; 
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param elementId Unique identifier representing a specific element. (required)
+     * @param format The format of the test result data. (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getTestRawResultElementAsync(String workspaceId, String resultId, String elementId, String format, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getTestRawResultElementValidateBeforeCall(workspaceId, resultId, elementId, format, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for getTestResult
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -221,7 +525,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
 
@@ -283,7 +587,7 @@ public class ResultsApi {
     /**
      * Test result description
      * Provides a test result description using a unique test result identifier. Provides name, dates, owner ...
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @return TestResultDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -296,7 +600,7 @@ public class ResultsApi {
     /**
      * Test result description
      * Provides a test result description using a unique test result identifier. Provides name, dates, owner ...
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @return ApiResponse&lt;TestResultDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -310,7 +614,7 @@ public class ResultsApi {
     /**
      * Test result description (asynchronously)
      * Provides a test result description using a unique test result identifier. Provides name, dates, owner ...
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -344,7 +648,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultElementDefinition
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param progressListener Progress listener
@@ -356,7 +660,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()))
             .replaceAll("\\{" + "elementId" + "\\}", apiClient.escapeString(elementId.toString()));
@@ -423,7 +727,7 @@ public class ResultsApi {
     /**
      * Test result element definition
      * Provides a test result element definition.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return ElementDefinition
@@ -437,7 +741,7 @@ public class ResultsApi {
     /**
      * Test result element definition
      * Provides a test result element definition.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return ApiResponse&lt;ElementDefinition&gt;
@@ -452,7 +756,7 @@ public class ResultsApi {
     /**
      * Test result element definition (asynchronously)
      * Provides a test result element definition.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -487,7 +791,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultElements
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param category Category of the elements to return. (required)
      * @param progressListener Progress listener
@@ -499,7 +803,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/elements"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/elements"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
 
@@ -567,7 +871,7 @@ public class ResultsApi {
     /**
      * Test result elements
      * Provides the tests elements of a test result. The elements type must be provided.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param category Category of the elements to return. (required)
      * @return ArrayOfElementDefinition
@@ -581,7 +885,7 @@ public class ResultsApi {
     /**
      * Test result elements
      * Provides the tests elements of a test result. The elements type must be provided.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param category Category of the elements to return. (required)
      * @return ApiResponse&lt;ArrayOfElementDefinition&gt;
@@ -596,7 +900,7 @@ public class ResultsApi {
     /**
      * Test result elements (asynchronously)
      * Provides the tests elements of a test result. The elements type must be provided.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param category Category of the elements to return. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -631,7 +935,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultElementsPercentiles
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param progressListener Progress listener
@@ -643,7 +947,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/percentiles"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/percentiles"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()))
             .replaceAll("\\{" + "elementId" + "\\}", apiClient.escapeString(elementId.toString()));
@@ -710,7 +1014,7 @@ public class ResultsApi {
     /**
      * Test result percentiles transaction since the beginning of the test result
      * Provides the percentiles of a test result transaction.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return Percentiles
@@ -724,7 +1028,7 @@ public class ResultsApi {
     /**
      * Test result percentiles transaction since the beginning of the test result
      * Provides the percentiles of a test result transaction.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return ApiResponse&lt;Percentiles&gt;
@@ -739,7 +1043,7 @@ public class ResultsApi {
     /**
      * Test result percentiles transaction since the beginning of the test result (asynchronously)
      * Provides the percentiles of a test result transaction.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -774,7 +1078,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultElementsPoints
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param statistics Comma-separated list of statistics to get. Available statistics are: AVG_DURATION (ms), MIN_DURATION (ms), MAX_DURATION (ms), COUNT, THROUGHPUT (Byte/s), ELEMENTS_PER_SECOND, ERRORS, ERRORS_PER_SECOND, ERROR_RATE (%), AVG_TTFB (ms), MIN_TTFB (ms), MAX_TTFB (ms).&lt;br/&gt; Example: AVG_DURATION,ELEMENTS_PER_SECOND (required)
@@ -787,7 +1091,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/points"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/points"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()))
             .replaceAll("\\{" + "elementId" + "\\}", apiClient.escapeString(elementId.toString()));
@@ -860,7 +1164,7 @@ public class ResultsApi {
     /**
      * Test results elements points since the beginning of the test result
      * Provides all the points of a test result element for the selected statistics.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param statistics Comma-separated list of statistics to get. Available statistics are: AVG_DURATION (ms), MIN_DURATION (ms), MAX_DURATION (ms), COUNT, THROUGHPUT (Byte/s), ELEMENTS_PER_SECOND, ERRORS, ERRORS_PER_SECOND, ERROR_RATE (%), AVG_TTFB (ms), MIN_TTFB (ms), MAX_TTFB (ms).&lt;br/&gt; Example: AVG_DURATION,ELEMENTS_PER_SECOND (required)
@@ -875,7 +1179,7 @@ public class ResultsApi {
     /**
      * Test results elements points since the beginning of the test result
      * Provides all the points of a test result element for the selected statistics.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param statistics Comma-separated list of statistics to get. Available statistics are: AVG_DURATION (ms), MIN_DURATION (ms), MAX_DURATION (ms), COUNT, THROUGHPUT (Byte/s), ELEMENTS_PER_SECOND, ERRORS, ERRORS_PER_SECOND, ERROR_RATE (%), AVG_TTFB (ms), MIN_TTFB (ms), MAX_TTFB (ms).&lt;br/&gt; Example: AVG_DURATION,ELEMENTS_PER_SECOND (required)
@@ -891,7 +1195,7 @@ public class ResultsApi {
     /**
      * Test results elements points since the beginning of the test result (asynchronously)
      * Provides all the points of a test result element for the selected statistics.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param statistics Comma-separated list of statistics to get. Available statistics are: AVG_DURATION (ms), MIN_DURATION (ms), MAX_DURATION (ms), COUNT, THROUGHPUT (Byte/s), ELEMENTS_PER_SECOND, ERRORS, ERRORS_PER_SECOND, ERROR_RATE (%), AVG_TTFB (ms), MIN_TTFB (ms), MAX_TTFB (ms).&lt;br/&gt; Example: AVG_DURATION,ELEMENTS_PER_SECOND (required)
@@ -927,7 +1231,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultElementsSla
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param progressListener Progress listener
@@ -939,7 +1243,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/sla"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/sla"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()))
             .replaceAll("\\{" + "elementId" + "\\}", apiClient.escapeString(elementId.toString()));
@@ -1006,7 +1310,7 @@ public class ResultsApi {
     /**
      * Test result elements SLA status since the beginning of the test result
      * Provides the SLA status of a test result element.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return Sla
@@ -1020,7 +1324,7 @@ public class ResultsApi {
     /**
      * Test result elements SLA status since the beginning of the test result
      * Provides the SLA status of a test result element.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return ApiResponse&lt;Sla&gt;
@@ -1035,7 +1339,7 @@ public class ResultsApi {
     /**
      * Test result elements SLA status since the beginning of the test result (asynchronously)
      * Provides the SLA status of a test result element.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -1070,7 +1374,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultElementsValues
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param progressListener Progress listener
@@ -1082,7 +1386,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/values"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/elements/{elementId}/values"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()))
             .replaceAll("\\{" + "elementId" + "\\}", apiClient.escapeString(elementId.toString()));
@@ -1149,7 +1453,7 @@ public class ResultsApi {
     /**
      * Test result elements values
      * Provides the values of a test result element.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return ElementValues
@@ -1163,7 +1467,7 @@ public class ResultsApi {
     /**
      * Test result elements values
      * Provides the values of a test result element.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @return ApiResponse&lt;ElementValues&gt;
@@ -1178,7 +1482,7 @@ public class ResultsApi {
     /**
      * Test result elements values (asynchronously)
      * Provides the values of a test result element.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param elementId Unique identifier representing a specific element. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -1213,7 +1517,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultEvents
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param types The types of the events you expect to get. It will return all the types if the field is left empty. (Ctrl+click to select multiple values)  (optional)
      * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional, default to 50)
@@ -1228,7 +1532,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/events"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/events"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
 
@@ -1298,7 +1602,7 @@ public class ResultsApi {
     /**
      * Test result events
      * List the events of the specified test result according to the method parameters. ___ *Sortable fields :*   - offset   - fullname   - code   - source 
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param types The types of the events you expect to get. It will return all the types if the field is left empty. (Ctrl+click to select multiple values)  (optional)
      * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional, default to 50)
@@ -1315,7 +1619,7 @@ public class ResultsApi {
     /**
      * Test result events
      * List the events of the specified test result according to the method parameters. ___ *Sortable fields :*   - offset   - fullname   - code   - source 
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param types The types of the events you expect to get. It will return all the types if the field is left empty. (Ctrl+click to select multiple values)  (optional)
      * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional, default to 50)
@@ -1333,7 +1637,7 @@ public class ResultsApi {
     /**
      * Test result events (asynchronously)
      * List the events of the specified test result according to the method parameters. ___ *Sortable fields :*   - offset   - fullname   - code   - source 
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param types The types of the events you expect to get. It will return all the types if the field is left empty. (Ctrl+click to select multiple values)  (optional)
      * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional, default to 50)
@@ -1371,7 +1675,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultGraph
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param body  (optional)
      * @param progressListener Progress listener
@@ -1383,7 +1687,7 @@ public class ResultsApi {
         Object localVarPostBody = body;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/graph"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/graph"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
 
@@ -1445,7 +1749,7 @@ public class ResultsApi {
     /**
      * Test result Graph
      * Provides a graph from some stats of a test result.  Element statistics can be mixed with monitor statistics. Only limitation is around PERCENTILES_DURATION element statistic that cannot be mixed with other element statistics neither with monitor statistics. 
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param body  (optional)
      * @return File
@@ -1459,7 +1763,7 @@ public class ResultsApi {
     /**
      * Test result Graph
      * Provides a graph from some stats of a test result.  Element statistics can be mixed with monitor statistics. Only limitation is around PERCENTILES_DURATION element statistic that cannot be mixed with other element statistics neither with monitor statistics. 
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param body  (optional)
      * @return ApiResponse&lt;File&gt;
@@ -1474,7 +1778,7 @@ public class ResultsApi {
     /**
      * Test result Graph (asynchronously)
      * Provides a graph from some stats of a test result.  Element statistics can be mixed with monitor statistics. Only limitation is around PERCENTILES_DURATION element statistic that cannot be mixed with other element statistics neither with monitor statistics. 
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param body  (optional)
      * @param callback The callback to be executed when the API call finishes
@@ -1509,7 +1813,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultList
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param status Returns only the test results with the specified status. (optional)
      * @param project Project name. Returns only the test results of the specified project. (optional)
      * @param author The author of the test result. Returns only the test results launched by the specified author. (optional)
@@ -1527,7 +1831,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1599,8 +1903,8 @@ public class ResultsApi {
 
     /**
      * Lists test results
-     * Lists the test results of the Account according to the method parameters. ___ *Sortable fields :*   - name   - project   - startDate (descending sort by default : the most recent first)   - qualityStatus 
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * Lists the test results of the Workspace according to the method parameters. ___ *Sortable fields :*   - name   - project   - startDate (descending sort by default : the most recent first)   - qualityStatus 
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param status Returns only the test results with the specified status. (optional)
      * @param project Project name. Returns only the test results of the specified project. (optional)
      * @param author The author of the test result. Returns only the test results launched by the specified author. (optional)
@@ -1619,8 +1923,8 @@ public class ResultsApi {
 
     /**
      * Lists test results
-     * Lists the test results of the Account according to the method parameters. ___ *Sortable fields :*   - name   - project   - startDate (descending sort by default : the most recent first)   - qualityStatus 
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * Lists the test results of the Workspace according to the method parameters. ___ *Sortable fields :*   - name   - project   - startDate (descending sort by default : the most recent first)   - qualityStatus 
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param status Returns only the test results with the specified status. (optional)
      * @param project Project name. Returns only the test results of the specified project. (optional)
      * @param author The author of the test result. Returns only the test results launched by the specified author. (optional)
@@ -1640,8 +1944,8 @@ public class ResultsApi {
 
     /**
      * Lists test results (asynchronously)
-     * Lists the test results of the Account according to the method parameters. ___ *Sortable fields :*   - name   - project   - startDate (descending sort by default : the most recent first)   - qualityStatus 
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * Lists the test results of the Workspace according to the method parameters. ___ *Sortable fields :*   - name   - project   - startDate (descending sort by default : the most recent first)   - qualityStatus 
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param status Returns only the test results with the specified status. (optional)
      * @param project Project name. Returns only the test results of the specified project. (optional)
      * @param author The author of the test result. Returns only the test results launched by the specified author. (optional)
@@ -1682,7 +1986,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultMonitorDefinition
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @param progressListener Progress listener
@@ -1694,7 +1998,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/monitors/{counterId}"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/monitors/{counterId}"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()))
             .replaceAll("\\{" + "counterId" + "\\}", apiClient.escapeString(counterId.toString()));
@@ -1761,7 +2065,7 @@ public class ResultsApi {
     /**
      * Test result counter definition
      * Provides the definition of a test result counter.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @return CounterDefinition
@@ -1775,7 +2079,7 @@ public class ResultsApi {
     /**
      * Test result counter definition
      * Provides the definition of a test result counter.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @return ApiResponse&lt;CounterDefinition&gt;
@@ -1790,7 +2094,7 @@ public class ResultsApi {
     /**
      * Test result counter definition (asynchronously)
      * Provides the definition of a test result counter.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -1825,7 +2129,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultMonitors
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -1836,7 +2140,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/monitors"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/monitors"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
 
@@ -1898,7 +2202,7 @@ public class ResultsApi {
     /**
      * Test result monitors
      * Provides all the test result counters of all monitors for a test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @return CounterDefinitionArray
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1911,7 +2215,7 @@ public class ResultsApi {
     /**
      * Test result monitors
      * Provides all the test result counters of all monitors for a test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @return ApiResponse&lt;CounterDefinitionArray&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1925,7 +2229,7 @@ public class ResultsApi {
     /**
      * Test result monitors (asynchronously)
      * Provides all the test result counters of all monitors for a test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1959,7 +2263,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultMonitorsPoints
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @param progressListener Progress listener
@@ -1971,7 +2275,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/monitors/{counterId}/points"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/monitors/{counterId}/points"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()))
             .replaceAll("\\{" + "counterId" + "\\}", apiClient.escapeString(counterId.toString()));
@@ -2038,7 +2342,7 @@ public class ResultsApi {
     /**
      * Test result monitors points
      * Provides all the points of a test result counter. The values are the average on the specified interval.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @return Points
@@ -2052,7 +2356,7 @@ public class ResultsApi {
     /**
      * Test result monitors points
      * Provides all the points of a test result counter. The values are the average on the specified interval.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @return ApiResponse&lt;Points&gt;
@@ -2067,7 +2371,7 @@ public class ResultsApi {
     /**
      * Test result monitors points (asynchronously)
      * Provides all the points of a test result counter. The values are the average on the specified interval.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -2102,7 +2406,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultMonitorsValues
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @param progressListener Progress listener
@@ -2114,7 +2418,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/monitors/{counterId}/values"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/monitors/{counterId}/values"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()))
             .replaceAll("\\{" + "counterId" + "\\}", apiClient.escapeString(counterId.toString()));
@@ -2181,7 +2485,7 @@ public class ResultsApi {
     /**
      * Test result monitors values
      * Provides the values of a test result counter.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @return CounterValues
@@ -2195,7 +2499,7 @@ public class ResultsApi {
     /**
      * Test result monitors values
      * Provides the values of a test result counter.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @return ApiResponse&lt;CounterValues&gt;
@@ -2210,7 +2514,7 @@ public class ResultsApi {
     /**
      * Test result monitors values (asynchronously)
      * Provides the values of a test result counter.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param counterId Unique identifier representing a specific counter. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -2245,7 +2549,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultMultiGraph
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param body  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -2256,7 +2560,7 @@ public class ResultsApi {
         Object localVarPostBody = body;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/graph"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/graph"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2313,7 +2617,7 @@ public class ResultsApi {
     /**
      * Test results MultiGraph
      * Provides a graph from some stats of some tests result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param body  (optional)
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2326,7 +2630,7 @@ public class ResultsApi {
     /**
      * Test results MultiGraph
      * Provides a graph from some stats of some tests result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param body  (optional)
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2340,7 +2644,7 @@ public class ResultsApi {
     /**
      * Test results MultiGraph (asynchronously)
      * Provides a graph from some stats of some tests result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param body  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -2374,7 +2678,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultSLAGlobalIndicators
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param progressListener Progress listener
@@ -2386,7 +2690,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/slas/statistics"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/slas/statistics"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
 
@@ -2450,7 +2754,7 @@ public class ResultsApi {
     /**
      * SLAs global indicators
      * Provides the SLAs global indicators of the test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @return ArrayOfSLAGlobalIndicatorDefinition
@@ -2464,7 +2768,7 @@ public class ResultsApi {
     /**
      * SLAs global indicators
      * Provides the SLAs global indicators of the test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @return ApiResponse&lt;ArrayOfSLAGlobalIndicatorDefinition&gt;
@@ -2479,7 +2783,7 @@ public class ResultsApi {
     /**
      * SLAs global indicators (asynchronously)
      * Provides the SLAs global indicators of the test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param callback The callback to be executed when the API call finishes
@@ -2514,7 +2818,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultSLAPerInterval
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
@@ -2527,7 +2831,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/slas/per-interval"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/slas/per-interval"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
 
@@ -2593,7 +2897,7 @@ public class ResultsApi {
     /**
      * SLAs per time interval
      * Provides the SLAs per time interval of a specific test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
@@ -2608,7 +2912,7 @@ public class ResultsApi {
     /**
      * SLAs per time interval
      * Provides the SLAs per time interval of a specific test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
@@ -2624,7 +2928,7 @@ public class ResultsApi {
     /**
      * SLAs per time interval (asynchronously)
      * Provides the SLAs per time interval of a specific test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
@@ -2660,7 +2964,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultSLAPerTest
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
@@ -2673,7 +2977,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/slas/per-test"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/slas/per-test"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
 
@@ -2739,7 +3043,7 @@ public class ResultsApi {
     /**
      * SLAs per test
      * Provides the SLAs per test of a specific test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
@@ -2754,7 +3058,7 @@ public class ResultsApi {
     /**
      * SLAs per test
      * Provides the SLAs per test of a specific test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
@@ -2770,7 +3074,7 @@ public class ResultsApi {
     /**
      * SLAs per test (asynchronously)
      * Provides the SLAs per test of a specific test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param status The status of the element you expect to get the SLA for. It will return all the statuses if the field is left empty. (optional)
      * @param category The category of the element you expect to get the SLA for. It will return all the categories if the field is left empty. (optional)
@@ -2806,7 +3110,7 @@ public class ResultsApi {
     }
     /**
      * Build call for getTestResultStatistics
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -2817,7 +3121,7 @@ public class ResultsApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/statistics"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/statistics"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
 
@@ -2879,7 +3183,7 @@ public class ResultsApi {
     /**
      * Test result main statistics
      * Provides the main statistics of a test result. For a runnning test, these statistics are live, for a test result, those are average for the all test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @return TestResultStatistics
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2892,7 +3196,7 @@ public class ResultsApi {
     /**
      * Test result main statistics
      * Provides the main statistics of a test result. For a runnning test, these statistics are live, for a test result, those are average for the all test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @return ApiResponse&lt;TestResultStatistics&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2906,7 +3210,7 @@ public class ResultsApi {
     /**
      * Test result main statistics (asynchronously)
      * Provides the main statistics of a test result. For a runnning test, these statistics are live, for a test result, those are average for the all test result.
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -2939,9 +3243,302 @@ public class ResultsApi {
         return call;
     }
     /**
+     * Build call for patchTestResultCustomEvent
+     * @param body The patch of an existing custom event. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param eventId Unique identifier representing a specific test result event. (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call patchTestResultCustomEventCall(PatchCustomEventRequest body, String workspaceId, String resultId, String eventId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+        
+        // create path and map variables
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/events/{eventId}"
+            .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
+            .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()))
+            .replaceAll("\\{" + "eventId" + "\\}", apiClient.escapeString(eventId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "NeoloadAuthorizer" };
+        return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call patchTestResultCustomEventValidateBeforeCall(PatchCustomEventRequest body, String workspaceId, String resultId, String eventId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling patchTestResultCustomEvent(Async)");
+        }
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling patchTestResultCustomEvent(Async)");
+        }
+        // verify the required parameter 'resultId' is set
+        if (resultId == null) {
+            throw new ApiException("Missing the required parameter 'resultId' when calling patchTestResultCustomEvent(Async)");
+        }
+        // verify the required parameter 'eventId' is set
+        if (eventId == null) {
+            throw new ApiException("Missing the required parameter 'eventId' when calling patchTestResultCustomEvent(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = patchTestResultCustomEventCall(body, workspaceId, resultId, eventId, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Partially update a Test Result custom event
+     * Update a field of an existing custom event:   - endTimestamp   - description   - url  Custom events with INSTANT timeframe can be patched to TIME_RANGE timeframe by setting an endTimestamp different than the startTimestamp.  Custom events with TIME_RANGE timeframe can be patched to INSTANT timeframe by setting an endTimestamp equals to the startTimestamp.  Custom events timestamps are in seconds.  Request to patch a custom event has some constraints, see &lt;a href&#x3D;\&quot;#model-PatchCustomEventRequest\&quot;&gt;PatchCustomEventRequest model&lt;/a&gt; to get more details. ____ 
+     * @param body The patch of an existing custom event. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param eventId Unique identifier representing a specific test result event. (required)
+     * @return PatchCustomEventResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public PatchCustomEventResponse patchTestResultCustomEvent(PatchCustomEventRequest body, String workspaceId, String resultId, String eventId) throws ApiException {
+        ApiResponse<PatchCustomEventResponse> resp = patchTestResultCustomEventWithHttpInfo(body, workspaceId, resultId, eventId);
+        return resp.getData();
+    }
+
+    /**
+     * Partially update a Test Result custom event
+     * Update a field of an existing custom event:   - endTimestamp   - description   - url  Custom events with INSTANT timeframe can be patched to TIME_RANGE timeframe by setting an endTimestamp different than the startTimestamp.  Custom events with TIME_RANGE timeframe can be patched to INSTANT timeframe by setting an endTimestamp equals to the startTimestamp.  Custom events timestamps are in seconds.  Request to patch a custom event has some constraints, see &lt;a href&#x3D;\&quot;#model-PatchCustomEventRequest\&quot;&gt;PatchCustomEventRequest model&lt;/a&gt; to get more details. ____ 
+     * @param body The patch of an existing custom event. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param eventId Unique identifier representing a specific test result event. (required)
+     * @return ApiResponse&lt;PatchCustomEventResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<PatchCustomEventResponse> patchTestResultCustomEventWithHttpInfo(PatchCustomEventRequest body, String workspaceId, String resultId, String eventId) throws ApiException {
+        com.squareup.okhttp.Call call = patchTestResultCustomEventValidateBeforeCall(body, workspaceId, resultId, eventId, null, null);
+        Type localVarReturnType = new TypeToken<PatchCustomEventResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Partially update a Test Result custom event (asynchronously)
+     * Update a field of an existing custom event:   - endTimestamp   - description   - url  Custom events with INSTANT timeframe can be patched to TIME_RANGE timeframe by setting an endTimestamp different than the startTimestamp.  Custom events with TIME_RANGE timeframe can be patched to INSTANT timeframe by setting an endTimestamp equals to the startTimestamp.  Custom events timestamps are in seconds.  Request to patch a custom event has some constraints, see &lt;a href&#x3D;\&quot;#model-PatchCustomEventRequest\&quot;&gt;PatchCustomEventRequest model&lt;/a&gt; to get more details. ____ 
+     * @param body The patch of an existing custom event. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param eventId Unique identifier representing a specific test result event. (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call patchTestResultCustomEventAsync(PatchCustomEventRequest body, String workspaceId, String resultId, String eventId, final ApiCallback<PatchCustomEventResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = patchTestResultCustomEventValidateBeforeCall(body, workspaceId, resultId, eventId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<PatchCustomEventResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for postTestResultCustomEvent
+     * @param body The custom event (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call postTestResultCustomEventCall(PostCustomEventRequest body, String workspaceId, String resultId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+        
+        // create path and map variables
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/events"
+            .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
+            .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "NeoloadAuthorizer" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call postTestResultCustomEventValidateBeforeCall(PostCustomEventRequest body, String workspaceId, String resultId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling postTestResultCustomEvent(Async)");
+        }
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling postTestResultCustomEvent(Async)");
+        }
+        // verify the required parameter 'resultId' is set
+        if (resultId == null) {
+            throw new ApiException("Missing the required parameter 'resultId' when calling postTestResultCustomEvent(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = postTestResultCustomEventCall(body, workspaceId, resultId, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Create a Test Result custom event
+     * Creates a Test Result custom event.  Custom events stored by this endpoint can be retrieved using the [GetTestResultEvents](#/Results/GetTestResultEvents) endpoint.  Custom events allow you to associate to a Test Result events that occurred outside of NeoLoad.  Custom events can have two different kinds of timeframe:   - INSTANT: an event having a timestamp and a duration of 0 seconds.   - TIME_RANGE: an event having a start timestamp and an end timestamp.  Custom events timestamps are in seconds.  The maximum of custom events per Test Result is 1000.  Custom events must match some constraints, see &lt;a href&#x3D;\&quot;#model-PostCustomEventRequest\&quot;&gt;PostCustomEventRequest model&lt;/a&gt; to get more details. ____ 
+     * @param body The custom event (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @return PostCustomEventResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public PostCustomEventResponse postTestResultCustomEvent(PostCustomEventRequest body, String workspaceId, String resultId) throws ApiException {
+        ApiResponse<PostCustomEventResponse> resp = postTestResultCustomEventWithHttpInfo(body, workspaceId, resultId);
+        return resp.getData();
+    }
+
+    /**
+     * Create a Test Result custom event
+     * Creates a Test Result custom event.  Custom events stored by this endpoint can be retrieved using the [GetTestResultEvents](#/Results/GetTestResultEvents) endpoint.  Custom events allow you to associate to a Test Result events that occurred outside of NeoLoad.  Custom events can have two different kinds of timeframe:   - INSTANT: an event having a timestamp and a duration of 0 seconds.   - TIME_RANGE: an event having a start timestamp and an end timestamp.  Custom events timestamps are in seconds.  The maximum of custom events per Test Result is 1000.  Custom events must match some constraints, see &lt;a href&#x3D;\&quot;#model-PostCustomEventRequest\&quot;&gt;PostCustomEventRequest model&lt;/a&gt; to get more details. ____ 
+     * @param body The custom event (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @return ApiResponse&lt;PostCustomEventResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<PostCustomEventResponse> postTestResultCustomEventWithHttpInfo(PostCustomEventRequest body, String workspaceId, String resultId) throws ApiException {
+        com.squareup.okhttp.Call call = postTestResultCustomEventValidateBeforeCall(body, workspaceId, resultId, null, null);
+        Type localVarReturnType = new TypeToken<PostCustomEventResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Create a Test Result custom event (asynchronously)
+     * Creates a Test Result custom event.  Custom events stored by this endpoint can be retrieved using the [GetTestResultEvents](#/Results/GetTestResultEvents) endpoint.  Custom events allow you to associate to a Test Result events that occurred outside of NeoLoad.  Custom events can have two different kinds of timeframe:   - INSTANT: an event having a timestamp and a duration of 0 seconds.   - TIME_RANGE: an event having a start timestamp and an end timestamp.  Custom events timestamps are in seconds.  The maximum of custom events per Test Result is 1000.  Custom events must match some constraints, see &lt;a href&#x3D;\&quot;#model-PostCustomEventRequest\&quot;&gt;PostCustomEventRequest model&lt;/a&gt; to get more details. ____ 
+     * @param body The custom event (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
+     * @param resultId Unique identifier representing a specific test result. (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call postTestResultCustomEventAsync(PostCustomEventRequest body, String workspaceId, String resultId, final ApiCallback<PostCustomEventResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = postTestResultCustomEventValidateBeforeCall(body, workspaceId, resultId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<PostCustomEventResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for postTestResultMonitors
      * @param body List of custom monitors (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -2952,7 +3549,7 @@ public class ResultsApi {
         Object localVarPostBody = body;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/monitors"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/monitors"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
 
@@ -3019,7 +3616,7 @@ public class ResultsApi {
      * Create custom monitors
      * Pushes monitoring data (external data) for a given running test. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Resolution limitation&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;Maximum resolution for a monitor value is &lt;b&gt;1 per second&lt;/b&gt;, otherwise &lt;b&gt;the first value is kept&lt;/b&gt;.&lt;/li&gt; &lt;/ul&gt; &lt;b&gt;Maximum paths and monitors&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;Maximum 100 different &lt;b&gt;unique&lt;/b&gt; paths.&lt;/li&gt;   &lt;li&gt;Maximum 50 different monitors for a given path.&lt;/li&gt;   &lt;li&gt;Maximum length is 10 for a path.&lt;/li&gt; &lt;/ul&gt; &lt;b&gt;Other requirements&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;&#x27;/&#x27; character is not allowed in path element.&lt;/li&gt;   &lt;li&gt;The test must be &lt;b&gt;running&lt;/b&gt; while pushing the data.&lt;/li&gt;   &lt;li&gt;For a given timestamp, all monitors relative to a path must be sent in the same request.&lt;/li&gt;   &lt;li&gt;These elements must not be empty: &lt;b&gt;monitor name&lt;/b&gt;, &lt;b&gt;a path element&lt;/b&gt; and &lt;b&gt;values&lt;/b&gt;.&lt;/li&gt; &lt;/ul&gt; 
      * @param body List of custom monitors (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -3031,7 +3628,7 @@ public class ResultsApi {
      * Create custom monitors
      * Pushes monitoring data (external data) for a given running test. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Resolution limitation&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;Maximum resolution for a monitor value is &lt;b&gt;1 per second&lt;/b&gt;, otherwise &lt;b&gt;the first value is kept&lt;/b&gt;.&lt;/li&gt; &lt;/ul&gt; &lt;b&gt;Maximum paths and monitors&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;Maximum 100 different &lt;b&gt;unique&lt;/b&gt; paths.&lt;/li&gt;   &lt;li&gt;Maximum 50 different monitors for a given path.&lt;/li&gt;   &lt;li&gt;Maximum length is 10 for a path.&lt;/li&gt; &lt;/ul&gt; &lt;b&gt;Other requirements&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;&#x27;/&#x27; character is not allowed in path element.&lt;/li&gt;   &lt;li&gt;The test must be &lt;b&gt;running&lt;/b&gt; while pushing the data.&lt;/li&gt;   &lt;li&gt;For a given timestamp, all monitors relative to a path must be sent in the same request.&lt;/li&gt;   &lt;li&gt;These elements must not be empty: &lt;b&gt;monitor name&lt;/b&gt;, &lt;b&gt;a path element&lt;/b&gt; and &lt;b&gt;values&lt;/b&gt;.&lt;/li&gt; &lt;/ul&gt; 
      * @param body List of custom monitors (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -3045,7 +3642,7 @@ public class ResultsApi {
      * Create custom monitors (asynchronously)
      * Pushes monitoring data (external data) for a given running test. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Resolution limitation&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;Maximum resolution for a monitor value is &lt;b&gt;1 per second&lt;/b&gt;, otherwise &lt;b&gt;the first value is kept&lt;/b&gt;.&lt;/li&gt; &lt;/ul&gt; &lt;b&gt;Maximum paths and monitors&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;Maximum 100 different &lt;b&gt;unique&lt;/b&gt; paths.&lt;/li&gt;   &lt;li&gt;Maximum 50 different monitors for a given path.&lt;/li&gt;   &lt;li&gt;Maximum length is 10 for a path.&lt;/li&gt; &lt;/ul&gt; &lt;b&gt;Other requirements&lt;/b&gt;: &lt;ul&gt;   &lt;li&gt;&#x27;/&#x27; character is not allowed in path element.&lt;/li&gt;   &lt;li&gt;The test must be &lt;b&gt;running&lt;/b&gt; while pushing the data.&lt;/li&gt;   &lt;li&gt;For a given timestamp, all monitors relative to a path must be sent in the same request.&lt;/li&gt;   &lt;li&gt;These elements must not be empty: &lt;b&gt;monitor name&lt;/b&gt;, &lt;b&gt;a path element&lt;/b&gt; and &lt;b&gt;values&lt;/b&gt;.&lt;/li&gt; &lt;/ul&gt; 
      * @param body List of custom monitors (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -3079,7 +3676,7 @@ public class ResultsApi {
     /**
      * Build call for stopTestResult
      * @param body  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -3090,7 +3687,7 @@ public class ResultsApi {
         Object localVarPostBody = body;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}/stop"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}/stop"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
 
@@ -3157,7 +3754,7 @@ public class ResultsApi {
      * Stop a running test result
      * Stop the running test result with the specified id
      * @param body  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @return InlineResponse200
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -3171,7 +3768,7 @@ public class ResultsApi {
      * Stop a running test result
      * Stop the running test result with the specified id
      * @param body  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @return ApiResponse&lt;InlineResponse200&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -3186,7 +3783,7 @@ public class ResultsApi {
      * Stop a running test result (asynchronously)
      * Stop the running test result with the specified id
      * @param body  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -3221,7 +3818,7 @@ public class ResultsApi {
     /**
      * Build call for updateTestResult
      * @param body  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -3232,7 +3829,7 @@ public class ResultsApi {
         Object localVarPostBody = body;
         
         // create path and map variables
-        String localVarPath = "/workspaces/{workspaceId}/test-results/{resultId}"
+        String localVarPath = "/v3/workspaces/{workspaceId}/test-results/{resultId}"
             .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
             .replaceAll("\\{" + "resultId" + "\\}", apiClient.escapeString(resultId.toString()));
 
@@ -3299,7 +3896,7 @@ public class ResultsApi {
      * Update a test result
      * Updates a test result with new name, description or quality status.
      * @param body  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @return TestResultDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -3313,7 +3910,7 @@ public class ResultsApi {
      * Update a test result
      * Updates a test result with new name, description or quality status.
      * @param body  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @return ApiResponse&lt;TestResultDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -3328,7 +3925,7 @@ public class ResultsApi {
      * Update a test result (asynchronously)
      * Updates a test result with new name, description or quality status.
      * @param body  (required)
-     * @param workspaceId Unique identifier representing a workspace. (required)
+     * @param workspaceId Unique identifier representing a Workspace. (required)
      * @param resultId Unique identifier representing a specific test result. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call

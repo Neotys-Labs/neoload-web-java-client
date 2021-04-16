@@ -27,8 +27,12 @@ import java.io.IOException;
 
 
 import io.swagger.client.model.Error;
+import io.swagger.client.model.FullWorkspaceDefinition;
+import io.swagger.client.model.MemberListDefinition;
 import io.swagger.client.model.RateLimitError;
+import io.swagger.client.model.WorkspaceCreateRequest;
 import io.swagger.client.model.WorkspaceDefinitionList;
+import io.swagger.client.model.WorkspaceUpdateRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -56,17 +60,402 @@ public class WorkspacesApi {
     }
 
     /**
-     * Build call for getWorkspaceList
+     * Build call for addMembersToWorkspace
+     * @param workspaceId  (required)
+     * @param body  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getWorkspaceListCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call addMembersToWorkspaceCall(String workspaceId, MemberListDefinition body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+        
+        // create path and map variables
+        String localVarPath = "/v3/workspaces/{workspaceId}/members/add"
+            .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "NeoloadAuthorizer" };
+        return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call addMembersToWorkspaceValidateBeforeCall(String workspaceId, MemberListDefinition body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling addMembersToWorkspace(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = addMembersToWorkspaceCall(workspaceId, body, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Add member(s) to a Workspace
+     * Add member(s) to a Workspace
+     * @param workspaceId  (required)
+     * @param body  (optional)
+     * @return FullWorkspaceDefinition
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public FullWorkspaceDefinition addMembersToWorkspace(String workspaceId, MemberListDefinition body) throws ApiException {
+        ApiResponse<FullWorkspaceDefinition> resp = addMembersToWorkspaceWithHttpInfo(workspaceId, body);
+        return resp.getData();
+    }
+
+    /**
+     * Add member(s) to a Workspace
+     * Add member(s) to a Workspace
+     * @param workspaceId  (required)
+     * @param body  (optional)
+     * @return ApiResponse&lt;FullWorkspaceDefinition&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<FullWorkspaceDefinition> addMembersToWorkspaceWithHttpInfo(String workspaceId, MemberListDefinition body) throws ApiException {
+        com.squareup.okhttp.Call call = addMembersToWorkspaceValidateBeforeCall(workspaceId, body, null, null);
+        Type localVarReturnType = new TypeToken<FullWorkspaceDefinition>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Add member(s) to a Workspace (asynchronously)
+     * Add member(s) to a Workspace
+     * @param workspaceId  (required)
+     * @param body  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call addMembersToWorkspaceAsync(String workspaceId, MemberListDefinition body, final ApiCallback<FullWorkspaceDefinition> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = addMembersToWorkspaceValidateBeforeCall(workspaceId, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<FullWorkspaceDefinition>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for create
+     * @param body  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call createCall(WorkspaceCreateRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+        
+        // create path and map variables
+        String localVarPath = "/v3/workspaces";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "NeoloadAuthorizer" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call createValidateBeforeCall(WorkspaceCreateRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        com.squareup.okhttp.Call call = createCall(body, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Create a new Workspace
+     * Create a new Workspace
+     * @param body  (optional)
+     * @return FullWorkspaceDefinition
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public FullWorkspaceDefinition create(WorkspaceCreateRequest body) throws ApiException {
+        ApiResponse<FullWorkspaceDefinition> resp = createWithHttpInfo(body);
+        return resp.getData();
+    }
+
+    /**
+     * Create a new Workspace
+     * Create a new Workspace
+     * @param body  (optional)
+     * @return ApiResponse&lt;FullWorkspaceDefinition&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<FullWorkspaceDefinition> createWithHttpInfo(WorkspaceCreateRequest body) throws ApiException {
+        com.squareup.okhttp.Call call = createValidateBeforeCall(body, null, null);
+        Type localVarReturnType = new TypeToken<FullWorkspaceDefinition>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Create a new Workspace (asynchronously)
+     * Create a new Workspace
+     * @param body  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call createAsync(WorkspaceCreateRequest body, final ApiCallback<FullWorkspaceDefinition> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = createValidateBeforeCall(body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<FullWorkspaceDefinition>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for delete
+     * @param workspaceId  (required)
+     * @param workspaceName  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call deleteCall(String workspaceId, String workspaceName, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/workspaces";
+        String localVarPath = "/v3/workspaces/{workspaceId}/name/{workspaceName}"
+            .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()))
+            .replaceAll("\\{" + "workspaceName" + "\\}", apiClient.escapeString(workspaceName.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "NeoloadAuthorizer" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call deleteValidateBeforeCall(String workspaceId, String workspaceName, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling delete(Async)");
+        }
+        // verify the required parameter 'workspaceName' is set
+        if (workspaceName == null) {
+            throw new ApiException("Missing the required parameter 'workspaceName' when calling delete(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = deleteCall(workspaceId, workspaceName, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Delete a Workspace
+     * WARNING: All related resources will be deleted and definitively lost. Delete the Workspace with the specified id. The Workspace name is also required to make sure you actually delete the good Workspace.
+     * @param workspaceId  (required)
+     * @param workspaceName  (required)
+     * @return FullWorkspaceDefinition
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public FullWorkspaceDefinition delete(String workspaceId, String workspaceName) throws ApiException {
+        ApiResponse<FullWorkspaceDefinition> resp = deleteWithHttpInfo(workspaceId, workspaceName);
+        return resp.getData();
+    }
+
+    /**
+     * Delete a Workspace
+     * WARNING: All related resources will be deleted and definitively lost. Delete the Workspace with the specified id. The Workspace name is also required to make sure you actually delete the good Workspace.
+     * @param workspaceId  (required)
+     * @param workspaceName  (required)
+     * @return ApiResponse&lt;FullWorkspaceDefinition&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<FullWorkspaceDefinition> deleteWithHttpInfo(String workspaceId, String workspaceName) throws ApiException {
+        com.squareup.okhttp.Call call = deleteValidateBeforeCall(workspaceId, workspaceName, null, null);
+        Type localVarReturnType = new TypeToken<FullWorkspaceDefinition>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Delete a Workspace (asynchronously)
+     * WARNING: All related resources will be deleted and definitively lost. Delete the Workspace with the specified id. The Workspace name is also required to make sure you actually delete the good Workspace.
+     * @param workspaceId  (required)
+     * @param workspaceName  (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deleteAsync(String workspaceId, String workspaceName, final ApiCallback<FullWorkspaceDefinition> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deleteValidateBeforeCall(workspaceId, workspaceName, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<FullWorkspaceDefinition>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for find
+     * @param workspaceId  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call findCall(String workspaceId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/v3/workspaces/{workspaceId}"
+            .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -104,9 +493,13 @@ public class WorkspacesApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getWorkspaceListValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call findValidateBeforeCall(String workspaceId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling find(Async)");
+        }
         
-        com.squareup.okhttp.Call call = getWorkspaceListCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = findCall(workspaceId, progressListener, progressRequestListener);
         return call;
 
         
@@ -116,36 +509,39 @@ public class WorkspacesApi {
     }
 
     /**
-     * Get the list workspaces that can be accessed
-     * The list of all workspaces that can be accessed
-     * @return WorkspaceDefinitionList
+     * Get a Workspace
+     * Get a Workspace
+     * @param workspaceId  (required)
+     * @return FullWorkspaceDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public WorkspaceDefinitionList getWorkspaceList() throws ApiException {
-        ApiResponse<WorkspaceDefinitionList> resp = getWorkspaceListWithHttpInfo();
+    public FullWorkspaceDefinition find(String workspaceId) throws ApiException {
+        ApiResponse<FullWorkspaceDefinition> resp = findWithHttpInfo(workspaceId);
         return resp.getData();
     }
 
     /**
-     * Get the list workspaces that can be accessed
-     * The list of all workspaces that can be accessed
-     * @return ApiResponse&lt;WorkspaceDefinitionList&gt;
+     * Get a Workspace
+     * Get a Workspace
+     * @param workspaceId  (required)
+     * @return ApiResponse&lt;FullWorkspaceDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<WorkspaceDefinitionList> getWorkspaceListWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = getWorkspaceListValidateBeforeCall(null, null);
-        Type localVarReturnType = new TypeToken<WorkspaceDefinitionList>(){}.getType();
+    public ApiResponse<FullWorkspaceDefinition> findWithHttpInfo(String workspaceId) throws ApiException {
+        com.squareup.okhttp.Call call = findValidateBeforeCall(workspaceId, null, null);
+        Type localVarReturnType = new TypeToken<FullWorkspaceDefinition>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Get the list workspaces that can be accessed (asynchronously)
-     * The list of all workspaces that can be accessed
+     * Get a Workspace (asynchronously)
+     * Get a Workspace
+     * @param workspaceId  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getWorkspaceListAsync(final ApiCallback<WorkspaceDefinitionList> callback) throws ApiException {
+    public com.squareup.okhttp.Call findAsync(String workspaceId, final ApiCallback<FullWorkspaceDefinition> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -166,8 +562,400 @@ public class WorkspacesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getWorkspaceListValidateBeforeCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = findValidateBeforeCall(workspaceId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<FullWorkspaceDefinition>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getWorkspaceList
+     * @param allWorkspaces If true (reserved to admin users), returns all existing workspaces, including the workspaces I am not member of. If false, returns only the workspaces I am a member of. (optional, default to false)
+     * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional, default to 50)
+     * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional, default to 0)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getWorkspaceListCall(Boolean allWorkspaces, Integer limit, Integer offset, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/v3/workspaces";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (allWorkspaces != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("allWorkspaces", allWorkspaces));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
+        if (offset != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("offset", offset));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "NeoloadAuthorizer" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getWorkspaceListValidateBeforeCall(Boolean allWorkspaces, Integer limit, Integer offset, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        com.squareup.okhttp.Call call = getWorkspaceListCall(allWorkspaces, limit, offset, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Get the list of all accessible Workspaces
+     * Lists all accessible Workspaces.
+     * @param allWorkspaces If true (reserved to admin users), returns all existing workspaces, including the workspaces I am not member of. If false, returns only the workspaces I am a member of. (optional, default to false)
+     * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional, default to 50)
+     * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional, default to 0)
+     * @return WorkspaceDefinitionList
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public WorkspaceDefinitionList getWorkspaceList(Boolean allWorkspaces, Integer limit, Integer offset) throws ApiException {
+        ApiResponse<WorkspaceDefinitionList> resp = getWorkspaceListWithHttpInfo(allWorkspaces, limit, offset);
+        return resp.getData();
+    }
+
+    /**
+     * Get the list of all accessible Workspaces
+     * Lists all accessible Workspaces.
+     * @param allWorkspaces If true (reserved to admin users), returns all existing workspaces, including the workspaces I am not member of. If false, returns only the workspaces I am a member of. (optional, default to false)
+     * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional, default to 50)
+     * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional, default to 0)
+     * @return ApiResponse&lt;WorkspaceDefinitionList&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<WorkspaceDefinitionList> getWorkspaceListWithHttpInfo(Boolean allWorkspaces, Integer limit, Integer offset) throws ApiException {
+        com.squareup.okhttp.Call call = getWorkspaceListValidateBeforeCall(allWorkspaces, limit, offset, null, null);
         Type localVarReturnType = new TypeToken<WorkspaceDefinitionList>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get the list of all accessible Workspaces (asynchronously)
+     * Lists all accessible Workspaces.
+     * @param allWorkspaces If true (reserved to admin users), returns all existing workspaces, including the workspaces I am not member of. If false, returns only the workspaces I am a member of. (optional, default to false)
+     * @param limit The maximum number of elements returned by this call. The maximum must be less than or equal to 200. (optional, default to 50)
+     * @param offset The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. (optional, default to 0)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getWorkspaceListAsync(Boolean allWorkspaces, Integer limit, Integer offset, final ApiCallback<WorkspaceDefinitionList> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getWorkspaceListValidateBeforeCall(allWorkspaces, limit, offset, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<WorkspaceDefinitionList>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for removeMembersFromWorkspace
+     * @param workspaceId  (required)
+     * @param body  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call removeMembersFromWorkspaceCall(String workspaceId, MemberListDefinition body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+        
+        // create path and map variables
+        String localVarPath = "/v3/workspaces/{workspaceId}/members/remove"
+            .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "NeoloadAuthorizer" };
+        return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call removeMembersFromWorkspaceValidateBeforeCall(String workspaceId, MemberListDefinition body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling removeMembersFromWorkspace(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = removeMembersFromWorkspaceCall(workspaceId, body, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Remove member(s) from a Workspace
+     * Remove member(s) from a Workspace
+     * @param workspaceId  (required)
+     * @param body  (optional)
+     * @return FullWorkspaceDefinition
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public FullWorkspaceDefinition removeMembersFromWorkspace(String workspaceId, MemberListDefinition body) throws ApiException {
+        ApiResponse<FullWorkspaceDefinition> resp = removeMembersFromWorkspaceWithHttpInfo(workspaceId, body);
+        return resp.getData();
+    }
+
+    /**
+     * Remove member(s) from a Workspace
+     * Remove member(s) from a Workspace
+     * @param workspaceId  (required)
+     * @param body  (optional)
+     * @return ApiResponse&lt;FullWorkspaceDefinition&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<FullWorkspaceDefinition> removeMembersFromWorkspaceWithHttpInfo(String workspaceId, MemberListDefinition body) throws ApiException {
+        com.squareup.okhttp.Call call = removeMembersFromWorkspaceValidateBeforeCall(workspaceId, body, null, null);
+        Type localVarReturnType = new TypeToken<FullWorkspaceDefinition>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Remove member(s) from a Workspace (asynchronously)
+     * Remove member(s) from a Workspace
+     * @param workspaceId  (required)
+     * @param body  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call removeMembersFromWorkspaceAsync(String workspaceId, MemberListDefinition body, final ApiCallback<FullWorkspaceDefinition> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = removeMembersFromWorkspaceValidateBeforeCall(workspaceId, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<FullWorkspaceDefinition>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for update
+     * @param workspaceId  (required)
+     * @param body  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call updateCall(String workspaceId, WorkspaceUpdateRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+        
+        // create path and map variables
+        String localVarPath = "/v3/workspaces/{workspaceId}"
+            .replaceAll("\\{" + "workspaceId" + "\\}", apiClient.escapeString(workspaceId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "NeoloadAuthorizer" };
+        return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call updateValidateBeforeCall(String workspaceId, WorkspaceUpdateRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'workspaceId' is set
+        if (workspaceId == null) {
+            throw new ApiException("Missing the required parameter 'workspaceId' when calling update(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = updateCall(workspaceId, body, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Update a Workspace
+     * Update only the specified fields of the Workspace
+     * @param workspaceId  (required)
+     * @param body  (optional)
+     * @return FullWorkspaceDefinition
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public FullWorkspaceDefinition update(String workspaceId, WorkspaceUpdateRequest body) throws ApiException {
+        ApiResponse<FullWorkspaceDefinition> resp = updateWithHttpInfo(workspaceId, body);
+        return resp.getData();
+    }
+
+    /**
+     * Update a Workspace
+     * Update only the specified fields of the Workspace
+     * @param workspaceId  (required)
+     * @param body  (optional)
+     * @return ApiResponse&lt;FullWorkspaceDefinition&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<FullWorkspaceDefinition> updateWithHttpInfo(String workspaceId, WorkspaceUpdateRequest body) throws ApiException {
+        com.squareup.okhttp.Call call = updateValidateBeforeCall(workspaceId, body, null, null);
+        Type localVarReturnType = new TypeToken<FullWorkspaceDefinition>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Update a Workspace (asynchronously)
+     * Update only the specified fields of the Workspace
+     * @param workspaceId  (required)
+     * @param body  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call updateAsync(String workspaceId, WorkspaceUpdateRequest body, final ApiCallback<FullWorkspaceDefinition> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = updateValidateBeforeCall(workspaceId, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<FullWorkspaceDefinition>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

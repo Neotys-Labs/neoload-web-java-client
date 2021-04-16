@@ -1,18 +1,18 @@
 # RuntimeApi
 
-All URIs are relative to *https://your-hostname.com/v3*
+All URIs are relative to */*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteTest**](RuntimeApi.md#deleteTest) | **DELETE** /workspaces/{workspaceId}/tests/{testId} | Delete a test
-[**getTest**](RuntimeApi.md#getTest) | **GET** /workspaces/{workspaceId}/tests/{testId} | Get a test
-[**getTestList**](RuntimeApi.md#getTestList) | **GET** /workspaces/{workspaceId}/tests | Get a test list
-[**getTestsRun**](RuntimeApi.md#getTestsRun) | **POST** /workspaces/{workspaceId}/tests/{testId}/start | Starts a test
-[**patchTest**](RuntimeApi.md#patchTest) | **PATCH** /workspaces/{workspaceId}/tests/{testId} | Partially update a test
-[**postCreateTest**](RuntimeApi.md#postCreateTest) | **POST** /workspaces/{workspaceId}/tests | Create a new test
-[**postUploadProject**](RuntimeApi.md#postUploadProject) | **POST** /workspaces/{workspaceId}/tests/{testId}/project | Uploads a NeoLoad project zip file or a standalone as code file
-[**putTest**](RuntimeApi.md#putTest) | **PUT** /workspaces/{workspaceId}/tests/{testId} | Fully update a test
-[**readProjectMetadata**](RuntimeApi.md#readProjectMetadata) | **GET** /workspaces/{workspaceId}/tests/{testId}/project | Get project&#x27;s metadata
+[**deleteTest**](RuntimeApi.md#deleteTest) | **DELETE** /v3/workspaces/{workspaceId}/tests/{testId} | Delete a test
+[**getTest**](RuntimeApi.md#getTest) | **GET** /v3/workspaces/{workspaceId}/tests/{testId} | Get a test
+[**getTestList**](RuntimeApi.md#getTestList) | **GET** /v3/workspaces/{workspaceId}/tests | Get a test list
+[**getTestsRun**](RuntimeApi.md#getTestsRun) | **POST** /v3/workspaces/{workspaceId}/tests/{testId}/start | Starts a test
+[**patchTest**](RuntimeApi.md#patchTest) | **PATCH** /v3/workspaces/{workspaceId}/tests/{testId} | Partially update a test
+[**postCreateTest**](RuntimeApi.md#postCreateTest) | **POST** /v3/workspaces/{workspaceId}/tests | Create a new test
+[**postUploadProject**](RuntimeApi.md#postUploadProject) | **POST** /v3/workspaces/{workspaceId}/tests/{testId}/project | Uploads a NeoLoad project zip file or a standalone as-code file
+[**putTest**](RuntimeApi.md#putTest) | **PUT** /v3/workspaces/{workspaceId}/tests/{testId} | Fully update a test
+[**readProjectMetadata**](RuntimeApi.md#readProjectMetadata) | **GET** /v3/workspaces/{workspaceId}/tests/{testId}/project | Get project&#x27;s metadata
 
 <a name="deleteTest"></a>
 # **deleteTest**
@@ -40,7 +40,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 RuntimeApi apiInstance = new RuntimeApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String testId = "testId_example"; // String | Unique identifier representing a specific test.
 String deleteResults = "deleteResults_example"; // String | Delete also test results linked to the test. Default is true.
 try {
@@ -56,7 +56,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **testId** | **String**| Unique identifier representing a specific test. |
  **deleteResults** | **String**| Delete also test results linked to the test. Default is true. | [optional]
 
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 
 <a name="getTest"></a>
 # **getTest**
-> TestDefinition getTest(workspaceId, testId)
+> GetTestDefinition getTest(workspaceId, testId)
 
 Get a test
 
@@ -99,10 +99,10 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 RuntimeApi apiInstance = new RuntimeApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String testId = "testId_example"; // String | Unique identifier representing a specific test.
 try {
-    TestDefinition result = apiInstance.getTest(workspaceId, testId);
+    GetTestDefinition result = apiInstance.getTest(workspaceId, testId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RuntimeApi#getTest");
@@ -114,12 +114,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **testId** | **String**| Unique identifier representing a specific test. |
 
 ### Return type
 
-[**TestDefinition**](TestDefinition.md)
+[**GetTestDefinition**](GetTestDefinition.md)
 
 ### Authorization
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 Get a test list
 
-Lists the tests of the Account. ___ *Sortable fields :*   - name   - projectName   - lastUpdateDate (descending sort by default : the most recent first)   - lastRunDate   - userModifierName 
+Lists the tests of the Workspace. ___ *Sortable fields :*   - name   - projectName   - lastUpdateDate (descending sort by default : the most recent first)   - lastRunDate   - userModifierName 
 
 ### Example
 ```java
@@ -156,7 +156,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 RuntimeApi apiInstance = new RuntimeApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 Integer limit = 50; // Integer | The maximum number of elements returned by this call. The maximum must be less than or equal to 200.
 Integer offset = 0; // Integer | The offset of the first element to return. Starting at this offset, the query will return a maximum of 'limit' elements.
 String sort = "sort_example"; // String | The key to sort the elements on. It may begin with a '+' or a '-' to specify an ascending or descending sort order. The list of available keys can be found in the endpoint description.
@@ -173,7 +173,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **limit** | **Integer**| The maximum number of elements returned by this call. The maximum must be less than or equal to 200. | [optional] [default to 50] [enum: ]
  **offset** | **Integer**| The offset of the first element to return. Starting at this offset, the query will return a maximum of &#x27;limit&#x27; elements. | [optional] [default to 0]
  **sort** | **String**| The key to sort the elements on. It may begin with a &#x27;+&#x27; or a &#x27;-&#x27; to specify an ascending or descending sort order. The list of available keys can be found in the endpoint description. | [optional]
@@ -197,7 +197,7 @@ Name | Type | Description  | Notes
 
 Starts a test
 
-Starts a test of the Account according to the method parameters.
+Starts a test of the Workspace according to the method parameters.
 
 ### Example
 ```java
@@ -217,7 +217,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 RuntimeApi apiInstance = new RuntimeApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String testId = "testId_example"; // String | Unique identifier representing a specific test.
 String testResultName = "testResultName_example"; // String | The name of the test result
 String testResultDescription = "testResultDescription_example"; // String | The description of the test result
@@ -241,7 +241,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **testId** | **String**| Unique identifier representing a specific test. |
  **testResultName** | **String**| The name of the test result |
  **testResultDescription** | **String**| The description of the test result | [optional]
@@ -292,7 +292,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 RuntimeApi apiInstance = new RuntimeApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String testId = "testId_example"; // String | Unique identifier representing a specific test.
 TestUpdate body = new TestUpdate(); // TestUpdate | The fields to update. No field is required, only those supplied will be updated.
 try {
@@ -308,7 +308,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **testId** | **String**| Unique identifier representing a specific test. |
  **body** | [**TestUpdate**](TestUpdate.md)| The fields to update. No field is required, only those supplied will be updated. | [optional]
 
@@ -352,7 +352,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 
 RuntimeApi apiInstance = new RuntimeApi();
 TestCreate body = new TestCreate(); // TestCreate | 
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 try {
     TestCreated result = apiInstance.postCreateTest(body, workspaceId);
     System.out.println(result);
@@ -367,7 +367,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**TestCreate**](TestCreate.md)|  |
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
 
 ### Return type
 
@@ -386,9 +386,9 @@ Name | Type | Description  | Notes
 # **postUploadProject**
 > ProjectDefinition postUploadProject(file, workspaceId, testId)
 
-Uploads a NeoLoad project zip file or a standalone as code file
+Uploads a NeoLoad project zip file or a standalone as-code file
 
-Uploads a NeoLoad project of the account corresponding to the parameters. The maximum size file is 100 MB
+Uploads a NeoLoad project of the Workspace corresponding to the parameters. The maximum size file is 250 MB
 
 ### Example
 ```java
@@ -409,7 +409,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 
 RuntimeApi apiInstance = new RuntimeApi();
 File file = new File("file_example"); // File | 
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String testId = "testId_example"; // String | Unique identifier representing a specific test.
 try {
     ProjectDefinition result = apiInstance.postUploadProject(file, workspaceId, testId);
@@ -425,7 +425,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file** | **File**|  |
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **testId** | **String**| Unique identifier representing a specific test. |
 
 ### Return type
@@ -468,7 +468,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 
 RuntimeApi apiInstance = new RuntimeApi();
 TestUpdate body = new TestUpdate(); // TestUpdate | The fields to update. All fields are required and will be updated.
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String testId = "testId_example"; // String | Unique identifier representing a specific test.
 try {
     TestDefinition result = apiInstance.putTest(body, workspaceId, testId);
@@ -484,7 +484,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**TestUpdate**](TestUpdate.md)| The fields to update. All fields are required and will be updated. |
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **testId** | **String**| Unique identifier representing a specific test. |
 
 ### Return type
@@ -526,7 +526,7 @@ NeoloadAuthorizer.setApiKey("YOUR API KEY");
 //NeoloadAuthorizer.setApiKeyPrefix("Token");
 
 RuntimeApi apiInstance = new RuntimeApi();
-String workspaceId = "workspaceId_example"; // String | Unique identifier representing a workspace.
+String workspaceId = "workspaceId_example"; // String | Unique identifier representing a Workspace.
 String testId = "testId_example"; // String | Unique identifier representing a specific test.
 try {
     ProjectDefinition result = apiInstance.readProjectMetadata(workspaceId, testId);
@@ -541,7 +541,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspaceId** | **String**| Unique identifier representing a workspace. |
+ **workspaceId** | **String**| Unique identifier representing a Workspace. |
  **testId** | **String**| Unique identifier representing a specific test. |
 
 ### Return type

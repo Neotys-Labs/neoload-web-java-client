@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **neoloadVersion** | **String** | Neoload version of the selected controller. |  [optional]
 **lgZonesResourcesReservation** | [**List&lt;LgByZones&gt;**](LgByZones.md) |  |  [optional]
 **author** | **String** | Name of the user who created the reservation. |  [optional]
-**owner** | [**ReservationOwner**](ReservationOwner.md) |  |  [optional]
+**workspaceId** | **String** | Unique identifier representing a Workspace. |  [optional]
 **name** | **String** | Title of the reservation. |  [optional]
 **description** | **String** | Description of the reservation. |  [optional]
 **type** | [**TypeEnum**](#TypeEnum) | How the reservation has been created. By a user or automatically when a test started. |  [optional]

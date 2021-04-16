@@ -15,10 +15,15 @@ package io.swagger.client.api;
 import io.swagger.client.ApiException;
 import io.swagger.client.model.ArrayOfReservationDefinition;
 import io.swagger.client.model.ArrayOfZoneDefinition;
+import io.swagger.client.model.Error;
+import io.swagger.client.model.RateLimitError;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import static org.junit.Assert.assertNotNull;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * API tests for ResourcesApi
@@ -44,8 +49,7 @@ public class ResourcesApiTest {
         Integer offset = null;
         ArrayOfReservationDefinition response = api.getReservations(fromDateTime, toDateTime, limit, offset);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * List all zones
@@ -59,7 +63,6 @@ public class ResourcesApiTest {
     public void getZonesTest() throws ApiException {
         ArrayOfZoneDefinition response = api.getZones();
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
 }

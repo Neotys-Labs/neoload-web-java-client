@@ -24,17 +24,21 @@ import io.swagger.client.model.CounterDefinitionArray;
 import io.swagger.client.model.CounterValues;
 import io.swagger.client.model.ElementDefinition;
 import io.swagger.client.model.ElementValues;
+import io.swagger.client.model.Error;
 import io.swagger.client.model.EventType;
-
-import static org.junit.Assert.assertNotNull;
-
 import java.io.File;
-import java.util.List;
-
 import io.swagger.client.model.InlineResponse200;
 import io.swagger.client.model.MonitorPostRequest;
+import io.swagger.client.model.PatchCustomEventError400;
+import io.swagger.client.model.PatchCustomEventError404;
+import io.swagger.client.model.PatchCustomEventRequest;
+import io.swagger.client.model.PatchCustomEventResponse;
 import io.swagger.client.model.Percentiles;
 import io.swagger.client.model.Points;
+import io.swagger.client.model.PostCustomEventError;
+import io.swagger.client.model.PostCustomEventRequest;
+import io.swagger.client.model.PostCustomEventResponse;
+import io.swagger.client.model.RateLimitError;
 import io.swagger.client.model.Sla;
 import io.swagger.client.model.TestResultDefinition;
 import io.swagger.client.model.TestResultRasterConfiguration;
@@ -44,6 +48,11 @@ import io.swagger.client.model.TestResultStopRequest;
 import io.swagger.client.model.TestResultUpdateRequest;
 import org.junit.Test;
 import org.junit.Ignore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * API tests for ResultsApi
@@ -67,6 +76,42 @@ public class ResultsApiTest {
         String resultId = null;
         api.deleteTestResult(workspaceId, resultId);
 
+        // TODO: test validations
+    }
+    /**
+     * Test result raw data
+     *
+     * Provides all the test result raw data, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;This endpoint may produce large files depending on Test Results. For production purposes please prefer using an API client rather than the browser.&lt;/i&gt;&lt;/b&gt; Provides the test result raw data for an element of category TRANSACTION, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;Retention period for raw data is 7 days after which this will be permanently deleted.&lt;/i&gt;&lt;/b&gt; 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getTestRawResultTest() throws ApiException {
+        String workspaceId = null;
+        String resultId = null;
+        String format = null;
+        String response = api.getTestRawResult(workspaceId, resultId, format);
+
+        // TODO: test validations
+    }
+    /**
+     * Test result raw data of a TRANSACTION element
+     *
+     * Provides the test result raw data for an element of category TRANSACTION, with a content as CSV or JSON file. &lt;br /&gt;&lt;br /&gt; &lt;b&gt;&lt;i&gt;Retention period for raw data is 7 days after which this will be permanently deleted.&lt;/i&gt;&lt;/b&gt; 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getTestRawResultElementTest() throws ApiException {
+        String workspaceId = null;
+        String resultId = null;
+        String elementId = null;
+        String format = null;
+        String response = api.getTestRawResultElement(workspaceId, resultId, elementId, format);
+
+        // TODO: test validations
     }
     /**
      * Test result description
@@ -82,8 +127,7 @@ public class ResultsApiTest {
         String resultId = null;
         TestResultDefinition response = api.getTestResult(workspaceId, resultId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test result element definition
@@ -100,8 +144,7 @@ public class ResultsApiTest {
         String elementId = null;
         ElementDefinition response = api.getTestResultElementDefinition(workspaceId, resultId, elementId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test result elements
@@ -118,8 +161,7 @@ public class ResultsApiTest {
         String category = null;
         ArrayOfElementDefinition response = api.getTestResultElements(workspaceId, resultId, category);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test result percentiles transaction since the beginning of the test result
@@ -136,8 +178,7 @@ public class ResultsApiTest {
         String elementId = null;
         Percentiles response = api.getTestResultElementsPercentiles(workspaceId, resultId, elementId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test results elements points since the beginning of the test result
@@ -155,8 +196,7 @@ public class ResultsApiTest {
         String statistics = null;
         Points response = api.getTestResultElementsPoints(workspaceId, resultId, elementId, statistics);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test result elements SLA status since the beginning of the test result
@@ -173,8 +213,7 @@ public class ResultsApiTest {
         String elementId = null;
         Sla response = api.getTestResultElementsSla(workspaceId, resultId, elementId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test result elements values
@@ -191,8 +230,7 @@ public class ResultsApiTest {
         String elementId = null;
         ElementValues response = api.getTestResultElementsValues(workspaceId, resultId, elementId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test result events
@@ -212,8 +250,7 @@ public class ResultsApiTest {
         String sort = null;
         ArrayOfEventDefinition response = api.getTestResultEvents(workspaceId, resultId, types, limit, offset, sort);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test result Graph
@@ -230,13 +267,12 @@ public class ResultsApiTest {
         TestResultRasterConfiguration body = null;
         File response = api.getTestResultGraph(workspaceId, resultId, body);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Lists test results
      *
-     * Lists the test results of the Account according to the method parameters. ___ *Sortable fields :*   - name   - project   - startDate (descending sort by default : the most recent first)   - qualityStatus 
+     * Lists the test results of the Workspace according to the method parameters. ___ *Sortable fields :*   - name   - project   - startDate (descending sort by default : the most recent first)   - qualityStatus 
      *
      * @throws ApiException
      *          if the Api call fails
@@ -254,8 +290,7 @@ public class ResultsApiTest {
         Boolean pretty = null;
         ArrayOfTestResultDefinition response = api.getTestResultList(workspaceId, status, project, author, limit, offset, sort, fields, pretty);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test result counter definition
@@ -272,8 +307,7 @@ public class ResultsApiTest {
         String counterId = null;
         CounterDefinition response = api.getTestResultMonitorDefinition(workspaceId, resultId, counterId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test result monitors
@@ -289,8 +323,7 @@ public class ResultsApiTest {
         String resultId = null;
         CounterDefinitionArray response = api.getTestResultMonitors(workspaceId, resultId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test result monitors points
@@ -307,8 +340,7 @@ public class ResultsApiTest {
         String counterId = null;
         Points response = api.getTestResultMonitorsPoints(workspaceId, resultId, counterId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test result monitors values
@@ -325,8 +357,7 @@ public class ResultsApiTest {
         String counterId = null;
         CounterValues response = api.getTestResultMonitorsValues(workspaceId, resultId, counterId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test results MultiGraph
@@ -342,8 +373,7 @@ public class ResultsApiTest {
         TestResultRasterMultiConfiguration body = null;
         File response = api.getTestResultMultiGraph(workspaceId, body);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * SLAs global indicators
@@ -360,8 +390,7 @@ public class ResultsApiTest {
         String status = null;
         ArrayOfSLAGlobalIndicatorDefinition response = api.getTestResultSLAGlobalIndicators(workspaceId, resultId, status);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * SLAs per time interval
@@ -379,8 +408,7 @@ public class ResultsApiTest {
         String category = null;
         ArrayOfSLAPerIntervalDefinition response = api.getTestResultSLAPerInterval(workspaceId, resultId, status, category);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * SLAs per test
@@ -398,8 +426,7 @@ public class ResultsApiTest {
         String category = null;
         ArrayOfSLAPerTestResultDefinition response = api.getTestResultSLAPerTest(workspaceId, resultId, status, category);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Test result main statistics
@@ -415,8 +442,42 @@ public class ResultsApiTest {
         String resultId = null;
         TestResultStatistics response = api.getTestResultStatistics(workspaceId, resultId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
+    }
+    /**
+     * Partially update a Test Result custom event
+     *
+     * Update a field of an existing custom event:   - endTimestamp   - description   - url  Custom events with INSTANT timeframe can be patched to TIME_RANGE timeframe by setting an endTimestamp different than the startTimestamp.  Custom events with TIME_RANGE timeframe can be patched to INSTANT timeframe by setting an endTimestamp equals to the startTimestamp.  Custom events timestamps are in seconds.  Request to patch a custom event has some constraints, see &lt;a href&#x3D;\&quot;#model-PatchCustomEventRequest\&quot;&gt;PatchCustomEventRequest model&lt;/a&gt; to get more details. ____ 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void patchTestResultCustomEventTest() throws ApiException {
+        PatchCustomEventRequest body = null;
+        String workspaceId = null;
+        String resultId = null;
+        String eventId = null;
+        PatchCustomEventResponse response = api.patchTestResultCustomEvent(body, workspaceId, resultId, eventId);
+
+        // TODO: test validations
+    }
+    /**
+     * Create a Test Result custom event
+     *
+     * Creates a Test Result custom event.  Custom events stored by this endpoint can be retrieved using the [GetTestResultEvents](#/Results/GetTestResultEvents) endpoint.  Custom events allow you to associate to a Test Result events that occurred outside of NeoLoad.  Custom events can have two different kinds of timeframe:   - INSTANT: an event having a timestamp and a duration of 0 seconds.   - TIME_RANGE: an event having a start timestamp and an end timestamp.  Custom events timestamps are in seconds.  The maximum of custom events per Test Result is 1000.  Custom events must match some constraints, see &lt;a href&#x3D;\&quot;#model-PostCustomEventRequest\&quot;&gt;PostCustomEventRequest model&lt;/a&gt; to get more details. ____ 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void postTestResultCustomEventTest() throws ApiException {
+        PostCustomEventRequest body = null;
+        String workspaceId = null;
+        String resultId = null;
+        PostCustomEventResponse response = api.postTestResultCustomEvent(body, workspaceId, resultId);
+
+        // TODO: test validations
     }
     /**
      * Create custom monitors
@@ -433,6 +494,7 @@ public class ResultsApiTest {
         String resultId = null;
         api.postTestResultMonitors(body, workspaceId, resultId);
 
+        // TODO: test validations
     }
     /**
      * Stop a running test result
@@ -449,8 +511,7 @@ public class ResultsApiTest {
         String resultId = null;
         InlineResponse200 response = api.stopTestResult(body, workspaceId, resultId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
     /**
      * Update a test result
@@ -467,7 +528,6 @@ public class ResultsApiTest {
         String resultId = null;
         TestResultDefinition response = api.updateTestResult(body, workspaceId, resultId);
 
-        assertNotNull(response);
-        System.out.println(response.toString());
+        // TODO: test validations
     }
 }

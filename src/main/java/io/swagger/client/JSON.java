@@ -50,6 +50,95 @@ public class JSON {
 
     public static GsonBuilder createGson() {
         GsonFireBuilder fireBuilder = new GsonFireBuilder()
+          .registerTypeSelector(TestDefinition.class, new TypeSelector<TestDefinition>() {
+            @Override
+            public Class<? extends TestDefinition> getClassForElement(JsonElement readElement) {
+                Map<String, Class<? extends TestDefinition>> classByDiscriminatorValue = new HashMap<>();
+                    classByDiscriminatorValue.put("GetTestDefinition".toUpperCase(), GetTestDefinition.class);
+                    classByDiscriminatorValue.put("TestDefinition".toUpperCase(), TestDefinition.class);
+                return getClassByDiscriminator(
+                            classByDiscriminatorValue,
+                            getDiscriminatorValue(readElement, ""));
+            }
+          })
+          .registerPostProcessor(TestDefinition.class, new PostProcessor<TestDefinition>() {
+              @Override
+              public void postDeserialize(TestDefinition result, JsonElement src, Gson gson) {
+
+              }
+
+              @Override
+              public void postSerialize(JsonElement result, TestDefinition src, Gson gson) {
+                  Map<Class<? extends TestDefinition>, String> discriminatorValueByClass = new HashMap<>();
+                      discriminatorValueByClass.put(GetTestDefinition.class, "GetTestDefinition");
+                      discriminatorValueByClass.put(TestDefinition.class, "TestDefinition");
+                  if(result instanceof JsonObject)
+                  {
+                      if(!((JsonObject) result).has(""))
+                      {
+                          ((JsonObject) result).addProperty("", discriminatorValueByClass.get(src.getClass()));
+                      }
+                  }
+              }
+          })
+          .registerTypeSelector(TestElementRawResult.class, new TypeSelector<TestElementRawResult>() {
+            @Override
+            public Class<? extends TestElementRawResult> getClassForElement(JsonElement readElement) {
+                Map<String, Class<? extends TestElementRawResult>> classByDiscriminatorValue = new HashMap<>();
+                    classByDiscriminatorValue.put("TestElementRawResult".toUpperCase(), TestElementRawResult.class);
+                return getClassByDiscriminator(
+                            classByDiscriminatorValue,
+                            getDiscriminatorValue(readElement, ""));
+            }
+          })
+          .registerPostProcessor(TestElementRawResult.class, new PostProcessor<TestElementRawResult>() {
+              @Override
+              public void postDeserialize(TestElementRawResult result, JsonElement src, Gson gson) {
+
+              }
+
+              @Override
+              public void postSerialize(JsonElement result, TestElementRawResult src, Gson gson) {
+                  Map<Class<? extends TestElementRawResult>, String> discriminatorValueByClass = new HashMap<>();
+                      discriminatorValueByClass.put(TestElementRawResult.class, "TestElementRawResult");
+                  if(result instanceof JsonObject)
+                  {
+                      if(!((JsonObject) result).has(""))
+                      {
+                          ((JsonObject) result).addProperty("", discriminatorValueByClass.get(src.getClass()));
+                      }
+                  }
+              }
+          })
+          .registerTypeSelector(TestRawResult.class, new TypeSelector<TestRawResult>() {
+            @Override
+            public Class<? extends TestRawResult> getClassForElement(JsonElement readElement) {
+                Map<String, Class<? extends TestRawResult>> classByDiscriminatorValue = new HashMap<>();
+                    classByDiscriminatorValue.put("TestRawResult".toUpperCase(), TestRawResult.class);
+                return getClassByDiscriminator(
+                            classByDiscriminatorValue,
+                            getDiscriminatorValue(readElement, ""));
+            }
+          })
+          .registerPostProcessor(TestRawResult.class, new PostProcessor<TestRawResult>() {
+              @Override
+              public void postDeserialize(TestRawResult result, JsonElement src, Gson gson) {
+
+              }
+
+              @Override
+              public void postSerialize(JsonElement result, TestRawResult src, Gson gson) {
+                  Map<Class<? extends TestRawResult>, String> discriminatorValueByClass = new HashMap<>();
+                      discriminatorValueByClass.put(TestRawResult.class, "TestRawResult");
+                  if(result instanceof JsonObject)
+                  {
+                      if(!((JsonObject) result).has(""))
+                      {
+                          ((JsonObject) result).addProperty("", discriminatorValueByClass.get(src.getClass()));
+                      }
+                  }
+              }
+          })
         ;
         return fireBuilder.createGsonBuilder();
     }

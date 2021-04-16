@@ -21,11 +21,13 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * ThresholdDefinition
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2020-06-12T09:30:22.329+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-16T09:41:51.665+02:00[Europe/Paris]")
 
 
 public class ThresholdDefinition {
@@ -36,7 +38,8 @@ public class ThresholdDefinition {
   public enum OperatorEnum {
     GREATER_THAN_OR_EQUAL_TO(">="),
     LESS_THAN_OR_EQUAL_TO("<="),
-    _("==");
+    _("=="),
+    BTW("btw");
 
     private String value;
 
@@ -74,8 +77,8 @@ public class ThresholdDefinition {
   }  @SerializedName("operator")
   private OperatorEnum operator = null;
 
-  @SerializedName("value")
-  private Float value = null;
+  @SerializedName("values")
+  private List<Float> values = null;
 
   public ThresholdDefinition operator(OperatorEnum operator) {
     this.operator = operator;
@@ -95,22 +98,30 @@ public class ThresholdDefinition {
     this.operator = operator;
   }
 
-  public ThresholdDefinition value(Float value) {
-    this.value = value;
+  public ThresholdDefinition values(List<Float> values) {
+    this.values = values;
+    return this;
+  }
+
+  public ThresholdDefinition addValuesItem(Float valuesItem) {
+    if (this.values == null) {
+      this.values = new ArrayList<Float>();
+    }
+    this.values.add(valuesItem);
     return this;
   }
 
    /**
-   * The value of threshold definition
-   * @return value
+   * The values of threshold definition
+   * @return values
   **/
-  @Schema(description = "The value of threshold definition")
-  public Float getValue() {
-    return value;
+  @Schema(description = "The values of threshold definition")
+  public List<Float> getValues() {
+    return values;
   }
 
-  public void setValue(Float value) {
-    this.value = value;
+  public void setValues(List<Float> values) {
+    this.values = values;
   }
 
 
@@ -124,12 +135,12 @@ public class ThresholdDefinition {
     }
     ThresholdDefinition thresholdDefinition = (ThresholdDefinition) o;
     return Objects.equals(this.operator, thresholdDefinition.operator) &&
-        Objects.equals(this.value, thresholdDefinition.value);
+        Objects.equals(this.values, thresholdDefinition.values);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operator, value);
+    return Objects.hash(operator, values);
   }
 
 
@@ -139,7 +150,7 @@ public class ThresholdDefinition {
     sb.append("class ThresholdDefinition {\n");
     
     sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("}");
     return sb.toString();
   }

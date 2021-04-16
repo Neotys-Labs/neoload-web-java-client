@@ -20,7 +20,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.client.model.LgByZones;
-import io.swagger.client.model.ReservationOwner;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -30,7 +29,7 @@ import java.util.List;
  * ReservationDefinition
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2020-06-12T09:30:22.329+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-16T09:41:51.665+02:00[Europe/Paris]")
 
 
 public class ReservationDefinition {
@@ -113,8 +112,8 @@ public class ReservationDefinition {
   @SerializedName("author")
   private String author = null;
 
-  @SerializedName("owner")
-  private ReservationOwner owner = null;
+  @SerializedName("workspaceId")
+  private String workspaceId = null;
 
   @SerializedName("name")
   private String name = null;
@@ -372,22 +371,22 @@ public class ReservationDefinition {
     this.author = author;
   }
 
-  public ReservationDefinition owner(ReservationOwner owner) {
-    this.owner = owner;
+  public ReservationDefinition workspaceId(String workspaceId) {
+    this.workspaceId = workspaceId;
     return this;
   }
 
    /**
-   * Get owner
-   * @return owner
+   * Unique identifier representing a Workspace.
+   * @return workspaceId
   **/
-  @Schema(description = "")
-  public ReservationOwner getOwner() {
-    return owner;
+  @Schema(example = "5e3acde2e860a132744ca916", description = "Unique identifier representing a Workspace.")
+  public String getWorkspaceId() {
+    return workspaceId;
   }
 
-  public void setOwner(ReservationOwner owner) {
-    this.owner = owner;
+  public void setWorkspaceId(String workspaceId) {
+    this.workspaceId = workspaceId;
   }
 
   public ReservationDefinition name(String name) {
@@ -465,7 +464,7 @@ public class ReservationDefinition {
         Objects.equals(this.neoloadVersion, reservationDefinition.neoloadVersion) &&
         Objects.equals(this.lgZonesResourcesReservation, reservationDefinition.lgZonesResourcesReservation) &&
         Objects.equals(this.author, reservationDefinition.author) &&
-        Objects.equals(this.owner, reservationDefinition.owner) &&
+        Objects.equals(this.workspaceId, reservationDefinition.workspaceId) &&
         Objects.equals(this.name, reservationDefinition.name) &&
         Objects.equals(this.description, reservationDefinition.description) &&
         Objects.equals(this.type, reservationDefinition.type);
@@ -473,7 +472,7 @@ public class ReservationDefinition {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, status, startDateTime, endDateTime, reservationWebVUs, reservationSAPVUs, reservationCitrixVUs, controllerZoneId, neoloadVersion, lgZonesResourcesReservation, author, owner, name, description, type);
+    return Objects.hash(id, status, startDateTime, endDateTime, reservationWebVUs, reservationSAPVUs, reservationCitrixVUs, controllerZoneId, neoloadVersion, lgZonesResourcesReservation, author, workspaceId, name, description, type);
   }
 
 
@@ -493,7 +492,7 @@ public class ReservationDefinition {
     sb.append("    neoloadVersion: ").append(toIndentedString(neoloadVersion)).append("\n");
     sb.append("    lgZonesResourcesReservation: ").append(toIndentedString(lgZonesResourcesReservation)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
-    sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
+    sb.append("    workspaceId: ").append(toIndentedString(workspaceId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");

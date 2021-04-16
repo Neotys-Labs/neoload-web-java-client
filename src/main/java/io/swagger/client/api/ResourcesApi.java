@@ -71,7 +71,7 @@ public class ResourcesApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/resources/reservations";
+        String localVarPath = "/v3/resources/reservations";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -207,7 +207,7 @@ public class ResourcesApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/resources/zones";
+        String localVarPath = "/v3/resources/zones";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();

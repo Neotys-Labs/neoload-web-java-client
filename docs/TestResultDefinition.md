@@ -27,6 +27,7 @@ VARIABLE | &quot;VARIABLE&quot;
 MANUAL | &quot;MANUAL&quot;
 LG_AVAILABILITY | &quot;LG_AVAILABILITY&quot;
 LICENSE | &quot;LICENSE&quot;
+FAILED_TO_START | &quot;FAILED_TO_START&quot;
 UNKNOWN | &quot;UNKNOWN&quot;
 
 <a name="StatusEnum"></a>

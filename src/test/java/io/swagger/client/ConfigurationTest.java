@@ -15,7 +15,7 @@ import org.junit.Test;
  */
 public class ConfigurationTest {
 
-	public final static String BASE_PATH = "/v3";
+	public final static String BASE_PATH = "/";
 	public final static String TOKEN = "";
 
 	public static void initTestApiClient() {
